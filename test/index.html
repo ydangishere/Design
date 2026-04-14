@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flowly — The SaaS Platform Built for Teams</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { sans: ['Plus Jakarta Sans', 'sans-serif'] },
+          colors: {
+            primary:   '#1E40AF',
+            secondary: '#3B82F6',
+            cta:       '#22C55E',
+            surface:   '#EFF6FF',
+            ink:       '#1E3A8A',
+          },
+          backdropBlur: { xs: '4px' },
+          keyframes: {
+            'fade-up': {
+              '0%':   { opacity: '0', transform: 'translateY(24px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+            'fade-in': {
+              '0%':   { opacity: '0' },
+              '100%': { opacity: '1' },
+            },
+            float: {
+              '0%,100%': { transform: 'translateY(0px)' },
+              '50%':     { transform: 'translateY(-10px)' },
+            },
+          },
+          animation: {
+            'fade-up':  'fade-up 0.6s ease-out forwards',
+            'fade-in':  'fade-in 0.5s ease-out forwards',
+            float:      'float 4s ease-in-out infinite',
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+    .glass {
+      background: rgba(255,255,255,0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255,255,255,0.6);
+    }
+    .glass-card {
+      background: rgba(255,255,255,0.65);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(148,163,184,0.25);
+    }
+    .gradient-hero {
+      background: radial-gradient(ellipse 80% 60% at 50% -10%, #BFDBFE 0%, #EFF6FF 55%, #F8FAFC 100%);
+    }
+    .gradient-blob1 {
+      background: radial-gradient(circle, #93C5FD 0%, transparent 70%);
+    }
+    .gradient-blob2 {
+      background: radial-gradient(circle, #BBF7D0 0%, transparent 70%);
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #1E40AF 0%, #3B82F6 50%, #0EA5E9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    [data-delay="1"] { animation-delay: 0.1s; opacity: 0; }
+    [data-delay="2"] { animation-delay: 0.2s; opacity: 0; }
+    [data-delay="3"] { animation-delay: 0.3s; opacity: 0; }
+    [data-delay="4"] { animation-delay: 0.4s; opacity: 0; }
+    [data-delay="5"] { animation-delay: 0.5s; opacity: 0; }
+  </style>
+</head>
+<body class="font-sans bg-surface text-ink antialiased">
+
+  <!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+  <header class="fixed top-4 left-4 right-4 z-50" role="banner">
+    <nav class="glass rounded-2xl max-w-6xl mx-auto px-5 py-3 flex items-center justify-between shadow-sm" aria-label="Main navigation">
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-2 cursor-pointer" aria-label="Flowly home">
+        <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M3 9C3 5.686 5.686 3 9 3s6 2.686 6 6-2.686 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            <path d="M9 6v3l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span class="font-bold text-lg text-ink">Flowly</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <ul class="hidden md:flex items-center gap-1 text-sm font-medium" role="list">
+        <li><a href="#features" class="px-3 py-2 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Features</a></li>
+        <li><a href="#testimonials" class="px-3 py-2 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Reviews</a></li>
+        <li><a href="#pricing" class="px-3 py-2 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Pricing</a></li>
+        <li><a href="#faq" class="px-3 py-2 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">FAQ</a></li>
+      </ul>
+
+      <!-- CTA -->
+      <div class="flex items-center gap-3">
+        <a href="#" class="hidden md:inline text-sm font-medium text-slate-600 hover:text-primary transition-colors duration-200 cursor-pointer">Sign in</a>
+        <a href="#pricing" class="inline-flex items-center gap-1.5 bg-primary hover:bg-blue-800 text-white text-sm font-semibold px-4 py-2 rounded-xl transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+          Get started free
+        </a>
+        <!-- Mobile menu button -->
+        <button id="menu-btn" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-blue-50 transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+            <path fill-rule="evenodd" d="M3 5h14a1 1 0 010 2H3a1 1 0 010-2zm0 4h14a1 1 0 010 2H3a1 1 0 010-2zm0 4h14a1 1 0 010 2H3a1 1 0 010-2z" clip-rule="evenodd"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass rounded-2xl max-w-6xl mx-auto mt-2 px-5 py-4 shadow-sm" role="dialog" aria-label="Mobile menu">
+      <ul class="flex flex-col gap-1 text-sm font-medium mb-4" role="list">
+        <li><a href="#features" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Features</a></li>
+        <li><a href="#testimonials" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Reviews</a></li>
+        <li><a href="#pricing" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">Pricing</a></li>
+        <li><a href="#faq" class="block px-3 py-2.5 rounded-lg text-slate-600 hover:text-primary hover:bg-blue-50 transition-colors duration-200 cursor-pointer">FAQ</a></li>
+      </ul>
+      <a href="#pricing" class="block w-full text-center bg-primary text-white text-sm font-semibold px-4 py-2.5 rounded-xl transition-colors duration-200 hover:bg-blue-800 cursor-pointer">Get started free</a>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+    <section class="gradient-hero relative overflow-hidden pt-36 pb-24 px-4" aria-labelledby="hero-heading">
+      <!-- Background blobs -->
+      <div class="absolute top-0 left-1/4 w-96 h-96 gradient-blob1 opacity-30 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+      <div class="absolute bottom-0 right-1/4 w-80 h-80 gradient-blob2 opacity-25 rounded-full blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+      <div class="relative max-w-6xl mx-auto text-center">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 glass-card px-4 py-2 rounded-full text-sm font-medium text-primary mb-6 animate-fade-up" data-delay="1">
+          <span class="w-2 h-2 rounded-full bg-cta inline-block" aria-hidden="true"></span>
+          Now in public beta — free for 3 months
+        </div>
+
+        <!-- Headline -->
+        <h1 id="hero-heading" class="text-4xl sm:text-5xl md:text-6xl font-extrabold leading-tight tracking-tight mb-6 animate-fade-up" data-delay="2">
+          Your team's workflow,<br />
+          <span class="text-gradient">finally in sync</span>
+        </h1>
+
+        <!-- Subheadline -->
+        <p class="text-lg sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed mb-10 animate-fade-up" data-delay="3">
+          Flowly connects tasks, docs, and teammates in one place — so nothing slips through the cracks and everyone knows what to do next.
+        </p>
+
+        <!-- CTA group -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14 animate-fade-up" data-delay="4">
+          <a href="#pricing" class="inline-flex items-center gap-2 bg-cta hover:bg-green-600 text-white font-bold px-7 py-3.5 rounded-2xl text-base shadow-lg shadow-green-200 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2">
+            Start free — no card needed
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#features" class="inline-flex items-center gap-2 glass-card hover:bg-white/80 text-ink font-semibold px-7 py-3.5 rounded-2xl text-base transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="currentColor" stroke-width="1.5"/><path d="M6.5 5.5L10.5 8l-4 2.5V5.5z" fill="currentColor"/></svg>
+            See how it works
+          </a>
+        </div>
+
+        <!-- Social proof bar -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-6 text-sm text-slate-500 animate-fade-up" data-delay="5">
+          <div class="flex items-center gap-2">
+            <!-- Avatars -->
+            <div class="flex -space-x-2" aria-hidden="true">
+              <div class="w-8 h-8 rounded-full bg-blue-200 border-2 border-white flex items-center justify-center text-xs font-bold text-blue-700">A</div>
+              <div class="w-8 h-8 rounded-full bg-green-200 border-2 border-white flex items-center justify-center text-xs font-bold text-green-700">M</div>
+              <div class="w-8 h-8 rounded-full bg-purple-200 border-2 border-white flex items-center justify-center text-xs font-bold text-purple-700">S</div>
+              <div class="w-8 h-8 rounded-full bg-orange-200 border-2 border-white flex items-center justify-center text-xs font-bold text-orange-700">J</div>
+            </div>
+            <span><strong class="text-ink">4,200+</strong> teams onboarded</span>
+          </div>
+          <span class="hidden sm:block text-slate-300" aria-hidden="true">|</span>
+          <div class="flex items-center gap-1.5">
+            <div class="flex" aria-label="4.9 out of 5 stars" role="img">
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <span><strong class="text-ink">4.9/5</strong> on Product Hunt</span>
+          </div>
+        </div>
+
+        <!-- Dashboard mockup -->
+        <div class="mt-16 max-w-4xl mx-auto animate-float" aria-hidden="true">
+          <div class="glass-card rounded-3xl p-2 shadow-2xl shadow-blue-200/50">
+            <div class="bg-white rounded-2xl overflow-hidden">
+              <!-- Browser chrome -->
+              <div class="bg-slate-100 px-4 py-3 flex items-center gap-2 border-b border-slate-200">
+                <div class="flex gap-1.5">
+                  <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                  <div class="w-3 h-3 rounded-full bg-green-400"></div>
+                </div>
+                <div class="flex-1 bg-white rounded-md mx-4 px-3 py-1 text-xs text-slate-400 text-left">app.flowly.io/dashboard</div>
+              </div>
+              <!-- Dashboard content -->
+              <div class="bg-slate-50 p-6 grid grid-cols-3 gap-4 min-h-[260px]">
+                <!-- Sidebar -->
+                <div class="col-span-1 bg-white rounded-xl p-4 shadow-sm flex flex-col gap-3">
+                  <div class="h-3 w-16 bg-primary/20 rounded-full"></div>
+                  <div class="flex flex-col gap-2 mt-2">
+                    <div class="h-8 bg-primary/10 rounded-lg flex items-center px-3 gap-2">
+                      <div class="w-3 h-3 rounded bg-primary/40"></div>
+                      <div class="h-2 w-14 bg-primary/30 rounded-full"></div>
+                    </div>
+                    <div class="h-8 rounded-lg flex items-center px-3 gap-2">
+                      <div class="w-3 h-3 rounded bg-slate-200"></div>
+                      <div class="h-2 w-12 bg-slate-200 rounded-full"></div>
+                    </div>
+                    <div class="h-8 rounded-lg flex items-center px-3 gap-2">
+                      <div class="w-3 h-3 rounded bg-slate-200"></div>
+                      <div class="h-2 w-16 bg-slate-200 rounded-full"></div>
+                    </div>
+                    <div class="h-8 rounded-lg flex items-center px-3 gap-2">
+                      <div class="w-3 h-3 rounded bg-slate-200"></div>
+                      <div class="h-2 w-10 bg-slate-200 rounded-full"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- Main content -->
+                <div class="col-span-2 flex flex-col gap-3">
+                  <div class="grid grid-cols-3 gap-3">
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                      <div class="h-2 w-12 bg-slate-200 rounded-full mb-2"></div>
+                      <div class="h-6 w-8 bg-primary rounded-md"></div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                      <div class="h-2 w-12 bg-slate-200 rounded-full mb-2"></div>
+                      <div class="h-6 w-10 bg-secondary rounded-md"></div>
+                    </div>
+                    <div class="bg-white rounded-xl p-4 shadow-sm">
+                      <div class="h-2 w-12 bg-slate-200 rounded-full mb-2"></div>
+                      <div class="h-6 w-7 bg-cta rounded-md"></div>
+                    </div>
+                  </div>
+                  <div class="bg-white rounded-xl p-4 shadow-sm flex-1">
+                    <div class="h-2 w-20 bg-slate-200 rounded-full mb-4"></div>
+                    <div class="flex flex-col gap-2">
+                      <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-cta flex-shrink-0"></div>
+                        <div class="h-2 flex-1 bg-slate-100 rounded-full"></div>
+                        <div class="h-5 w-12 bg-blue-50 rounded-md"></div>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-secondary flex-shrink-0"></div>
+                        <div class="h-2 flex-1 bg-slate-100 rounded-full" style="max-width:75%"></div>
+                        <div class="h-5 w-12 bg-blue-50 rounded-md"></div>
+                      </div>
+                      <div class="flex items-center gap-3">
+                        <div class="w-3 h-3 rounded-full bg-yellow-400 flex-shrink-0"></div>
+                        <div class="h-2 flex-1 bg-slate-100 rounded-full" style="max-width:50%"></div>
+                        <div class="h-5 w-12 bg-blue-50 rounded-md"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ LOGO BAR ═══════════════════════════ -->
+    <section class="py-14 px-4 border-y border-slate-200/60 bg-white/60" aria-label="Trusted by companies">
+      <div class="max-w-5xl mx-auto">
+        <p class="text-center text-sm font-medium text-slate-400 uppercase tracking-widest mb-8">Trusted by teams at</p>
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-14" role="list">
+          <!-- Company name logos (text-based, accessible) -->
+          <span role="listitem" class="text-slate-400 font-bold text-xl tracking-tight">Vercel</span>
+          <span role="listitem" class="text-slate-400 font-bold text-xl tracking-tight">Linear</span>
+          <span role="listitem" class="text-slate-400 font-bold text-xl tracking-tight">Loom</span>
+          <span role="listitem" class="text-slate-400 font-bold text-xl tracking-tight">Retool</span>
+          <span role="listitem" class="text-slate-400 font-bold text-xl tracking-tight">Figma</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════ FEATURES ════════════════════════ -->
+    <section id="features" class="py-24 px-4 bg-surface" aria-labelledby="features-heading">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-widest mb-3">Everything in one place</p>
+          <h2 id="features-heading" class="text-3xl md:text-4xl font-extrabold text-ink mb-4">Stop juggling a dozen tools</h2>
+          <p class="text-slate-600 text-lg max-w-xl mx-auto leading-relaxed">Flowly replaces your scattered stack with a single, focused workspace your team will actually use.</p>
+        </div>
+
+        <!-- Feature grid -->
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+          <!-- Feature card -->
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-blue-100 flex items-center justify-center mb-4 group-hover:bg-primary/10 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1E40AF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Task Boards</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Visual kanban boards with drag-and-drop. Assign owners, set deadlines, and track status without a meeting.</p>
+          </article>
+
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-green-100 flex items-center justify-center mb-4 group-hover:bg-cta/10 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Team Collaboration</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Real-time comments, mentions, and threaded discussions attached to the work itself — not lost in Slack.</p>
+          </article>
+
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-purple-100 flex items-center justify-center mb-4 group-hover:bg-purple-100 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Shared Docs</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">A living wiki that stays next to your tasks. Write, link, and find every spec, runbook, and decision log.</p>
+          </article>
+
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center mb-4 group-hover:bg-orange-100 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EA580C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Live Analytics</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Velocity charts, burndown graphs, and completion rates so you can forecast releases and spot blockers early.</p>
+          </article>
+
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-cyan-100 flex items-center justify-center mb-4 group-hover:bg-cyan-100 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0891B2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93a10 10 0 010 14.14M4.93 4.93a10 10 0 000 14.14"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Integrations</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">Connect GitHub, Slack, Notion, Jira, and 50+ tools. Flowly slots into your existing stack in minutes.</p>
+          </article>
+
+          <article class="glass-card rounded-2xl p-6 hover:shadow-md hover:shadow-blue-100 transition-all duration-200 cursor-default group">
+            <div class="w-11 h-11 rounded-xl bg-rose-100 flex items-center justify-center mb-4 group-hover:bg-rose-100 transition-colors duration-200">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#E11D48" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="font-bold text-ink text-lg mb-2">Enterprise Security</h3>
+            <p class="text-slate-600 text-sm leading-relaxed">SOC 2 Type II, SSO, audit logs, and granular role permissions. Security your compliance team will love.</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════ PROBLEM / SOLUTION ════════════════════ -->
+    <section class="py-24 px-4 bg-white/70" aria-labelledby="problem-heading">
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+        <div>
+          <p class="text-sm font-semibold text-secondary uppercase tracking-widest mb-3">The problem</p>
+          <h2 id="problem-heading" class="text-3xl md:text-4xl font-extrabold text-ink mb-6 leading-snug">Your team loses hours every week to broken handoffs</h2>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Tasks assigned in Slack get buried under 200 unread messages by noon.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Specs live in Notion, tasks in Jira, updates in email — nobody knows the real status.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-red-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#DC2626" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="2" y1="2" x2="12" y2="12"/><line x1="12" y1="2" x2="2" y2="12"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Stand-ups become status meetings because no one can see what anyone else is working on.</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p class="text-sm font-semibold text-cta uppercase tracking-widest mb-3">The Flowly fix</p>
+          <h3 class="text-2xl font-extrabold text-ink mb-6">One workspace. Total clarity.</h3>
+          <div class="flex flex-col gap-4">
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 7 6 11 12 3"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Every task has a clear owner, due date, and status — visible to the whole team instantly.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 7 6 11 12 3"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Docs live beside the tasks they describe — no more context switching to find the spec.</p>
+            </div>
+            <div class="flex gap-4 items-start">
+              <div class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center flex-shrink-0 mt-0.5">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="#16A34A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="2 7 6 11 12 3"/></svg>
+              </div>
+              <p class="text-slate-600 leading-relaxed">Your stand-up becomes a 5-minute async update, not a 45-minute status call.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════ TESTIMONIALS ═══════════════════════ -->
+    <section id="testimonials" class="py-24 px-4 bg-surface" aria-labelledby="testimonials-heading">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-widest mb-3">Don't take our word for it</p>
+          <h2 id="testimonials-heading" class="text-3xl md:text-4xl font-extrabold text-ink">Teams love Flowly</h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+
+          <figure class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+            <div class="flex" aria-label="5 out of 5 stars" role="img">
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <blockquote class="text-slate-700 text-sm leading-relaxed italic">"We cut our weekly planning meeting from 90 minutes to 15. Flowly makes it obvious what's done, what's blocked, and what needs attention."</blockquote>
+            <figcaption class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-200/60">
+              <div class="w-9 h-9 rounded-full bg-blue-200 flex items-center justify-center text-sm font-bold text-blue-700 flex-shrink-0" aria-hidden="true">S</div>
+              <div>
+                <div class="font-semibold text-ink text-sm">Sarah K.</div>
+                <div class="text-slate-500 text-xs">Engineering Manager, Retool</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="glass-card rounded-2xl p-6 flex flex-col gap-4 ring-2 ring-primary/20">
+            <div class="flex" aria-label="5 out of 5 stars" role="img">
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <blockquote class="text-slate-700 text-sm leading-relaxed italic">"I've tried Asana, Monday, and Linear. Flowly is the first tool our whole team — devs, design, and marketing — actually adopted. It just makes sense."</blockquote>
+            <figcaption class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-200/60">
+              <div class="w-9 h-9 rounded-full bg-purple-200 flex items-center justify-center text-sm font-bold text-purple-700 flex-shrink-0" aria-hidden="true">M</div>
+              <div>
+                <div class="font-semibold text-ink text-sm">Marcus T.</div>
+                <div class="text-slate-500 text-xs">Head of Product, Loom</div>
+              </div>
+            </figcaption>
+          </figure>
+
+          <figure class="glass-card rounded-2xl p-6 flex flex-col gap-4">
+            <div class="flex" aria-label="5 out of 5 stars" role="img">
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+              <svg class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/></svg>
+            </div>
+            <blockquote class="text-slate-700 text-sm leading-relaxed italic">"Our remote team went from constant catch-up calls to truly async. Flowly gives everyone the context they need without interrupting deep work."</blockquote>
+            <figcaption class="flex items-center gap-3 mt-auto pt-4 border-t border-slate-200/60">
+              <div class="w-9 h-9 rounded-full bg-green-200 flex items-center justify-center text-sm font-bold text-green-700 flex-shrink-0" aria-hidden="true">A</div>
+              <div>
+                <div class="font-semibold text-ink text-sm">Aiko N.</div>
+                <div class="text-slate-500 text-xs">CTO, Fincore</div>
+              </div>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ══════════════════════════ PRICING ════════════════════════ -->
+    <section id="pricing" class="py-24 px-4 bg-white/70" aria-labelledby="pricing-heading">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center mb-16">
+          <p class="text-sm font-semibold text-secondary uppercase tracking-widest mb-3">Simple pricing</p>
+          <h2 id="pricing-heading" class="text-3xl md:text-4xl font-extrabold text-ink mb-4">Start free. Scale when you're ready.</h2>
+          <p class="text-slate-600 text-lg max-w-lg mx-auto">No hidden fees. Cancel any time. All plans include a 14-day trial of the Pro tier.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 items-start">
+
+          <!-- Free -->
+          <div class="glass-card rounded-2xl p-7 flex flex-col gap-5">
+            <div>
+              <h3 class="font-bold text-ink text-xl mb-1">Free</h3>
+              <p class="text-slate-500 text-sm">For small teams getting started</p>
+            </div>
+            <div class="flex items-end gap-1">
+              <span class="text-4xl font-extrabold text-ink">$0</span>
+              <span class="text-slate-500 text-sm mb-1">/month</span>
+            </div>
+            <a href="#" class="block text-center border border-slate-200 hover:border-primary hover:text-primary text-ink font-semibold py-2.5 rounded-xl transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Get started</a>
+            <ul class="flex flex-col gap-3 text-sm text-slate-600" role="list">
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Up to 5 team members</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>3 active projects</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Basic task boards</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>1 GB storage</li>
+            </ul>
+          </div>
+
+          <!-- Pro (highlighted) -->
+          <div class="relative rounded-2xl p-7 flex flex-col gap-5 bg-primary text-white shadow-2xl shadow-blue-400/30 -mt-2">
+            <div class="absolute -top-3 left-1/2 -translate-x-1/2">
+              <span class="bg-cta text-white text-xs font-bold px-3 py-1 rounded-full whitespace-nowrap">Most popular</span>
+            </div>
+            <div>
+              <h3 class="font-bold text-xl mb-1">Pro</h3>
+              <p class="text-blue-200 text-sm">For growing teams shipping fast</p>
+            </div>
+            <div class="flex items-end gap-1">
+              <span class="text-4xl font-extrabold">$18</span>
+              <span class="text-blue-200 text-sm mb-1">/user/month</span>
+            </div>
+            <a href="#" class="block text-center bg-white hover:bg-blue-50 text-primary font-bold py-2.5 rounded-xl transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary">Start 14-day trial</a>
+            <ul class="flex flex-col gap-3 text-sm text-blue-100" role="list">
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Unlimited members</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Unlimited projects</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Advanced analytics</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>50+ integrations</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Priority support</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>20 GB storage / user</li>
+            </ul>
+          </div>
+
+          <!-- Enterprise -->
+          <div class="glass-card rounded-2xl p-7 flex flex-col gap-5">
+            <div>
+              <h3 class="font-bold text-ink text-xl mb-1">Enterprise</h3>
+              <p class="text-slate-500 text-sm">For orgs with compliance needs</p>
+            </div>
+            <div class="flex items-end gap-1">
+              <span class="text-4xl font-extrabold text-ink">Custom</span>
+            </div>
+            <a href="#" class="block text-center border border-primary text-primary hover:bg-primary hover:text-white font-semibold py-2.5 rounded-xl transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2">Contact sales</a>
+            <ul class="flex flex-col gap-3 text-sm text-slate-600" role="list">
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Everything in Pro</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>SSO & SAML</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Audit logs</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>Dedicated success manager</li>
+              <li class="flex gap-2.5 items-start"><svg class="w-4 h-4 text-cta flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>SLA guarantee</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ FAQ ════════════════════════════ -->
+    <section id="faq" class="py-24 px-4 bg-surface" aria-labelledby="faq-heading">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-14">
+          <h2 id="faq-heading" class="text-3xl md:text-4xl font-extrabold text-ink">Frequently asked</h2>
+        </div>
+        <dl class="flex flex-col gap-3">
+
+          <div class="glass-card rounded-2xl overflow-hidden">
+            <dt>
+              <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-ink hover:text-primary transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset" aria-expanded="false">
+                <span>Is there a free plan?</span>
+                <svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </button>
+            </dt>
+            <dd class="faq-answer hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed">Yes — our Free tier supports up to 5 members and 3 projects forever. No credit card required to sign up.</dd>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden">
+            <dt>
+              <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-ink hover:text-primary transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset" aria-expanded="false">
+                <span>Can I migrate from Jira or Asana?</span>
+                <svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </button>
+            </dt>
+            <dd class="faq-answer hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed">Absolutely. Flowly has one-click importers for Jira, Asana, Trello, and Notion. Most teams are up and running in under 30 minutes.</dd>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden">
+            <dt>
+              <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-ink hover:text-primary transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset" aria-expanded="false">
+                <span>How does the 14-day trial work?</span>
+                <svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </button>
+            </dt>
+            <dd class="faq-answer hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed">Sign up for any plan and get 14 days of Pro features free. No credit card needed until you decide to upgrade. If you don't upgrade, you automatically revert to the Free tier — your data is never deleted.</dd>
+          </div>
+
+          <div class="glass-card rounded-2xl overflow-hidden">
+            <dt>
+              <button class="faq-btn w-full flex items-center justify-between gap-4 px-6 py-5 text-left font-semibold text-ink hover:text-primary transition-colors duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-primary focus:ring-inset" aria-expanded="false">
+                <span>Is my data secure?</span>
+                <svg class="faq-icon w-5 h-5 text-slate-400 flex-shrink-0 transition-transform duration-200" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/></svg>
+              </button>
+            </dt>
+            <dd class="faq-answer hidden px-6 pb-5 text-slate-600 text-sm leading-relaxed">Flowly is SOC 2 Type II certified. All data is encrypted at rest (AES-256) and in transit (TLS 1.3). We do not sell or share your data with third parties.</dd>
+          </div>
+
+        </dl>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ CTA ═════════════════════════════ -->
+    <section class="py-24 px-4 bg-primary" aria-labelledby="cta-heading">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 id="cta-heading" class="text-3xl md:text-5xl font-extrabold text-white mb-6 leading-tight">Ready to get your team in sync?</h2>
+        <p class="text-blue-200 text-lg mb-10 max-w-xl mx-auto leading-relaxed">Join 4,200+ teams already shipping faster with Flowly. Free to start, no credit card required.</p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="#" class="inline-flex items-center gap-2 bg-cta hover:bg-green-600 text-white font-bold px-8 py-4 rounded-2xl text-base shadow-lg shadow-green-900/30 transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-cta focus:ring-offset-2 focus:ring-offset-primary">
+            Start for free
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="#" class="inline-flex items-center gap-2 border border-blue-400/50 hover:border-white text-white font-semibold px-8 py-4 rounded-2xl text-base transition-all duration-200 cursor-pointer focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-primary">
+            Schedule a demo
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ FOOTER ════════════════════════════ -->
+  <footer class="bg-slate-900 text-slate-400 px-4 py-16" role="contentinfo">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-10 mb-12">
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center" aria-hidden="true">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M3 9C3 5.686 5.686 3 9 3s6 2.686 6 6-2.686 6-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/><path d="M9 6v3l2 2" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </div>
+          <span class="font-bold text-white text-lg">Flowly</span>
+        </div>
+        <p class="text-sm leading-relaxed max-w-xs">The workspace that keeps your team aligned, your projects on track, and your stand-ups short.</p>
+      </div>
+      <nav aria-label="Product links">
+        <h3 class="font-semibold text-white text-sm mb-4">Product</h3>
+        <ul class="flex flex-col gap-2.5 text-sm" role="list">
+          <li><a href="#features" class="hover:text-white transition-colors duration-200 cursor-pointer">Features</a></li>
+          <li><a href="#pricing" class="hover:text-white transition-colors duration-200 cursor-pointer">Pricing</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Changelog</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Roadmap</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company links">
+        <h3 class="font-semibold text-white text-sm mb-4">Company</h3>
+        <ul class="flex flex-col gap-2.5 text-sm" role="list">
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">About</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Blog</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Careers</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Contact</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Legal links">
+        <h3 class="font-semibold text-white text-sm mb-4">Legal</h3>
+        <ul class="flex flex-col gap-2.5 text-sm" role="list">
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Privacy Policy</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Terms of Service</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Security</a></li>
+          <li><a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer">Cookies</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="border-t border-slate-800 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm">
+      <p>&copy; 2026 Flowly, Inc. All rights reserved.</p>
+      <div class="flex items-center gap-4">
+        <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer" aria-label="Flowly on X (Twitter)">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer" aria-label="Flowly on LinkedIn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+        </a>
+        <a href="#" class="hover:text-white transition-colors duration-200 cursor-pointer" aria-label="Flowly on GitHub">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = !mobileMenu.classList.contains('hidden');
+      mobileMenu.classList.toggle('hidden', isOpen);
+      menuBtn.setAttribute('aria-expanded', String(!isOpen));
+    });
+    // Close mobile menu on nav link click
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+        menuBtn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // FAQ accordion
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const answer = btn.closest('div').querySelector('.faq-answer');
+        const icon   = btn.querySelector('.faq-icon');
+        const isOpen = !answer.classList.contains('hidden');
+        answer.classList.toggle('hidden', isOpen);
+        icon.style.transform = isOpen ? '' : 'rotate(180deg)';
+        btn.setAttribute('aria-expanded', String(!isOpen));
+      });
+    });
+
+    // Scroll-triggered fade-up animations
+    const animateEls = document.querySelectorAll('[data-delay]');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('animate-fade-up');
+            obs.unobserve(e.target);
+          }
+        });
+      }, { threshold: 0.15 });
+      animateEls.forEach(el => obs.observe(el));
+    } else {
+      animateEls.forEach(el => { el.style.opacity = '1'; });
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
