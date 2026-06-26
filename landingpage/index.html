@@ -234,7 +234,7 @@
 
     <div class="hero-layout" style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;">
       <!-- portrait -->
-      <div class="hero-avatar" data-hero="" ref="{{ setAvatarWrap }}" onMouseMove="{{ onAvatarMove }}" onMouseEnter="{{ onAvatarEnter }}" onMouseLeave="{{ onAvatarLeave }}" style="width:clamp(286px,38vw,475px); aspect-ratio:1/1.27; background:#0A0A0A url('assets/portrait.png') center 35% / cover no-repeat; position:relative; flex:0 0 auto; overflow:visible; cursor:crosshair; filter:grayscale(50%);">
+      <div class="hero-avatar" data-hero="" ref="{{ setAvatarWrap }}" onMouseMove="{{ onAvatarMove }}" onMouseEnter="{{ onAvatarEnter }}" onMouseLeave="{{ onAvatarLeave }}" onPointerDown="{{ onAvatarPointerDown }}" onPointerMove="{{ onAvatarPointerMove }}" onPointerUp="{{ onAvatarPointerUp }}" onPointerCancel="{{ onAvatarPointerUp }}" style="width:clamp(286px,38vw,475px); aspect-ratio:1/1.27; background:#0A0A0A url('assets/portrait.png') center 35% / cover no-repeat; position:relative; flex:0 0 auto; overflow:visible; cursor:crosshair; touch-action:none; filter:grayscale(50%);">
         <img data-avatar-base="" src="assets/portrait.png" alt="Y Van Dang portrait" style="width:100%; height:100%; object-fit:cover; object-position:center 35%; display:block; position:absolute; inset:0; z-index:1; opacity:1; transition:opacity .18s ease;">
         <div ref="{{ setGrid }}" style="position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0; filter:grayscale(0.5); transition:opacity .16s ease, filter .5s ease;"></div>
       </div>
@@ -260,9 +260,8 @@
 
     <div class="hero-role" data-hero="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-top:clamp(0px,calc(5.6vw - 50px),72px);">Product Designer / Interactive Web Designer</div>
 
-    <div data-hero="" ref="{{ setHeadWrap }}" onMouseMove="{{ onHeadMove }}" onMouseEnter="{{ onHeadEnter }}" onMouseLeave="{{ onHeadLeave }}" style="position:relative; display:block; margin:10px 0 0; cursor:crosshair;">
+    <div data-hero="" style="position:relative; display:block; margin:10px 0 0;">
       <h1 class="hero-title" ref="{{ setHeadText }}" style="margin:0; font-size:clamp(58px,12.5vw,188px); font-weight:700; letter-spacing:calc(-0.035em + 20px); line-height:0.86; color:#FFFFFF; text-shadow:0 18px 60px rgba(0,0,0,0.6); text-align:left; text-align-last:justify; white-space:nowrap;">Y VAN DANG</h1>
-      <div ref="{{ setHeadGrid }}" style="position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0; transition:opacity .12s ease;"></div>
     </div>
 
     <div data-divider="" style="height:30px; width:100%; margin-top:clamp(24px,3vw,40px); background:linear-gradient(90deg,#2DD4BF 0%,#6FB97F 32%,#A8B85E 52%,#E9A93C 78%,#EA6B2E 100%);"></div>
@@ -1049,7 +1048,6 @@ class Component extends DCLogic {
     const wrap = this.headWrap, txt = this.headText, grid = this.headGrid;
     if (wrap && txt && grid && wrap.clientWidth > 0){
       this._buildHead();
-      setTimeout(() => this._autoPlayTileIntro('head'), 420);
       if (!this._headRO && window.ResizeObserver){
         this._headRO = new ResizeObserver(() => this._buildHead());
         this._headRO.observe(wrap);
@@ -1196,6 +1194,35 @@ class Component extends DCLogic {
     }
   }
 
+  _tilePointerDown(kind, e){
+    if (e && e.pointerType === 'mouse') return;
+    if (e && e.preventDefault) e.preventDefault();
+    const wrap = kind === 'avatar' ? this.avatarWrap : this.headWrap;
+    if (!wrap) return;
+    if (kind === 'avatar') this._smoothAvatarEnter();
+    else this._smoothHeadEnter();
+    try {
+      if (e && e.currentTarget && e.pointerId != null) e.currentTarget.setPointerCapture(e.pointerId);
+    } catch (_) {}
+    this._smoothTileMove(kind, e);
+  }
+
+  _tilePointerMove(kind, e){
+    if (e && e.pointerType === 'mouse') return;
+    if (e && e.preventDefault) e.preventDefault();
+    this._smoothTileMove(kind, e);
+  }
+
+  _tilePointerUp(kind, e){
+    if (e && e.pointerType === 'mouse') return;
+    if (e && e.preventDefault) e.preventDefault();
+    try {
+      if (e && e.currentTarget && e.pointerId != null) e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch (_) {}
+    if (kind === 'avatar') this._smoothAvatarLeave();
+    else this._smoothHeadLeave();
+  }
+
   _autoPlayTileIntro(kind){
     if (!this.motionOn) return;
     if (!this._tileIntroPlayed) this._tileIntroPlayed = {};
@@ -1260,12 +1287,10 @@ class Component extends DCLogic {
       onAvatarMove: (e) => this._smoothTileMove('avatar', e),
       onAvatarEnter: () => this._smoothAvatarEnter(),
       onAvatarLeave: () => this._smoothAvatarLeave(),
-      setHeadWrap: (el) => { if (el){ this.headWrap = el; this._ensureHead(0); } },
+      onAvatarPointerDown: (e) => this._tilePointerDown('avatar', e),
+      onAvatarPointerMove: (e) => this._tilePointerMove('avatar', e),
+      onAvatarPointerUp: (e) => this._tilePointerUp('avatar', e),
       setHeadText: (el) => { if (el) this.headText = el; },
-      setHeadGrid: (el) => { if (el) this.headGrid = el; },
-      onHeadMove: (e) => this._smoothTileMove('head', e),
-      onHeadEnter: () => this._smoothHeadEnter(),
-      onHeadLeave: () => this._smoothHeadLeave(),
       prev: () => this._slide(-1),
       next: () => this._slide(1)
     };
