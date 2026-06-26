@@ -1,0 +1,1440 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#0A0A0A; }
+  body{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  ::selection{ background:#E9A93C; color:#0A0A0A; }
+  [data-track]::-webkit-scrollbar{ height:0; width:0; }
+  .circle-reveal-btn{
+    position:relative;
+    isolation:isolate;
+    overflow:hidden;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:18px;
+    font-size:14px;
+    font-weight:600;
+    padding:13px 22px;
+    text-decoration:none;
+    transition:color .6s cubic-bezier(.25,.46,.45,.94);
+  }
+  .circle-reveal-btn::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    z-index:-1;
+    clip-path:circle(0% at 0 0);
+    transition:clip-path .6s cubic-bezier(.25,.46,.45,.94);
+  }
+  .circle-reveal-btn:hover::before,
+  .circle-reveal-btn:focus-visible::before{
+    clip-path:circle(150% at 0 0);
+  }
+  .circle-reveal-btn--light{
+    background:#F2F2F2;
+    color:#0A0A0A;
+    border:1px solid #F2F2F2;
+  }
+  .circle-reveal-btn--light::before{ background:#0A0A0A; }
+  .circle-reveal-btn--light:hover,
+  .circle-reveal-btn--light:focus-visible{ color:#F2F2F2; }
+  .circle-reveal-btn--dark{
+    background:#0A0A0A;
+    color:#F2F2F2;
+    border:1px solid rgba(255,255,255,.28);
+  }
+  .circle-reveal-btn--dark::before{ background:#F2F2F2; }
+  .circle-reveal-btn--dark:hover,
+  .circle-reveal-btn--dark:focus-visible{ color:#0A0A0A; }
+  .circle-reveal-btn__arrow{
+    display:inline-block;
+    transition:transform .2s ease-out;
+  }
+  .circle-reveal-btn:hover .circle-reveal-btn__arrow,
+  .circle-reveal-btn:focus-visible .circle-reveal-btn__arrow{
+    transform:translateX(3px);
+  }
+  .circle-reveal-icon{
+    width:46px;
+    height:46px;
+    padding:0;
+    gap:0;
+    cursor:pointer;
+    font-size:18px;
+  }
+  .scroll-line-mask{
+    display:block;
+    overflow:hidden;
+    padding-bottom:.08em;
+    margin-bottom:-.08em;
+  }
+  .scroll-line-inner{
+    display:block;
+    will-change:transform;
+  }
+  #services .service-item{
+    transition:background-color .2s cubic-bezier(.25,.46,.45,.94);
+  }
+  #services [data-service-grid]{
+    position:relative;
+  }
+  #services .service-grid-line{
+    position:absolute;
+    z-index:2;
+    pointer-events:none;
+    background:rgba(10,10,10,.12);
+    transform-origin:left center;
+  }
+  #services .service-grid-line--top,
+  #services .service-grid-line--bottom{
+    left:0;
+    width:100%;
+    height:1px;
+    transform:scaleX(0);
+  }
+  #services .service-grid-line--top{ top:0; }
+  #services .service-grid-line--bottom{ bottom:0; }
+  #philosophy .principle-item{
+    transition:background-color .2s cubic-bezier(.25,.46,.45,.94);
+  }
+  #philosophy .principle-item:hover{
+    background-color:rgba(255,255,255,.06);
+  }
+  @media (min-width:1000px){
+    .hero-nav{
+      gap:clamp(28px,3.06vw,52px) !important;
+    }
+  }
+  @media (min-width:1280px){
+    .hero-nav{
+      gap:clamp(22px,2.45vw,42px) !important;
+    }
+  }
+  @media (max-width:808px){
+    #hero{
+      padding:24px 22px 52px !important;
+    }
+    .hero-layout{
+      display:grid !important;
+      grid-template-columns:1fr !important;
+      gap:28px !important;
+    }
+    .hero-copy{
+      display:contents !important;
+    }
+    .hero-nav{
+      grid-row:1;
+      width:100%;
+      justify-content:center;
+      flex-wrap:wrap;
+      gap:23px 38px !important;
+      font-size:15px !important;
+    }
+    .hero-avatar{
+      grid-row:2;
+      width:min(68vw,420px) !important;
+      justify-self:center;
+    }
+    .hero-actions{
+      grid-row:3;
+      justify-self:center;
+      margin-top:0 !important;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    .hero-intro{
+      grid-row:4;
+      justify-self:center;
+      text-align:center !important;
+      max-width:520px !important;
+      font-size:clamp(17px,2.8vw,20px) !important;
+    }
+    .hero-role{
+      margin-top:34px !important;
+      text-align:center;
+    }
+    .hero-skills{
+      justify-content:center;
+      text-align:center;
+    }
+    .hero-title{
+      font-size:clamp(34px,9.6vw,75px) !important;
+      letter-spacing:clamp(2px,1vw,6px) !important;
+      text-align:center !important;
+      text-align-last:center !important;
+      width:100%;
+      overflow:hidden;
+    }
+  }
+  @media (max-width:520px){
+    .hero-avatar{
+      width:min(84vw,360px) !important;
+    }
+    .hero-nav{
+      gap:23px 30px !important;
+    }
+    .hero-actions{
+      width:100%;
+    }
+    .hero-actions .circle-reveal-btn{
+      flex:1 1 150px;
+    }
+    .hero-title{
+      font-size:clamp(30px,9.2vw,50px) !important;
+      letter-spacing:2px !important;
+    }
+  }
+  @media (max-width:419px){
+    .hero-nav{
+      font-size:13px !important;
+    }
+  }
+  @media (max-width:361px){
+    .hero-nav{
+      gap:16px 21px !important;
+    }
+  }
+  @media (max-width:325px){
+    .hero-nav{
+      gap:9px 12px !important;
+      font-size:15px !important;
+    }
+  }
+  @media (max-width:490px){
+    .hero-title{
+      font-size:clamp(35px,10.6vw,58px) !important;
+    }
+  }
+</style>
+<script src="./assets/vendor/gsap.min.js"></script>
+<script src="./assets/vendor/ScrollTrigger.min.js"></script>
+<script src="./assets/vendor/lenis.min.js"></script>
+<script>
+  if (window.gsap) window.gsap.config({ nullTargetWarn: false });
+</script>
+</helmet>
+
+<div ref="{{ setRoot }}" style="background:#0A0A0A; color:#F2F2F2; font-family:'Hanken Grotesk',system-ui,sans-serif; min-height:100vh; overflow-x:hidden; position:relative;">
+
+  <!-- ===================== 01 HERO ===================== -->
+  <section id="hero" data-screen-label="01 Hero" style="max-width:1480px; margin:0 auto; padding:clamp(28px,4vw,52px) clamp(22px,5vw,72px) clamp(40px,6vw,80px);">
+
+    <div class="hero-layout" style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;">
+      <!-- portrait -->
+      <div class="hero-avatar" data-hero="" ref="{{ setAvatarWrap }}" onMouseMove="{{ onAvatarMove }}" onMouseEnter="{{ onAvatarEnter }}" onMouseLeave="{{ onAvatarLeave }}" style="width:clamp(286px,38vw,475px); aspect-ratio:1/1.27; background:#0A0A0A url('assets/portrait.png') center 35% / cover no-repeat; position:relative; flex:0 0 auto; overflow:visible; cursor:crosshair; filter:grayscale(50%);">
+        <img data-avatar-base="" src="assets/portrait.png" alt="Y Van Dang portrait" style="width:100%; height:100%; object-fit:cover; object-position:center 35%; display:block; position:absolute; inset:0; z-index:1; opacity:1; transition:opacity .18s ease;">
+        <div ref="{{ setGrid }}" style="position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0; filter:grayscale(0.5); transition:opacity .16s ease, filter .5s ease;"></div>
+      </div>
+
+      <!-- right column: nav + ctas + intro -->
+      <div class="hero-copy" data-hero="" style="flex:1 1 380px; max-width:560px; display:flex; flex-direction:column; align-items:flex-end; gap:clamp(22px,3vw,40px);">
+        <nav class="hero-nav" style="display:flex; gap:clamp(35px,3.82vw,65px); font-size:14px; color:#C9C9C9; font-weight:500;">
+          <a href="#hero" data-target="#hero" data-nav="#hero" style="color:#9A9A9A; text-decoration:none; padding-bottom:5px; border-bottom:1px solid transparent; transition:color .3s, border-color .3s;" style-hover="color:#fff;">Home</a>
+          <a href="#work" data-target="#work" data-nav="#work" style="color:#9A9A9A; text-decoration:none; padding-bottom:5px; border-bottom:1px solid transparent; transition:color .3s, border-color .3s;" style-hover="color:#fff;">Work</a>
+          <a href="#services" data-target="#services" data-nav="#services" style="color:#9A9A9A; text-decoration:none; padding-bottom:5px; border-bottom:1px solid transparent; transition:color .3s, border-color .3s;" style-hover="color:#fff;">Services</a>
+          <a href="#philosophy" data-target="#philosophy" data-nav="#philosophy" style="color:#9A9A9A; text-decoration:none; padding-bottom:5px; border-bottom:1px solid transparent; transition:color .3s, border-color .3s;" style-hover="color:#fff;">About</a>
+          <a href="#contact" data-target="#contact" data-nav="#contact" style="color:#9A9A9A; text-decoration:none; padding-bottom:5px; border-bottom:1px solid transparent; transition:color .3s, border-color .3s;" style-hover="color:#fff;">Contact</a>
+        </nav>
+
+        <div class="hero-actions" style="display:flex; gap:12px; margin-top:100px;">
+          <a href="#work" data-target="#work" class="circle-reveal-btn circle-reveal-btn--light"><span>View My Work</span><span class="circle-reveal-btn__arrow" aria-hidden="true">→</span></a>
+          <a href="#contact" data-target="#contact" class="circle-reveal-btn circle-reveal-btn--dark"><span>Get in Touch</span></a>
+        </div>
+
+        <p class="hero-intro" style="margin: 0; text-align: right; font-size: clamp(20px,1.2vw,18px); line-height: 1.55; color: #B4B4B4; max-width: 377px">I design digital products and interactive experiences sites that are purposeful, intuitive, and built for real people.</p>
+      </div>
+    </div>
+
+    <div class="hero-role" data-hero="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-top:clamp(0px,calc(5.6vw - 50px),72px);">Product Designer / Interactive Web Designer</div>
+
+    <div data-hero="" ref="{{ setHeadWrap }}" onMouseMove="{{ onHeadMove }}" onMouseEnter="{{ onHeadEnter }}" onMouseLeave="{{ onHeadLeave }}" style="position:relative; display:block; margin:10px 0 0; cursor:crosshair;">
+      <h1 class="hero-title" ref="{{ setHeadText }}" style="margin:0; font-size:clamp(58px,12.5vw,188px); font-weight:700; letter-spacing:calc(-0.035em + 20px); line-height:0.86; color:#FFFFFF; text-shadow:0 18px 60px rgba(0,0,0,0.6); text-align:left; text-align-last:justify; white-space:nowrap;">Y VAN DANG</h1>
+      <div ref="{{ setHeadGrid }}" style="position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0; transition:opacity .12s ease;"></div>
+    </div>
+
+    <div data-divider="" style="height:30px; width:100%; margin-top:clamp(24px,3vw,40px); background:linear-gradient(90deg,#2DD4BF 0%,#6FB97F 32%,#A8B85E 52%,#E9A93C 78%,#EA6B2E 100%);"></div>
+
+    <div class="hero-skills" style="display:flex; flex-wrap:wrap; gap:clamp(14px,3vw,40px); margin-top:18px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#8A8A8A; text-transform:uppercase;">
+      <span>Product Design</span><span style="color:#3A3A3A;">—</span>
+      <span>Interactive Experiences</span><span style="color:#3A3A3A;">—</span>
+      <span>Web Design</span><span style="color:#3A3A3A;">—</span>
+      <span>UI Systems</span><span style="color:#3A3A3A;">—</span>
+      <span>UX Analysis</span><span style="color:#3A3A3A;">—</span>
+      <span>Research</span>
+    </div>
+  </section>
+
+  <!-- ===================== 02 PHILOSOPHY ===================== -->
+  <section id="philosophy" data-screen-label="02 Philosophy" style="max-width:1480px; margin:0 auto; padding:clamp(70px,9vw,150px) clamp(22px,5vw,72px); border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(28px,5vw,80px); align-items:start;">
+      <h2 data-reveal="" style="margin:0; font-size:clamp(44px,6.5vw,90px); font-weight:600; letter-spacing:-0.025em; line-height:0.95; color:#fff;">Principles</h2>
+      <p data-reveal="" style="margin:0; align-self:end; font-size:clamp(18px,1.6vw,24px); line-height:1.5; color:#C2C2C2; max-width:520px;">I believe clarity is the foundation of great digital work. For every project, I focus on understanding the real problem, shaping simple ideas, executing with precision, and refining every detail with care.</p>
+    </div>
+
+    <div data-stagger="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:0; margin-top:clamp(48px,7vw,100px); border-top:1px solid rgba(255,255,255,0.1);">
+      <div data-stagger-item="" class="principle-item" style="padding:clamp(28px,3vw,44px) clamp(24px,2.5vw,40px) 36px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#2DD4BF; margin-bottom:18px;">01</div>
+        <h3 style="margin:0 0 10px; font-size:22px; font-weight:600; color:#fff;">Product Thinking</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:#9A9A9A; max-width:340px;">Clear structure, user insight, and business context before visual execution.</p>
+      </div>
+      <div data-stagger-item="" class="principle-item" style="padding:clamp(28px,3vw,44px) clamp(24px,2.5vw,40px) 36px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6FB97F; margin-bottom:18px;">02</div>
+        <h3 style="margin:0 0 10px; font-size:22px; font-weight:600; color:#fff;">Interaction &amp; Motion</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:#9A9A9A; max-width:340px;">Subtle motion that supports storytelling, feedback, and usability.</p>
+      </div>
+      <div data-stagger-item="" class="principle-item" style="padding:clamp(28px,3vw,44px) clamp(24px,2.5vw,40px) 36px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#E9A93C; margin-bottom:18px;">03</div>
+        <h3 style="margin:0 0 10px; font-size:22px; font-weight:600; color:#fff;">Editorial Design</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:#9A9A9A; max-width:340px;">Strong typography, hierarchy, spacing, and visual rhythm.</p>
+      </div>
+      <div data-stagger-item="" class="principle-item" style="padding:clamp(28px,3vw,44px) clamp(24px,2.5vw,40px) 36px;">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#EA6B2E; margin-bottom:18px;">04</div>
+        <h3 style="margin:0 0 10px; font-size:22px; font-weight:600; color:#fff;">Systems &amp; Handoff</h3>
+        <p style="margin:0; font-size:15px; line-height:1.55; color:#9A9A9A; max-width:340px;">Reusable components, clear documentation, and smooth developer collaboration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 03 SELECTED PROJECTS ===================== -->
+  <section id="work" data-screen-label="03 Work" style="max-width:1480px; margin:0 auto; padding:clamp(70px,9vw,150px) clamp(22px,5vw,72px); border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:clamp(26px,3vw,44px);">03 / Work</div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(24px,4vw,64px); align-items:end;">
+      <h2 data-reveal="" style="margin:0; font-size:clamp(44px,6.5vw,90px); font-weight:600; letter-spacing:-0.025em; line-height:0.95; color:#fff;">Projects</h2>
+      <div data-reveal="" style="display:flex; flex-direction:column; gap:22px; align-items:flex-start;">
+        <p style="margin:0; font-size:clamp(16px,1.3vw,19px); line-height:1.55; color:#A8A8A8; max-width:420px;">A selection of product websites, interactive experiences, and interface systems built with clarity and intention.</p>
+        <div style="display:flex; gap:10px;">
+          <button onClick="{{ prev }}" aria-label="Previous" class="circle-reveal-btn circle-reveal-btn--dark circle-reveal-icon"><span>←</span></button>
+          <button onClick="{{ next }}" aria-label="Next" class="circle-reveal-btn circle-reveal-btn--light circle-reveal-icon"><span>→</span></button>
+        </div>
+      </div>
+    </div>
+
+    <div data-track="" ref="{{ setTrackRef }}" data-stagger="" style="display:flex; gap:24px; margin-top:clamp(40px,5vw,72px); overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; -ms-overflow-style:none; padding-bottom:4px;">
+
+      <article data-card="" data-stagger-item="" style="flex:0 0 clamp(280px,28vw,340px); scroll-snap-align:start; cursor:pointer; transition:transform .45s ease;" style-hover="transform:translateY(-8px);">
+        <div style="aspect-ratio:4/3; border:1px solid rgba(255,255,255,0.12); background:#141414; position:relative; overflow:hidden;">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%;"><line x1="0" y1="0" x2="100" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line><line x1="100" y1="0" x2="0" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line></svg>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; color:#2DD4BF; margin-top:20px;">Community Platform · 2026</div>
+        <h3 style="margin:10px 0 8px; font-size:23px; font-weight:600; color:#fff;">Patina Concept</h3>
+        <p style="margin:0 0 14px; font-size:14px; line-height:1.5; color:#9A9A9A;">A maker-focused community experience for craft, stories, and discovery.</p>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#6E6E6E;">UX/UI · IA · Product Design</div>
+      </article>
+
+      <article data-card="" data-stagger-item="" style="flex:0 0 clamp(280px,28vw,340px); scroll-snap-align:start; cursor:pointer; transition:transform .45s ease;" style-hover="transform:translateY(-8px);">
+        <div style="aspect-ratio:4/3; border:1px solid rgba(255,255,255,0.12); background:#141414; position:relative; overflow:hidden;">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%;"><line x1="0" y1="0" x2="100" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line><line x1="100" y1="0" x2="0" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line></svg>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; color:#6FB97F; margin-top:20px;">Interactive Website · 2026</div>
+        <h3 style="margin:10px 0 8px; font-size:23px; font-weight:600; color:#fff;">Interactive Pet Demo</h3>
+        <p style="margin:0 0 14px; font-size:14px; line-height:1.5; color:#9A9A9A;">A mobile-first interactive web concept with motion and storytelling.</p>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#6E6E6E;">Motion · Web Design · Prototype</div>
+      </article>
+
+      <article data-card="" data-stagger-item="" style="flex:0 0 clamp(280px,28vw,340px); scroll-snap-align:start; cursor:pointer; transition:transform .45s ease;" style-hover="transform:translateY(-8px);">
+        <div style="aspect-ratio:4/3; border:1px solid rgba(255,255,255,0.12); background:#141414; position:relative; overflow:hidden;">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%;"><line x1="0" y1="0" x2="100" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line><line x1="100" y1="0" x2="0" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line></svg>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; color:#E9A93C; margin-top:20px;">Product Design · 2025</div>
+        <h3 style="margin:10px 0 8px; font-size:23px; font-weight:600; color:#fff;">SaaS Dashboard</h3>
+        <p style="margin:0 0 14px; font-size:14px; line-height:1.5; color:#9A9A9A;">A dashboard experience focused on clarity, workflow, and decision-making.</p>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#6E6E6E;">UX Flow · UI System · Dashboard</div>
+      </article>
+
+      <article data-card="" data-stagger-item="" style="flex:0 0 clamp(280px,28vw,340px); scroll-snap-align:start; cursor:pointer; transition:transform .45s ease;" style-hover="transform:translateY(-8px);">
+        <div style="aspect-ratio:4/3; border:1px solid rgba(255,255,255,0.12); background:#141414; position:relative; overflow:hidden;">
+          <svg viewBox="0 0 100 75" preserveAspectRatio="none" style="position:absolute; inset:0; width:100%; height:100%;"><line x1="0" y1="0" x2="100" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line><line x1="100" y1="0" x2="0" y2="75" stroke="rgba(255,255,255,0.14)" stroke-width="0.4"></line></svg>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.08em; color:#EA6B2E; margin-top:20px;">Personal Brand · 2026</div>
+        <h3 style="margin:10px 0 8px; font-size:23px; font-weight:600; color:#fff;">Portfolio System</h3>
+        <p style="margin:0 0 14px; font-size:14px; line-height:1.5; color:#9A9A9A;">A dark editorial portfolio system for showcasing selected digital work.</p>
+        <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.06em; color:#6E6E6E;">Visual System · Web · Motion</div>
+      </article>
+    </div>
+
+    <div style="display:flex; justify-content:flex-end; margin-top:clamp(28px,3vw,44px);">
+      <a href="#work" data-target="#work" style="font-size:14px; font-weight:600; color:#E5E5E5; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:3px; transition:color .3s,border-color .3s;" style-hover="color:#E9A93C; border-color:#E9A93C;">View all projects →</a>
+    </div>
+  </section>
+
+  <!-- ===================== 04 SERVICES (LIGHT) ===================== -->
+  <section id="services" data-screen-label="04 Services" style="background:#F2F2F2; color:#101010;">
+    <div style="max-width:1480px; margin:0 auto; padding:clamp(70px,9vw,150px) clamp(22px,5vw,72px);">
+      <div data-service-label="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#6A6A6A; text-transform:uppercase; margin-bottom:clamp(26px,3vw,44px);">04 / Services</div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(24px,4vw,64px); align-items:end;">
+        <h2 data-reveal="" style="margin:0; font-size:clamp(44px,6.5vw,90px); font-weight:600; letter-spacing:-0.025em; line-height:0.95; color:#0A0A0A;">Services</h2>
+        <p data-reveal="" style="margin:0; font-size:clamp(16px,1.3vw,20px); line-height:1.55; color:#444; max-width:460px;">From idea to execution, I help teams shape clear, useful, and polished digital experiences.</p>
+      </div>
+
+      <div data-stagger="" data-service-grid="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); margin-top:clamp(44px,6vw,90px);">
+        <span class="service-grid-line service-grid-line--top" aria-hidden="true"></span>
+        <span class="service-grid-line service-grid-line--bottom" aria-hidden="true"></span>
+        <div data-stagger-item="" class="service-item" style="padding:clamp(28px,3vw,48px);" style-hover="background:#E5E5E5;">
+          <div data-service-index="" style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#2DD4BF; margin-bottom:18px;">01</div>
+          <h3 style="margin:0 0 12px; font-size:clamp(20px,1.6vw,26px); font-weight:600; color:#0A0A0A;">Product Design</h3>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.55; color:#555; max-width:380px;">End-to-end product design for web and mobile experiences.</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; color:#333;">
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Product strategy</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>UX / UI design</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Prototyping &amp; testing</li>
+          </ul>
+        </div>
+        <div data-stagger-item="" class="service-item" style="padding:clamp(28px,3vw,48px);" style-hover="background:#E5E5E5;">
+          <div data-service-index="" style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6FB97F; margin-bottom:18px;">02</div>
+          <h3 style="margin:0 0 12px; font-size:clamp(20px,1.6vw,26px); font-weight:600; color:#0A0A0A;">Interactive Web Design</h3>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.55; color:#555; max-width:380px;">Motion-aware websites and landing pages with strong visual storytelling.</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; color:#333;">
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Scroll experiences</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Micro-interactions</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Responsive web design</li>
+          </ul>
+        </div>
+        <div data-stagger-item="" class="service-item" style="padding:clamp(28px,3vw,48px);" style-hover="background:#E5E5E5;">
+          <div data-service-index="" style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#E9A93C; margin-bottom:18px;">03</div>
+          <h3 style="margin:0 0 12px; font-size:clamp(20px,1.6vw,26px); font-weight:600; color:#0A0A0A;">Design Systems</h3>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.55; color:#555; max-width:380px;">Scalable UI systems for consistency, speed, and collaboration.</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; color:#333;">
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Component libraries</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>UI guidelines</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Handoff documentation</li>
+          </ul>
+        </div>
+        <div data-stagger-item="" class="service-item" style="padding:clamp(28px,3vw,48px);" style-hover="background:#E5E5E5;">
+          <div data-service-index="" style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#EA6B2E; margin-bottom:18px;">04</div>
+          <h3 style="margin:0 0 12px; font-size:clamp(20px,1.6vw,26px); font-weight:600; color:#0A0A0A;">Design QA &amp; Handoff</h3>
+          <p style="margin:0 0 20px; font-size:15px; line-height:1.55; color:#555; max-width:380px;">Clear design review and implementation support for better final quality.</p>
+          <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:8px; font-size:14px; color:#333;">
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Figma handoff</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>UI QA</li>
+            <li style="display:flex; gap:10px;"><span style="color:#999;">·</span>Developer collaboration</li>
+          </ul>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; margin-top:clamp(28px,3vw,44px);">
+        <span data-service-footer="" style="font-size:14px; color:#777;">Ask me about other needs.</span>
+        <a data-service-footer="" href="#contact" data-target="#contact" style="font-size:15px; font-weight:600; color:#0A0A0A; text-decoration:none; border-bottom:1px solid rgba(0,0,0,0.35); padding-bottom:3px; transition:color .3s,border-color .3s;" style-hover="color:#EA6B2E; border-color:#EA6B2E;">Start a project →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 05 PROCESS ===================== -->
+  <section id="process" data-screen-label="05 Process" style="max-width:1480px; margin:0 auto; padding:clamp(70px,9vw,150px) clamp(22px,5vw,72px);">
+    <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:clamp(26px,3vw,44px);">05 / Process</div>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:clamp(24px,4vw,64px); align-items:end;">
+      <h2 data-reveal="" style="margin:0; font-size:clamp(44px,6.5vw,90px); font-weight:600; letter-spacing:-0.025em; line-height:0.95; color:#fff;">Process</h2>
+      <p data-reveal="" style="margin:0; font-size:clamp(16px,1.3vw,19px); line-height:1.55; color:#A8A8A8; max-width:460px;">A collaborative process designed to align the team, reduce ambiguity, and move from idea to execution with clarity.</p>
+    </div>
+
+    <div data-stagger="" style="display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin-top:clamp(44px,6vw,90px); border-top:1px solid rgba(255,255,255,0.1);">
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#E9A93C; margin-bottom:16px;">01</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">Research</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Understand users, goals, constraints, and context.</p>
+      </div>
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#C9A24A; margin-bottom:16px;">02</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">IA &amp; Structure</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Define information architecture, content priority, and core flows.</p>
+      </div>
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#9CB36A; margin-bottom:16px;">03</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">Wireframes</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Lay out screens, hierarchy, and key interactions early.</p>
+      </div>
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#6FB97F; margin-bottom:16px;">04</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">UI Design</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Create a polished visual system with clear interface rules.</p>
+      </div>
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#3FC2B4; margin-bottom:16px;">05</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">Prototype &amp; Handoff</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Prepare motion notes, specs, assets, and developer-ready documentation.</p>
+      </div>
+      <div data-stagger-item="" style="padding:clamp(26px,2.4vw,38px) 22px 40px; border-bottom:1px solid rgba(255,255,255,0.1);">
+        <div style="font-family:'JetBrains Mono',monospace; font-size:13px; color:#2DD4BF; margin-bottom:16px;">06</div>
+        <h3 style="margin:0 0 10px; font-size:18px; font-weight:600; color:#fff;">QA &amp; Iterate</h3>
+        <p style="margin:0; font-size:14px; line-height:1.5; color:#8E8E8E;">Review implementation, fix inconsistencies, and improve the final experience.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:clamp(28px,3vw,40px); font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; color:#6E6E6E; text-transform:uppercase;">Collaboration &amp; Communication Throughout</div>
+  </section>
+
+  <!-- ===================== 06 CONTACT / FOOTER ===================== -->
+  <section id="contact" data-screen-label="06 Contact" style="border-top:1px solid rgba(255,255,255,0.08);">
+    <div style="max-width:1480px; margin:0 auto; padding:clamp(70px,9vw,140px) clamp(22px,5vw,72px) clamp(40px,5vw,64px);">
+      <div style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:clamp(26px,3vw,40px);">06 / Contact</div>
+
+      <h2 data-reveal="" style="margin:0; font-size:clamp(64px,15vw,220px); font-weight:700; letter-spacing:-0.035em; line-height:0.86; color:#fff; text-shadow:0 18px 60px rgba(0,0,0,0.6);">LET’S TALK.</h2>
+
+      <div data-divider="" style="height:30px; width:100%; margin-top:clamp(24px,3vw,40px); background:linear-gradient(90deg,#2DD4BF 0%,#6FB97F 32%,#A8B85E 52%,#E9A93C 78%,#EA6B2E 100%);"></div>
+
+      <div style="display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:32px; margin-top:clamp(40px,5vw,64px);">
+        <div>
+          <p style="margin:0 0 6px; font-size:clamp(18px,1.6vw,24px); color:#D6D6D6;">Have a project in mind?</p>
+          <a href="mailto:y.dangvan@gmail.com" style="font-size:clamp(18px,1.6vw,24px); color:#fff; text-decoration:none; border-bottom:1px solid rgba(255,255,255,0.3); padding-bottom:2px; transition:border-color .3s;" style-hover="border-color:#E9A93C;">y.dangvan@gmail.com</a>
+        </div>
+        <div style="display:flex; gap:12px;">
+          <a href="mailto:y.dangvan@gmail.com" class="circle-reveal-btn circle-reveal-btn--dark"><span>Email Me</span></a>
+          <a href="tel:+84908133919" class="circle-reveal-btn circle-reveal-btn--dark"><span>Call Me</span></a>
+        </div>
+      </div>
+
+      <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:36px; margin-top:clamp(70px,9vw,130px); padding-top:clamp(32px,4vw,52px); border-top:1px solid rgba(255,255,255,0.1);">
+        <div>
+          <div style="font-size:18px; font-weight:700; color:#fff; letter-spacing:-0.01em;">Y DANG</div>
+          <div style="margin-top:8px; font-size:13px; line-height:1.5; color:#7E7E7E;">Product Designer /<br>Interactive Web Designer</div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#6A6A6A; text-transform:uppercase; margin-bottom:16px;">Navigation</div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <a href="#hero" data-target="#hero" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Home</a>
+            <a href="#work" data-target="#work" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Work</a>
+            <a href="#services" data-target="#services" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Services</a>
+            <a href="#philosophy" data-target="#philosophy" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">About</a>
+            <a href="#contact" data-target="#contact" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.16em; color:#6A6A6A; text-transform:uppercase; margin-bottom:16px;">Social</div>
+          <div style="display:flex; flex-direction:column; gap:10px; font-size:14px;">
+            <a href="#" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">LinkedIn</a>
+            <a href="#" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Dribbble</a>
+            <a href="#" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">GitHub</a>
+            <a href="#" style="color:#A8A8A8; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Behance</a>
+          </div>
+        </div>
+        <div style="display:flex; flex-direction:column; justify-content:flex-end;">
+          <div style="font-size:13px; line-height:1.6; color:#7E7E7E;">© 2024 Y DANG.<br>All rights reserved.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;accentTheme&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;Teal → Amber&quot;,&quot;Cyan → Violet&quot;,&quot;Mono Steel&quot;],&quot;default&quot;:&quot;Teal → Amber&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;enableMotion&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;}}">
+class Component extends DCLogic {
+  root(){ return this.rootEl || document; }
+
+  componentDidMount(){
+    this.reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    this.motionOn = (this.props.enableMotion ?? true) && !this.reduced;
+    // reveals are pure CSS transitions + IntersectionObserver — no library needed
+    this._init();
+    // smooth scroll layered on top once Lenis is ready (optional enhancement)
+    this._initLenis(0);
+    // build the avatar tile grid once layout has a real size
+    this._ensureGrid(0);
+  }
+
+  _ensureGrid(tries){
+    const wrap = this.avatarWrap, grid = this.gridEl;
+    if (wrap && grid && wrap.clientWidth > 0){
+      this._buildGrid();
+      setTimeout(() => this._autoPlayTileIntro('avatar'), 250);
+      if (!this._gridRO && window.ResizeObserver){
+        this._gridRO = new ResizeObserver(() => this._buildGrid());
+        this._gridRO.observe(wrap);
+      }
+      return;
+    }
+    if (tries > 120) return;
+    setTimeout(() => this._ensureGrid(tries + 1), 50);
+  }
+
+  _revealAll(){
+    this.root().querySelectorAll('[data-reveal],[data-stagger-item],[data-hero],[data-lines],.scroll-line-inner')
+      .forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+  }
+
+  _initLenis(tries){
+    if (!this.motionOn || this.lenis) return;
+    if (window.Lenis){
+      try {
+        const lenis = new window.Lenis({ lerp: 0.1, smoothWheel: true, wheelMultiplier: 1 });
+        this.lenis = lenis;
+        const raf = (t) => { lenis.raf(t); this._raf = requestAnimationFrame(raf); };
+        this._raf = requestAnimationFrame(raf);
+      } catch (e) { this.lenis = null; }
+      return;
+    }
+    if (tries > 150) return;
+    setTimeout(() => this._initLenis(tries + 1), 40);
+  }
+
+  _gradient(){
+    const t = this.props.accentTheme || 'Teal → Amber';
+    if (t === 'Cyan → Violet') return 'linear-gradient(90deg,#22D3EE 0%,#5BA8F2 40%,#8B7CF0 70%,#C46BE0 100%)';
+    if (t === 'Mono Steel') return 'linear-gradient(90deg,#3A3A3A 0%,#8A8A8A 55%,#E5E5E5 100%)';
+    return 'linear-gradient(90deg,#2DD4BF 0%,#6FB97F 32%,#A8B85E 52%,#E9A93C 78%,#EA6B2E 100%)';
+  }
+
+  _applyAccent(){
+    const t = this.props.accentTheme || 'Teal → Amber';
+    if (t === 'Teal → Amber') return;
+    const g = this._gradient();
+    this.root().querySelectorAll('[data-divider]').forEach(el => { el.style.background = g; });
+  }
+
+  _anchors(){
+    this.root().querySelectorAll('a[data-target]').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const sel = a.getAttribute('data-target');
+        const el = this.root().querySelector(sel);
+        if (!el) return;
+        e.preventDefault();
+        const y = el.getBoundingClientRect().top + window.scrollY - 16;
+        if (this.lenis) this.lenis.scrollTo(y, { duration: 1.1 });
+        else window.scrollTo({ top: y, behavior: 'smooth' });
+      });
+    });
+  }
+
+  _spy(){
+    const root = this.root();
+    if (this._spyIO){ this._spyIO.disconnect(); this._spyIO = null; }
+    const links = [...root.querySelectorAll('a[data-nav]')];
+    if (!links.length) return;
+    // map section id -> link
+    const linkFor = (id) => links.find(l => l.getAttribute('data-nav') === '#' + id);
+    const setActive = (id) => {
+      links.forEach(l => {
+        const on = l.getAttribute('data-nav') === '#' + id;
+        l.style.color = on ? '#fff' : '#9A9A9A';
+        l.style.borderBottomColor = on ? '#fff' : 'transparent';
+      });
+    };
+    // sections to track (About maps to #philosophy, process has no nav link)
+    const ids = ['hero','philosophy','work','services','contact'];
+    const sections = ids.map(id => root.querySelector('#' + id)).filter(Boolean);
+    const visible = new Map();
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => visible.set(e.target.id, e.intersectionRatio));
+      // pick the most-visible tracked section
+      let best = null, bestR = 0;
+      visible.forEach((r, id) => { if (r > bestR){ bestR = r; best = id; } });
+      if (best) setActive(best);
+    }, { threshold: [0.15, 0.4, 0.7], rootMargin: '-20% 0px -40% 0px' });
+    sections.forEach(s => io.observe(s));
+    this._spyIO = io;
+    setActive('hero');
+  }
+
+  _init(){
+    this._applyAccent();
+    this._anchors();
+    this._spy();
+
+    // clean slate on any re-init (re-render / hot reload)
+    if (this._io){ this._io.disconnect(); this._io = null; }
+
+    if (!this.motionOn){ this._revealAll(); return; }
+
+    // Prefer GSAP for premium easing/stagger; wait briefly for the CDN, then
+    // fall back to CSS transitions if it never loads.
+    this._waitGsap(0);
+  }
+
+  _waitGsap(tries){
+    if (window.gsap && window.ScrollTrigger){ this._initGsap(); return; }
+    if (tries > 60){ this._initCss(); return; }   // ~2.4s grace, then fallback
+    setTimeout(() => this._waitGsap(tries + 1), 40);
+  }
+
+  _initGsap(){
+    const gsap = window.gsap;
+    const ST = window.ScrollTrigger;
+    gsap.config({ nullTargetWarn: false });
+    if (ST) gsap.registerPlugin(ST);
+    const root = this.root();
+
+    // make sure nothing is left mid-tween from a prior run
+    this._destroyScrollReveals();
+
+    // HERO — reveal on load, staggered upward with a soft ease
+    const hero = [...root.querySelectorAll('[data-hero]')];
+    if (hero.length){
+      gsap.set(hero, { opacity: 0, y: 40 });
+      gsap.to(hero, {
+        opacity: 1, y: 0, duration: 1.1, ease: 'power3.out',
+        stagger: 0.1, delay: 0.15, clearProps: 'transform'
+      });
+    }
+
+    // SCROLL REVEALS — single elements fade + rise as they enter
+
+    // STAGGER GROUPS — cards/items reveal with a small cascade
+    // keep ScrollTrigger in sync with Lenis-driven scroll + late layout
+    if (ST){
+      if (this.lenis) this.lenis.on('scroll', ST.update);
+      setTimeout(() => ST.refresh(), 100);
+    }
+
+    // safety net: if anything is somehow still hidden, force it visible
+  }
+
+  _destroyScrollReveals(){
+    if (this._scrollTriggers) this._scrollTriggers.forEach(trigger => trigger.kill());
+    this._scrollTriggers = [];
+    if (this._scrollTimelines){
+      this._scrollTimelines.forEach(tl => {
+        tl.kill();
+      });
+    }
+    this._scrollTimelines = [];
+    this._restoreLineSplits();
+  }
+
+  _restoreLineSplits(){
+    if (!this._lineOriginals) return;
+    this._lineOriginals.forEach((html, el) => {
+      if (el && el.isConnected) el.innerHTML = html;
+    });
+  }
+
+  _prepareLineTargets(){
+    this.root()
+      .querySelectorAll('section:not(#hero) h2, section:not(#hero) h3, section:not(#hero) p')
+      .forEach(el => {
+        el.setAttribute('data-lines', '');
+        el.removeAttribute('data-reveal');
+      });
+  }
+
+  _splitIntoLines(el){
+    if (!this._lineOriginals) this._lineOriginals = new Map();
+    if (!this._lineOriginals.has(el)) this._lineOriginals.set(el, el.innerHTML);
+    else el.innerHTML = this._lineOriginals.get(el);
+
+    const text = (el.textContent || '').trim();
+    if (!text) return [];
+
+    const words = text.split(/\s+/);
+    el.innerHTML = '';
+    const measuring = words.map((word, index) => {
+      const span = document.createElement('span');
+      span.style.whiteSpace = 'pre';
+      span.textContent = word + (index < words.length - 1 ? ' ' : '');
+      el.appendChild(span);
+      return span;
+    });
+
+    const lines = [];
+    measuring.forEach(span => {
+      const top = Math.round(span.offsetTop);
+      let line = lines.find(item => Math.abs(item.top - top) <= 1);
+      if (!line){
+        line = { top, words: [] };
+        lines.push(line);
+      }
+      line.words.push(span.textContent);
+    });
+
+    el.innerHTML = '';
+    return lines.map(line => {
+      const outer = document.createElement('span');
+      outer.className = 'scroll-line-mask';
+      const inner = document.createElement('span');
+      inner.className = 'scroll-line-inner';
+      inner.textContent = line.words.join('').trimEnd();
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      return inner;
+    });
+  }
+
+  _buildScrollReveals(gsap, ST){
+    const root = this.root();
+    const Scroll = window.ScrollTrigger || ST;
+    gsap.config({ nullTargetWarn: false });
+    if (Scroll) gsap.registerPlugin(Scroll);
+    this._prepareLineTargets();
+    this._scrollTimelines = [];
+    this._scrollTriggers = [];
+
+    root.querySelectorAll('section:not(#hero)').forEach((section, index) => {
+      const lineInners = [...section.querySelectorAll('[data-lines]')]
+        .flatMap(el => this._splitIntoLines(el));
+      const blocks = [...section.querySelectorAll(
+        '[data-reveal]:not([data-lines]), [data-stagger-item], [data-divider], .circle-reveal-btn'
+      )];
+
+      if (!lineInners.length && !blocks.length) return;
+
+      if (lineInners.length) gsap.set(lineInners, { yPercent: 138 });
+      if (blocks.length) gsap.set(blocks, { opacity: 0, y: 21 });
+
+      const timeline = gsap.timeline({ paused: !!Scroll });
+
+      if (lineInners.length){
+        timeline.to(lineInners, {
+          yPercent: 0,
+          duration: .9,
+          stagger: .06,
+          ease: 'expo.out'
+        }, 250);
+      }
+
+      if (blocks.length){
+        timeline.to(blocks, {
+          opacity: 1,
+          y: 0,
+          duration: .6,
+          stagger: .08,
+          ease: 'expo.out'
+        }, lineInners.length ? .1 : 0);
+      }
+
+      if (Scroll){
+        setTimeout(() => {
+          const trigger = Scroll.create({
+            id: 'section-reveal-' + index,
+            trigger: section,
+            start: 'top 70%',
+            toggleActions: 'play none none reverse',
+            animation: timeline
+          });
+          this._scrollTriggers.push(trigger);
+        }, 0);
+      } else {
+        timeline.play();
+      }
+
+      this._scrollTimelines.push(timeline);
+    });
+  }
+
+  _bindRevealResize(){
+    if (this._revealResizeBound) return;
+    this._revealResizeBound = true;
+    this._onRevealResize = () => {
+      clearTimeout(this._revealResizeTimer);
+      this._revealResizeTimer = setTimeout(() => {
+        if (!window.gsap || !this.motionOn) return;
+        this._destroyScrollReveals();
+        this._buildScrollReveals(window.gsap, window.ScrollTrigger);
+        if (window.ScrollTrigger) setTimeout(() => window.ScrollTrigger.refresh(), 100);
+      }, 180);
+    };
+    window.addEventListener('resize', this._onRevealResize);
+  }
+
+  _initCss(){
+    const root = this.root();
+    const EASE = 'cubic-bezier(.22,.61,.36,1)';
+    const prep = (el, y, delay) => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(' + y + 'px)';
+      el.style.transition = 'opacity .9s ' + EASE + ' ' + delay + 'ms, transform .9s ' + EASE + ' ' + delay + 'ms';
+      el.style.willChange = 'opacity, transform';
+    };
+    const reveal = (el) => { el.style.opacity = '1'; el.style.transform = 'none'; };
+
+    const hero = [...root.querySelectorAll('[data-hero]')];
+    hero.forEach((el, i) => prep(el, 34, 100 + i * 90));
+    const singles = [...root.querySelectorAll('[data-reveal]')];
+    singles.forEach(el => prep(el, 26, 0));
+    const groups = [...root.querySelectorAll('[data-stagger]')];
+    groups.forEach(g => [...g.querySelectorAll('[data-stagger-item]')].forEach((it, i) => prep(it, 30, i * 90)));
+
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        if (e.target.hasAttribute('data-stagger')){
+          [...e.target.querySelectorAll('[data-stagger-item]')].forEach(reveal);
+        } else { reveal(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -6% 0px' });
+    this._io = io;
+    hero.forEach(el => io.observe(el));
+    singles.forEach(el => io.observe(el));
+    groups.forEach(el => io.observe(el));
+
+    clearTimeout(this._safety);
+    this._safety = setTimeout(() => this._revealAll(), 6000);
+  }
+
+  _slide(dir){
+    const t = this.trackEl;
+    if (!t) return;
+    const card = t.querySelector('[data-card]');
+    const w = card ? card.offsetWidth + 24 : 340;
+    t.scrollBy({ left: dir * w, behavior: 'smooth' });
+  }
+
+  // ---- Avatar interactive grid (reveals around cursor on hover) ----
+  _buildGrid(){
+    const wrap = this.avatarWrap, grid = this.gridEl;
+    if (!wrap || !grid) return;
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    const CELL = 74;
+    const cols = Math.max(3, Math.round(w / CELL));
+    const rows = Math.max(3, Math.round(h / CELL));
+    this.tileShift = (w / cols) * 0.33;       // max gap-opening shift, in px
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+    grid.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+    grid.innerHTML = '';
+    this.cells = [];
+    const rnd = () => Math.random();
+    for (let r = 0; r < rows; r++){
+      for (let c = 0; c < cols; c++){
+        // tile = window onto its slice of the photo; inner carries the full
+        // cover-fitted image, offset so the tile shows the right piece.
+        const tile = document.createElement('div');
+        tile.style.cssText = 'position:relative; overflow:hidden; transform:translate3d(0,0,0) scale(1.02) rotate(0deg); will-change:transform; backface-visibility:hidden;';
+        const inner = document.createElement('div');
+        inner.style.cssText =
+          'position:absolute; left:' + (-c * 100) + '%; top:' + (-r * 100) + '%;' +
+          'width:' + (cols * 100) + '%; height:' + (rows * 100) + '%;' +
+          "background:url('assets/portrait.png') center 35% / cover no-repeat;";
+        tile.appendChild(inner);
+        grid.appendChild(tile);
+        this.cells.push({
+          el: tile,
+          cx: (c + 0.5) / cols,
+          cy: (r + 0.5) / rows,
+          r: rnd(),                 // per-tile strength (irregular break)
+          rot: rnd() - 0.5          // per-tile rotation direction
+        });
+      }
+    }
+  }
+
+  _avatarMove(e){
+    if (!this.cells || !this.avatarWrap) return;
+    const rect = this.avatarWrap.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) / rect.width;
+    const my = (e.clientY - rect.top) / rect.height;
+    const RADIUS = 0.34;            // size of the fractured zone
+    const SHIFT = this.tileShift || 24;
+    for (const cell of this.cells){
+      const dx = cell.cx - mx, dy = cell.cy - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const p = Math.max(0, 1 - dist / RADIUS);
+      if (p <= 0){ cell.el.style.transform = 'translate(0,0) scale(1.02) rotate(0deg)'; continue; }
+      const k = p * p;                              // soft falloff
+      const len = Math.max(0.0001, dist);
+      const mag = k * SHIFT * (0.55 + cell.r);      // push tile apart, randomized
+      const tx = (dx / len) * mag;
+      const ty = (dy / len) * mag;
+      const sc = 1.02 - k * 0.086 * (0.6 + cell.r); // rest overlap 1.02 → shrink opens black gaps
+      const ro = cell.rot * k * 3.85;               // slight irregular rotation
+      cell.el.style.transform =
+        'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ') rotate(' + ro.toFixed(2) + 'deg)';
+    }
+  }
+
+  _avatarEnter(){
+    if (!this.cells || !this.cells.length) this._buildGrid();
+    if (this.avatarWrap) this.avatarWrap.style.backgroundImage = 'none';
+    const base = this.avatarWrap && this.avatarWrap.querySelector('[data-avatar-base]');
+    if (base) base.style.opacity = '0';
+    if (this.gridEl){
+      this.gridEl.style.opacity = '1';
+      this.gridEl.style.filter = 'grayscale(0.18)';
+    }
+  }
+
+  _avatarLeave(){
+    if (this.cells) this.cells.forEach(c => {
+      c.el.style.transform = 'translate(0,0) scale(1.02) rotate(0deg)';
+    });
+    if (this.avatarWrap) this.avatarWrap.style.backgroundImage = "url('assets/portrait.png')";
+    const base = this.avatarWrap && this.avatarWrap.querySelector('[data-avatar-base]');
+    if (base) base.style.opacity = '1';
+    if (this.gridEl){
+      this.gridEl.style.opacity = '0';
+      this.gridEl.style.filter = 'grayscale(0.5)';
+    }
+  }
+
+  // ---- Headline "Y VAN DANG" tile fracture (same idea as the avatar) ----
+  _buildHead(){
+    const wrap = this.headWrap, txt = this.headText, grid = this.headGrid;
+    if (!wrap || !txt || !grid) return;
+    const w = wrap.clientWidth, h = wrap.clientHeight;
+    if (!w || !h) return;
+    const cs = getComputedStyle(txt);
+    const CELL = 96;
+    const cols = Math.max(4, Math.round(w / CELL));
+    const rows = Math.max(2, Math.round(h / CELL));
+    this.headShift = (w / cols) * 0.33;
+    grid.style.display = 'grid';
+    grid.style.gridTemplateColumns = 'repeat(' + cols + ',1fr)';
+    grid.style.gridTemplateRows = 'repeat(' + rows + ',1fr)';
+    grid.innerHTML = '';
+    this.headCells = [];
+    const rnd = () => Math.random();
+    txt.style.color = '#FFFFFF';
+    const innerCss =
+      'position:absolute; left:0; top:0; width:' + w + 'px; height:' + h + 'px; margin:0;' +
+      'font-family:' + cs.fontFamily + '; font-size:' + cs.fontSize + '; font-weight:' + cs.fontWeight + ';' +
+      'letter-spacing:' + cs.letterSpacing + '; line-height:' + cs.lineHeight + '; color:#FFFFFF;' +
+      'text-align:left; text-align-last:justify; white-space:nowrap; pointer-events:none;';
+    for (let r = 0; r < rows; r++){
+      for (let c = 0; c < cols; c++){
+        const tile = document.createElement('div');
+        tile.style.cssText = 'position:relative; overflow:hidden; transform:translate3d(0,0,0) scale(1.02) rotate(0deg); will-change:transform; backface-visibility:hidden;';
+        const inner = document.createElement('div');
+        inner.style.cssText = innerCss + 'transform:translate(' + (-(w/cols)*c) + 'px,' + (-(h/rows)*r) + 'px);';
+        inner.textContent = 'Y VAN DANG';
+        tile.appendChild(inner);
+        grid.appendChild(tile);
+        this.headCells.push({ el: tile, cx: (c+0.5)/cols, cy: (r+0.5)/rows, r: rnd(), rot: rnd()-0.5 });
+      }
+    }
+  }
+
+  _headMove(e){
+    if (!this.headCells || !this.headWrap) return;
+    const rect = this.headWrap.getBoundingClientRect();
+    const mx = (e.clientX - rect.left) / rect.width;
+    const my = (e.clientY - rect.top) / rect.height;
+    const RADIUS = 0.26;
+    const SHIFT = this.headShift || 24;
+    for (const cell of this.headCells){
+      const dx = cell.cx - mx, dy = cell.cy - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const p = Math.max(0, 1 - dist / RADIUS);
+      if (p <= 0){ cell.el.style.transform = 'translate(0,0) scale(1.02) rotate(0deg)'; continue; }
+      const k = p * p;
+      const len = Math.max(0.0001, dist);
+      const mag = k * SHIFT * (0.55 + cell.r);
+      const tx = (dx/len) * mag, ty = (dy/len) * mag;
+      const sc = 1.02 - k * 0.086 * (0.6 + cell.r);
+      const ro = cell.rot * k * 1.5092;
+      cell.el.style.transform = 'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) scale(' + sc.toFixed(3) + ') rotate(' + ro.toFixed(2) + 'deg)';
+    }
+  }
+
+  _headEnter(){
+    if (!this.headCells || !this.headCells.length) this._buildHead();
+    if (this.headText){
+      this.headText.style.color = 'transparent';
+      this.headText.style.textShadow = 'none';
+    }
+    if (this.headGrid) this.headGrid.style.opacity = '1';
+  }
+  _headLeave(){
+    if (this.headCells) this.headCells.forEach(c => { c.el.style.transform = 'translate(0,0) scale(1.02) rotate(0deg)'; });
+    if (this.headGrid) this.headGrid.style.opacity = '0';
+    if (this.headText){
+      this.headText.style.color = '#FFFFFF';
+      this.headText.style.textShadow = '0 18px 60px rgba(0,0,0,0.6)';
+    }
+  }
+
+  _ensureHead(tries){
+    const wrap = this.headWrap, txt = this.headText, grid = this.headGrid;
+    if (wrap && txt && grid && wrap.clientWidth > 0){
+      this._buildHead();
+      setTimeout(() => this._autoPlayTileIntro('head'), 420);
+      if (!this._headRO && window.ResizeObserver){
+        this._headRO = new ResizeObserver(() => this._buildHead());
+        this._headRO.observe(wrap);
+      }
+      return;
+    }
+    if (tries > 120) return;
+    setTimeout(() => this._ensureHead(tries + 1), 50);
+  }
+
+  _smoothTileMove(kind, e){
+    const wrap = kind === 'avatar' ? this.avatarWrap : this.headWrap;
+    const cells = kind === 'avatar' ? this.cells : this.headCells;
+    if (!wrap || !cells || !cells.length) return;
+    const rectKey = kind === 'avatar' ? '_avatarMotionRect' : '_headMotionRect';
+    const rect = this[rectKey] || wrap.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width;
+    const y = (e.clientY - rect.top) / rect.height;
+    this._setSmoothTileTarget(kind, x, y);
+  }
+
+  _setSmoothTileTarget(kind, x, y){
+    if (!this._smoothTileState) this._smoothTileState = {};
+    let state = this._smoothTileState[kind];
+    if (!state){
+      state = this._smoothTileState[kind] = {
+        currentX:x, currentY:y, targetX:x, targetY:y,
+        active:true, running:false
+      };
+    }
+    state.targetX = x;
+    state.targetY = y;
+    state.active = true;
+    this._runSmoothTileLoop(kind);
+  }
+
+  _runSmoothTileLoop(kind){
+    const state = this._smoothTileState && this._smoothTileState[kind];
+    if (!state || state.running) return;
+    state.running = true;
+    const tick = () => {
+      const cells = kind === 'avatar' ? this.cells : this.headCells;
+      if (!cells || !cells.length){ state.running = false; return; }
+      const targetX = state.active ? state.targetX : .5;
+      const targetY = state.active ? state.targetY : .5;
+      const lerp = kind === 'head'
+        ? (state.active ? .11 : .14)
+        : (state.active ? .15 : .18);
+      state.currentX += (targetX - state.currentX) * lerp;
+      state.currentY += (targetY - state.currentY) * lerp;
+      this._drawSmoothTiles(
+        cells,
+        state.currentX,
+        state.currentY,
+        kind === 'avatar' ? .34 : .26,
+        kind === 'avatar' ? (this.tileShift || 24) : (this.headShift || 24),
+        state.active ? 1 : 0,
+        kind
+      );
+      this._publishTileDebug(kind, state);
+      const settled = Math.abs(targetX-state.currentX) < .001 &&
+        Math.abs(targetY-state.currentY) < .001;
+      if (!state.active && settled){
+        this._resetSmoothTiles(cells);
+        state.running = false;
+        this._publishTileDebug(kind, state);
+        return;
+      }
+      state.raf = requestAnimationFrame(tick);
+    };
+    state.raf = requestAnimationFrame(tick);
+  }
+
+  _drawSmoothTiles(cells, mx, my, radius, shift, strength, kind){
+    for (const cell of cells){
+      const dx = cell.cx - mx, dy = cell.cy - my;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      const p = Math.max(0, 1 - dist / radius) * strength;
+      if (p <= 0){
+        cell.el.style.transform = 'translate3d(0,0,0) scale(1.02) rotate(0deg)';
+        continue;
+      }
+      const k = p * p;
+      const len = Math.max(.0001, dist);
+      const spread = kind === 'head' ? .7 : 1;
+      const mag = k * shift * spread * (.55 + cell.r);
+      const tx = (dx/len) * mag;
+      const ty = (dy/len) * mag;
+      const sc = 1.02 - k * .086 * (.6 + cell.r);
+      const rotFactor = kind === 'head' ? 1.5092 : 3.85;
+      const ro = cell.rot * k * rotFactor;
+      cell.el.style.transform =
+        'translate3d(' + tx.toFixed(2) + 'px,' + ty.toFixed(2) + 'px,0) scale(' +
+        sc.toFixed(4) + ') rotate(' + ro.toFixed(2) + 'deg)';
+    }
+  }
+
+  _resetSmoothTiles(cells){
+    cells.forEach(cell => {
+      cell.el.style.transform = 'translate3d(0,0,0) scale(1.02) rotate(0deg)';
+    });
+  }
+
+  _publishTileDebug(kind, state){
+    if (!window.__tileMotionDebug) window.__tileMotionDebug = {};
+    window.__tileMotionDebug[kind] = {
+      target:[state.targetX, state.targetY],
+      current:[state.currentX, state.currentY],
+      running:state.running
+    };
+  }
+
+  _smoothAvatarEnter(){
+    this._avatarEnter();
+    if (this.avatarWrap) this._avatarMotionRect = this.avatarWrap.getBoundingClientRect();
+  }
+
+  _smoothAvatarLeave(){
+    const state = this._smoothTileState && this._smoothTileState.avatar;
+    if (state){ state.active = false; this._runSmoothTileLoop('avatar'); }
+    this._avatarMotionRect = null;
+    if (this.avatarWrap) this.avatarWrap.style.backgroundImage = "url('assets/portrait.png')";
+    const base = this.avatarWrap && this.avatarWrap.querySelector('[data-avatar-base]');
+    if (base) base.style.opacity = '1';
+    if (this.gridEl){
+      this.gridEl.style.opacity = '0';
+      this.gridEl.style.filter = 'grayscale(0.5)';
+    }
+  }
+
+  _smoothHeadEnter(){
+    this._headEnter();
+    if (this.headWrap) this._headMotionRect = this.headWrap.getBoundingClientRect();
+  }
+
+  _smoothHeadLeave(){
+    const state = this._smoothTileState && this._smoothTileState.head;
+    if (state){ state.active = false; this._runSmoothTileLoop('head'); }
+    this._headMotionRect = null;
+    if (this.headGrid) this.headGrid.style.opacity = '0';
+    if (this.headText){
+      this.headText.style.color = '#FFFFFF';
+      this.headText.style.textShadow = '0 18px 60px rgba(0,0,0,0.6)';
+    }
+  }
+
+  _autoPlayTileIntro(kind){
+    if (!this.motionOn) return;
+    if (!this._tileIntroPlayed) this._tileIntroPlayed = {};
+    if (this._tileIntroPlayed[kind]) return;
+
+    const cells = kind === 'avatar' ? this.cells : this.headCells;
+    if (!cells || !cells.length) return;
+    this._tileIntroPlayed[kind] = true;
+
+    if (kind === 'avatar'){
+      this._avatarEnter();
+      if (this.avatarWrap) this._avatarMotionRect = this.avatarWrap.getBoundingClientRect();
+    } else {
+      this._headEnter();
+      if (this.headWrap) this._headMotionRect = this.headWrap.getBoundingClientRect();
+    }
+
+    const points = kind === 'avatar'
+      ? [[0.28, 0.26], [0.72, 0.42], [0.48, 0.68]]
+      : [[0.18, 0.5], [0.58, 0.42], [0.86, 0.5]];
+    let index = 0;
+    const step = () => {
+      const point = points[index++];
+      this._setSmoothTileTarget(kind, point[0], point[1]);
+      if (index < points.length){
+        setTimeout(step, 260);
+        return;
+      }
+      setTimeout(() => {
+        const state = this._smoothTileState && this._smoothTileState[kind];
+        if (state){ state.active = false; this._runSmoothTileLoop(kind); }
+        setTimeout(() => {
+          if (kind === 'avatar'){
+            this._avatarMotionRect = null;
+            if (this.avatarWrap) this.avatarWrap.style.backgroundImage = "url('assets/portrait.png')";
+            const base = this.avatarWrap && this.avatarWrap.querySelector('[data-avatar-base]');
+            if (base) base.style.opacity = '1';
+            if (this.gridEl){
+              this.gridEl.style.opacity = '0';
+              this.gridEl.style.filter = 'grayscale(0.5)';
+            }
+          } else {
+            this._headMotionRect = null;
+            if (this.headGrid) this.headGrid.style.opacity = '0';
+            if (this.headText){
+              this.headText.style.color = '#FFFFFF';
+              this.headText.style.textShadow = '0 18px 60px rgba(0,0,0,0.6)';
+            }
+          }
+        }, 620);
+      }, 360);
+    };
+    requestAnimationFrame(step);
+  }
+
+  renderVals(){
+    return {
+      setRoot: (el) => { this.rootEl = el; },
+      setTrackRef: (el) => { this.trackEl = el; },
+      setAvatarWrap: (el) => { if (el) this.avatarWrap = el; },
+      setGrid: (el) => { if (el) this.gridEl = el; },
+      onAvatarMove: (e) => this._smoothTileMove('avatar', e),
+      onAvatarEnter: () => this._smoothAvatarEnter(),
+      onAvatarLeave: () => this._smoothAvatarLeave(),
+      setHeadWrap: (el) => { if (el){ this.headWrap = el; this._ensureHead(0); } },
+      setHeadText: (el) => { if (el) this.headText = el; },
+      setHeadGrid: (el) => { if (el) this.headGrid = el; },
+      onHeadMove: (e) => this._smoothTileMove('head', e),
+      onHeadEnter: () => this._smoothHeadEnter(),
+      onHeadLeave: () => this._smoothHeadLeave(),
+      prev: () => this._slide(-1),
+      next: () => this._slide(1)
+    };
+  }
+}
+</script>
+<script>
+(() => {
+  const originals = new Map();
+  let timelines = [];
+  let triggers = [];
+  let resizeTimer = 0;
+  let activeRoot = null;
+
+  const restoreLines = () => {
+    originals.forEach((html, el) => {
+      if (el && el.isConnected) el.innerHTML = html;
+    });
+  };
+
+  const splitIntoLines = (el) => {
+    if (!originals.has(el)) originals.set(el, el.innerHTML);
+    else el.innerHTML = originals.get(el);
+
+    const text = (el.textContent || '').trim();
+    if (!text) return [];
+
+    const words = text.split(/\s+/);
+    el.innerHTML = '';
+    const measuring = words.map((word, index) => {
+      const span = document.createElement('span');
+      span.style.whiteSpace = 'pre';
+      span.textContent = word + (index < words.length - 1 ? ' ' : '');
+      el.appendChild(span);
+      return span;
+    });
+
+    const lines = [];
+    measuring.forEach(span => {
+      const top = Math.round(span.offsetTop);
+      let line = lines.find(item => Math.abs(item.top - top) <= 1);
+      if (!line){
+        line = { top, words: [] };
+        lines.push(line);
+      }
+      line.words.push(span.textContent);
+    });
+
+    el.innerHTML = '';
+    return lines.map(line => {
+      const outer = document.createElement('span');
+      outer.className = 'scroll-line-mask';
+      const inner = document.createElement('span');
+      inner.className = 'scroll-line-inner';
+      inner.textContent = line.words.join('').trimEnd();
+      outer.appendChild(inner);
+      el.appendChild(outer);
+      return inner;
+    });
+  };
+
+  const destroy = () => {
+    triggers.forEach(trigger => trigger.kill());
+    timelines.forEach(timeline => timeline.kill());
+    triggers = [];
+    timelines = [];
+    restoreLines();
+  };
+
+  const build = () => {
+    if (document.querySelector('x-dc')) return false;
+    const root = document.querySelector('#hero')?.parentElement;
+    if (!root || !window.gsap || !window.ScrollTrigger) return false;
+    activeRoot = root;
+
+    const gsap = window.gsap;
+    const ST = window.ScrollTrigger;
+    gsap.config({ nullTargetWarn: false });
+    gsap.registerPlugin(ST);
+    destroy();
+
+    root.querySelectorAll(
+      'section:not(#hero) h2, section:not(#hero) h3, section:not(#hero) p, ' +
+      '#services [data-service-label], #services [data-service-index], #services li, #services [data-service-footer]'
+    )
+      .forEach(el => {
+        el.setAttribute('data-lines', '');
+        el.removeAttribute('data-reveal');
+      });
+
+    root.querySelectorAll('section:not(#hero)').forEach((section, index) => {
+      const lineInners = [...section.querySelectorAll('[data-lines]')]
+        .flatMap(splitIntoLines);
+      const blocks = [...section.querySelectorAll(
+        '[data-reveal]:not([data-lines]), [data-stagger-item], [data-divider], .circle-reveal-btn'
+      )].filter(el => section.id !== 'services' || !el.matches('[data-stagger-item]'));
+      const gridLines = section.id === 'services'
+        ? [...section.querySelectorAll('.service-grid-line')]
+        : [];
+
+      if (!lineInners.length && !blocks.length && !gridLines.length) return;
+
+      if (lineInners.length) gsap.set(lineInners, { yPercent: 110 });
+      if (blocks.length) gsap.set(blocks, { opacity: 0, y: 16 });
+      if (gridLines.length) gsap.set(gridLines, { scaleX: 0, transformOrigin: 'left center' });
+
+      const timeline = gsap.timeline({ paused: true });
+      if (gridLines.length){
+        timeline.to(gridLines, {
+          scaleX: 1,
+          duration: .99,
+          stagger: .085,
+          ease: 'power4.out'
+        }, 0);
+      }
+      if (lineInners.length){
+        const lineStagger = section.id === 'services'
+          ? Math.max(.033, Math.min(.079, 2.38 / lineInners.length))
+          : .079;
+        timeline.to(lineInners, {
+          yPercent: 0,
+          duration: 1.18,
+          stagger: lineStagger,
+          ease: 'power4.out'
+        }, gridLines.length ? .08 : 0);
+      }
+      if (blocks.length){
+        timeline.to(blocks, {
+          opacity: 1,
+          y: 0,
+          duration: .79,
+          stagger: .105,
+          ease: 'power4.out'
+        }, lineInners.length ? .1 : 0);
+      }
+
+      const trigger = ST.create({
+        id: 'section-reveal-' + index,
+        trigger: section,
+        start: 'top 70%',
+        toggleActions: 'play none none reverse',
+        animation: timeline
+      });
+      timelines.push(timeline);
+      triggers.push(trigger);
+    });
+
+    setTimeout(() => ST.refresh(), 100);
+    window.__scrollRevealController = { timelines, triggers, rebuild: build };
+    return true;
+  };
+
+  const boot = (tries = 0) => {
+    if (build()) return;
+    if (tries < 150) setTimeout(() => boot(tries + 1), 40);
+  };
+
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(build, 180);
+  });
+
+  new MutationObserver(() => {
+    const nextRoot = document.querySelector('#hero')?.parentElement;
+    if (!document.querySelector('x-dc') && nextRoot && nextRoot !== activeRoot) build();
+  }).observe(document.body, { childList: true, subtree: true });
+
+  boot();
+})();
+</script>
+</body>
+</html>
