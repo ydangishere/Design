@@ -40,7 +40,8 @@
     transition:clip-path .6s cubic-bezier(.25,.46,.45,.94);
   }
   .circle-reveal-btn:hover::before,
-  .circle-reveal-btn:focus-visible::before{
+  .circle-reveal-btn:focus-visible::before,
+  .circle-reveal-btn.is-touch-active::before{
     clip-path:circle(150% at 0 0);
   }
   .circle-reveal-btn--light{
@@ -50,7 +51,8 @@
   }
   .circle-reveal-btn--light::before{ background:#0A0A0A; }
   .circle-reveal-btn--light:hover,
-  .circle-reveal-btn--light:focus-visible{ color:#F2F2F2; }
+  .circle-reveal-btn--light:focus-visible,
+  .circle-reveal-btn--light.is-touch-active{ color:#F2F2F2; }
   .circle-reveal-btn--dark{
     background:#0A0A0A;
     color:#F2F2F2;
@@ -58,13 +60,15 @@
   }
   .circle-reveal-btn--dark::before{ background:#F2F2F2; }
   .circle-reveal-btn--dark:hover,
-  .circle-reveal-btn--dark:focus-visible{ color:#0A0A0A; }
+  .circle-reveal-btn--dark:focus-visible,
+  .circle-reveal-btn--dark.is-touch-active{ color:#0A0A0A; }
   .circle-reveal-btn__arrow{
     display:inline-block;
     transition:transform .2s ease-out;
   }
   .circle-reveal-btn:hover .circle-reveal-btn__arrow,
-  .circle-reveal-btn:focus-visible .circle-reveal-btn__arrow{
+  .circle-reveal-btn:focus-visible .circle-reveal-btn__arrow,
+  .circle-reveal-btn.is-touch-active .circle-reveal-btn__arrow{
     transform:translateX(3px);
   }
   .circle-reveal-icon{
@@ -250,8 +254,8 @@
         </nav>
 
         <div class="hero-actions" style="display:flex; gap:12px; margin-top:100px;">
-          <a href="#work" data-target="#work" class="circle-reveal-btn circle-reveal-btn--light"><span>View My Work</span><span class="circle-reveal-btn__arrow" aria-hidden="true">→</span></a>
-          <a href="#contact" data-target="#contact" class="circle-reveal-btn circle-reveal-btn--dark"><span>Get in Touch</span></a>
+          <a href="#work" data-target="#work" class="circle-reveal-btn circle-reveal-btn--light" onPointerDown="{{ onTouchButtonDown }}" onPointerUp="{{ onTouchButtonUp }}" onPointerCancel="{{ onTouchButtonUp }}" onPointerLeave="{{ onTouchButtonUp }}"><span>View My Work</span><span class="circle-reveal-btn__arrow" aria-hidden="true">→</span></a>
+          <a href="#contact" data-target="#contact" class="circle-reveal-btn circle-reveal-btn--dark" onPointerDown="{{ onTouchButtonDown }}" onPointerUp="{{ onTouchButtonUp }}" onPointerCancel="{{ onTouchButtonUp }}" onPointerLeave="{{ onTouchButtonUp }}"><span>Get in Touch</span></a>
         </div>
 
         <p class="hero-intro" style="margin: 0; text-align: right; font-size: clamp(20px,1.2vw,18px); line-height: 1.55; color: #B4B4B4; max-width: 377px">I design digital products and interactive experiences sites that are purposeful, intuitive, and built for real people.</p>
@@ -1223,6 +1227,22 @@ class Component extends DCLogic {
     else this._smoothHeadLeave();
   }
 
+  _touchButtonDown(e){
+    const el = e && e.currentTarget;
+    if (!el) return;
+    clearTimeout(el._touchActiveTimer);
+    el.classList.add('is-touch-active');
+  }
+
+  _touchButtonUp(e){
+    const el = e && e.currentTarget;
+    if (!el) return;
+    clearTimeout(el._touchActiveTimer);
+    el._touchActiveTimer = setTimeout(() => {
+      el.classList.remove('is-touch-active');
+    }, 180);
+  }
+
   _autoPlayTileIntro(kind){
     if (!this.motionOn) return;
     if (!this._tileIntroPlayed) this._tileIntroPlayed = {};
@@ -1291,6 +1311,8 @@ class Component extends DCLogic {
       onAvatarPointerMove: (e) => this._tilePointerMove('avatar', e),
       onAvatarPointerUp: (e) => this._tilePointerUp('avatar', e),
       setHeadText: (el) => { if (el) this.headText = el; },
+      onTouchButtonDown: (e) => this._touchButtonDown(e),
+      onTouchButtonUp: (e) => this._touchButtonUp(e),
       prev: () => this._slide(-1),
       next: () => this._slide(1)
     };
