@@ -238,7 +238,7 @@
 
     <div class="hero-layout" style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap;">
       <!-- portrait -->
-      <div class="hero-avatar" data-hero="" ref="{{ setAvatarWrap }}" onMouseMove="{{ onAvatarMove }}" onMouseEnter="{{ onAvatarEnter }}" onMouseLeave="{{ onAvatarLeave }}" onPointerDown="{{ onAvatarPointerDown }}" onPointerMove="{{ onAvatarPointerMove }}" onPointerUp="{{ onAvatarPointerUp }}" onPointerCancel="{{ onAvatarPointerUp }}" style="width:clamp(286px,38vw,475px); aspect-ratio:1/1.27; background:#0A0A0A url('assets/portrait.png') center 35% / cover no-repeat; position:relative; flex:0 0 auto; overflow:visible; cursor:crosshair; touch-action:none; filter:grayscale(50%);">
+      <div class="hero-avatar" data-hero="" ref="{{ setAvatarWrap }}" onMouseMove="{{ onAvatarMove }}" onMouseEnter="{{ onAvatarEnter }}" onMouseLeave="{{ onAvatarLeave }}" onPointerDown="{{ onAvatarPointerDown }}" onPointerMove="{{ onAvatarPointerMove }}" onPointerUp="{{ onAvatarPointerUp }}" onPointerCancel="{{ onAvatarPointerUp }}" onTouchStart="{{ onAvatarTouchStart }}" onTouchMove="{{ onAvatarTouchMove }}" onTouchEnd="{{ onAvatarTouchEnd }}" onTouchCancel="{{ onAvatarTouchEnd }}" style="width:clamp(286px,38vw,475px); aspect-ratio:1/1.27; background:#0A0A0A url('assets/portrait.png') center 35% / cover no-repeat; position:relative; flex:0 0 auto; overflow:visible; cursor:crosshair; touch-action:none; -webkit-user-select:none; user-select:none; -webkit-touch-callout:none; filter:grayscale(50%);">
         <img data-avatar-base="" src="assets/portrait.png" alt="Y Van Dang portrait" style="width:100%; height:100%; object-fit:cover; object-position:center 35%; display:block; position:absolute; inset:0; z-index:1; opacity:1; transition:opacity .18s ease;">
         <div ref="{{ setGrid }}" style="position:absolute; inset:0; pointer-events:none; z-index:2; opacity:0; filter:grayscale(0.5); transition:opacity .16s ease, filter .5s ease;"></div>
       </div>
@@ -1227,6 +1227,28 @@ class Component extends DCLogic {
     else this._smoothHeadLeave();
   }
 
+  _avatarTouchStart(e){
+    if (e && e.preventDefault) e.preventDefault();
+    this._smoothAvatarEnter();
+    if (this.avatarWrap) this._avatarMotionRect = this.avatarWrap.getBoundingClientRect();
+    this._avatarTouchMove(e);
+  }
+
+  _avatarTouchMove(e){
+    if (e && e.preventDefault) e.preventDefault();
+    const touch = e && e.touches && e.touches[0];
+    if (!touch || !this.avatarWrap || !this.cells || !this.cells.length) return;
+    const rect = this._avatarMotionRect || this.avatarWrap.getBoundingClientRect();
+    const x = (touch.clientX - rect.left) / rect.width;
+    const y = (touch.clientY - rect.top) / rect.height;
+    this._setSmoothTileTarget('avatar', x, y);
+  }
+
+  _avatarTouchEnd(e){
+    if (e && e.preventDefault) e.preventDefault();
+    this._smoothAvatarLeave();
+  }
+
   _touchButtonDown(e){
     const el = e && e.currentTarget;
     if (!el) return;
@@ -1310,6 +1332,9 @@ class Component extends DCLogic {
       onAvatarPointerDown: (e) => this._tilePointerDown('avatar', e),
       onAvatarPointerMove: (e) => this._tilePointerMove('avatar', e),
       onAvatarPointerUp: (e) => this._tilePointerUp('avatar', e),
+      onAvatarTouchStart: (e) => this._avatarTouchStart(e),
+      onAvatarTouchMove: (e) => this._avatarTouchMove(e),
+      onAvatarTouchEnd: (e) => this._avatarTouchEnd(e),
       setHeadText: (el) => { if (el) this.headText = el; },
       onTouchButtonDown: (e) => this._touchButtonDown(e),
       onTouchButtonUp: (e) => this._touchButtonUp(e),
