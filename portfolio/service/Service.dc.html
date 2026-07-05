@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; background:#0A0A0A; }
+  body{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  ::selection{ background:#E9A93C; color:#0A0A0A; }
+
+  .svc-dash{ color:rgba(255,255,255,0.22); margin-right:12px; }
+
+  .svc-faq-item{ border-top:1px solid rgba(255,255,255,0.10); }
+  .svc-faq-btn{
+    width:100%; background:none; border:none; color:#F2F2F2; cursor:pointer;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:28px 0; gap:32px; text-align:left;
+    font-family:'Hanken Grotesk',system-ui,sans-serif; font-size:clamp(18px,2vw,24px);
+    font-weight:500; letter-spacing:-0.01em; transition:opacity .2s;
+  }
+  .svc-faq-btn:hover{ opacity:.7; }
+  .svc-faq-icon{ flex-shrink:0; font-size:22px; line-height:1; color:#9A9A9A; transition:transform .35s cubic-bezier(.25,.46,.45,.94); }
+  .svc-faq-icon.open{ transform:rotate(45deg); }
+  .svc-faq-body{ overflow:hidden; max-height:0; transition:max-height .42s cubic-bezier(.25,.46,.45,.94); }
+  .svc-faq-body.open{ max-height:600px; }
+  .svc-faq-inner{ padding:0 0 28px; font-size:clamp(15px,1.3vw,18px); line-height:1.65; color:#9A9A9A; max-width:680px; }
+
+  .reveal-y{ transition:opacity .9s cubic-bezier(.22,.61,.36,1), transform .9s cubic-bezier(.22,.61,.36,1); }
+  .reveal-y.pre{ opacity:0; transform:translateY(32px); }
+  .reveal-y.is-in{ opacity:1; transform:none; }
+
+  @media (max-width:760px){
+    .svc-body{ flex-direction:column !important; }
+    .svc-meta-grid{ grid-template-columns:1fr !important; }
+  }
+</style>
+<link rel="stylesheet" href="../shared/site-nav.css">
+</helmet>
+
+<div ref="{{ setRoot }}" style="background:#0A0A0A; color:#F2F2F2; font-family:'Hanken Grotesk',system-ui,sans-serif; min-height:100vh; overflow-x:hidden;">
+
+  <!-- ===== SHARED NAV ===== -->
+  <header class="site-nav-shell site-nav-shell--fixed">
+    <nav class="hero-nav site-nav" data-site-nav aria-label="Primary"></nav>
+  </header>
+
+  <div style="max-width:1480px; margin:0 auto; padding:0 clamp(22px,5vw,72px);">
+
+    <!-- ===== HERO ===== -->
+    <section style="padding-top:clamp(110px,14vw,180px); padding-bottom:clamp(60px,8vw,110px);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:clamp(18px,2.4vw,30px);">01 / Services</div>
+      <h1 class="reveal-y" data-reveal="" style="margin:0 0 clamp(22px,3vw,40px); font-size:clamp(58px,11vw,160px); font-weight:700; letter-spacing:-0.035em; line-height:0.88; color:#FFFFFF;">SERVICES</h1>
+      <p class="reveal-y" data-reveal="" style="margin:0; font-size:clamp(17px,1.5vw,22px); line-height:1.6; color:#B4B4B4; max-width:560px;">End-to-end design and build for digital products — from first concept to shipped interface. I work with founders, agencies, and product teams.</p>
+      <div class="reveal-y" data-reveal="" style="height:26px; width:100%; margin-top:clamp(28px,4vw,56px); background:linear-gradient(90deg,#2DD4BF 0%,#6FB97F 32%,#A8B85E 52%,#E9A93C 78%,#EA6B2E 100%);"></div>
+    </section>
+
+    <!-- ===== S.01 — Custom Websites ===== -->
+    <section style="padding:clamp(60px,8vw,110px) 0; border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:20px;">S.01</div>
+      <h2 class="reveal-y" data-reveal="" style="margin:0 0 clamp(32px,4vw,56px); font-size:clamp(38px,6vw,88px); font-weight:700; letter-spacing:-0.03em; line-height:0.95;">Custom Websites</h2>
+      <div class="svc-body reveal-y" data-reveal="" style="display:flex; gap:clamp(32px,6vw,80px); align-items:flex-start;">
+        <p style="flex:1 1 280px; margin:0; font-size:clamp(16px,1.3vw,20px); line-height:1.65; color:#B4B4B4; max-width:400px;">Bespoke sites built from scratch — high-performance, visually distinctive, and crafted to convert. Every interaction is considered, every frame is intentional.</p>
+        <div style="flex:2 1 360px; display:flex; flex-direction:column; gap:32px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Scope</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>UX research &amp; information architecture</li>
+              <li><span class="svc-dash">—</span>Visual design &amp; interactive prototyping</li>
+              <li><span class="svc-dash">—</span>Front-end development (Next.js, GSAP)</li>
+              <li><span class="svc-dash">—</span>Motion design &amp; micro-interactions</li>
+              <li><span class="svc-dash">—</span>CMS integration &amp; deployment</li>
+            </ul>
+          </div>
+          <div style="display:grid; grid-template-columns:160px 1fr; gap:0;" class="svc-meta-grid">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Pricing</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">From $4,800</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Timeline</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">4–8 weeks</div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Deliverables</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Figma source files (all components, tokens)</li>
+              <li><span class="svc-dash">—</span>Production-ready codebase</li>
+              <li><span class="svc-dash">—</span>CMS training &amp; documentation</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== S.02 — UI/UX Design Systems ===== -->
+    <section style="padding:clamp(60px,8vw,110px) 0; border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:20px;">S.02</div>
+      <h2 class="reveal-y" data-reveal="" style="margin:0 0 clamp(32px,4vw,56px); font-size:clamp(38px,6vw,88px); font-weight:700; letter-spacing:-0.03em; line-height:0.95;">UI / UX Design</h2>
+      <div class="svc-body reveal-y" data-reveal="" style="display:flex; gap:clamp(32px,6vw,80px); align-items:flex-start;">
+        <p style="flex:1 1 280px; margin:0; font-size:clamp(16px,1.3vw,20px); line-height:1.65; color:#B4B4B4; max-width:400px;">Interface design that serves both the user and the product strategy. I map complex flows, build scalable component libraries, and deliver production-ready Figma files.</p>
+        <div style="flex:2 1 360px; display:flex; flex-direction:column; gap:32px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Scope</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>User flows, wireframes &amp; IA</li>
+              <li><span class="svc-dash">—</span>High-fidelity UI &amp; design system</li>
+              <li><span class="svc-dash">—</span>Interactive prototype for user testing</li>
+              <li><span class="svc-dash">—</span>Component documentation &amp; handoff</li>
+            </ul>
+          </div>
+          <div style="display:grid; grid-template-columns:160px 1fr; gap:0;" class="svc-meta-grid">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Pricing</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">From $2,400</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Timeline</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">2–5 weeks</div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Deliverables</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Full Figma file with variants &amp; tokens</li>
+              <li><span class="svc-dash">—</span>Clickable prototype</li>
+              <li><span class="svc-dash">—</span>Developer handoff notes</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== S.03 — Interactive Experiences ===== -->
+    <section style="padding:clamp(60px,8vw,110px) 0; border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:20px;">S.03</div>
+      <h2 class="reveal-y" data-reveal="" style="margin:0 0 clamp(32px,4vw,56px); font-size:clamp(38px,6vw,88px); font-weight:700; letter-spacing:-0.03em; line-height:0.95;">Interactive Experiences</h2>
+      <div class="svc-body reveal-y" data-reveal="" style="display:flex; gap:clamp(32px,6vw,80px); align-items:flex-start;">
+        <p style="flex:1 1 280px; margin:0; font-size:clamp(16px,1.3vw,20px); line-height:1.65; color:#B4B4B4; max-width:400px;">WebGL scenes, scroll-driven narratives, 3D product configurators, and browser-based experiments that turn passive visitors into engaged participants.</p>
+        <div style="flex:2 1 360px; display:flex; flex-direction:column; gap:32px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Scope</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Three.js / WebGL scenes</li>
+              <li><span class="svc-dash">—</span>GSAP scroll-triggered animations</li>
+              <li><span class="svc-dash">—</span>Canvas / shader-based effects</li>
+              <li><span class="svc-dash">—</span>Performance optimisation &amp; mobile support</li>
+            </ul>
+          </div>
+          <div style="display:grid; grid-template-columns:160px 1fr; gap:0;" class="svc-meta-grid">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Pricing</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">From $3,200</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Timeline</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">3–6 weeks</div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Deliverables</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Embeddable production build</li>
+              <li><span class="svc-dash">—</span>Source code + documentation</li>
+              <li><span class="svc-dash">—</span>Performance audit report</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== S.04 — Creative Direction ===== -->
+    <section style="padding:clamp(60px,8vw,110px) 0; border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:20px;">S.04</div>
+      <h2 class="reveal-y" data-reveal="" style="margin:0 0 clamp(32px,4vw,56px); font-size:clamp(38px,6vw,88px); font-weight:700; letter-spacing:-0.03em; line-height:0.95;">Creative Direction</h2>
+      <div class="svc-body reveal-y" data-reveal="" style="display:flex; gap:clamp(32px,6vw,80px); align-items:flex-start;">
+        <p style="flex:1 1 280px; margin:0; font-size:clamp(16px,1.3vw,20px); line-height:1.65; color:#B4B4B4; max-width:400px;">Visual strategy, brand language, and art direction for digital products and campaigns. I help teams find a coherent aesthetic voice and execute it consistently.</p>
+        <div style="flex:2 1 360px; display:flex; flex-direction:column; gap:32px;">
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Scope</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Brand audit &amp; visual strategy</li>
+              <li><span class="svc-dash">—</span>Moodboarding &amp; style definition</li>
+              <li><span class="svc-dash">—</span>Design system foundations</li>
+              <li><span class="svc-dash">—</span>Team workshops &amp; guidelines</li>
+            </ul>
+          </div>
+          <div style="display:grid; grid-template-columns:160px 1fr; gap:0;" class="svc-meta-grid">
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Pricing</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">From $1,800</div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">Timeline</div>
+            <div style="font-size:16px; color:#F2F2F2; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.05);">1–3 weeks</div>
+          </div>
+          <div>
+            <div style="font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.15em; text-transform:uppercase; color:#7A7A7A; margin-bottom:14px; padding-bottom:10px; border-bottom:1px solid rgba(255,255,255,0.08);">Deliverables</div>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; font-size:clamp(14px,1.1vw,16px); color:#C8C8C8; line-height:1.5;">
+              <li><span class="svc-dash">—</span>Visual identity brief</li>
+              <li><span class="svc-dash">—</span>Style guide &amp; asset library</li>
+              <li><span class="svc-dash">—</span>Presentation deck</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section style="padding:clamp(60px,8vw,110px) 0; border-top:1px solid rgba(255,255,255,0.08);">
+      <div class="reveal-y" data-reveal="" style="font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.18em; color:#7A7A7A; text-transform:uppercase; margin-bottom:20px;">FAQ</div>
+      <h2 class="reveal-y" data-reveal="" style="margin:0 0 clamp(40px,6vw,80px); font-size:clamp(38px,6vw,88px); font-weight:700; letter-spacing:-0.03em; line-height:0.95;">Frequently<br>asked questions</h2>
+      <div class="reveal-y" data-reveal="" ref="{{ setFaq }}">
+        <div class="svc-faq-item">
+          <button class="svc-faq-btn" onClick="{{ toggle0 }}"><span>Do you work with clients remotely?</span><span ref="{{ setIcon0 }}" class="svc-faq-icon">+</span></button>
+          <div ref="{{ setBody0 }}" class="svc-faq-body"><div class="svc-faq-inner">Yes — fully remote. I work with clients across Europe, North America, and Southeast Asia. All collaboration happens via Figma, Notion, and video calls. Time zones have never been a blocker.</div></div>
+        </div>
+        <div class="svc-faq-item">
+          <button class="svc-faq-btn" onClick="{{ toggle1 }}"><span>Can you handle both design and development?</span><span ref="{{ setIcon1 }}" class="svc-faq-icon">+</span></button>
+          <div ref="{{ setBody1 }}" class="svc-faq-body"><div class="svc-faq-inner">Yes. I design in Figma and build in Next.js + React. Most clients come for the full end-to-end service — single point of contact, no handoff friction, faster iteration. I can also hand off design-only if you have a dev team.</div></div>
+        </div>
+        <div class="svc-faq-item">
+          <button class="svc-faq-btn" onClick="{{ toggle2 }}"><span>What's your typical process?</span><span ref="{{ setIcon2 }}" class="svc-faq-icon">+</span></button>
+          <div ref="{{ setBody2 }}" class="svc-faq-body"><div class="svc-faq-inner">Discovery → Wireframes → Visual Design → Prototype review → Build → Launch. Each phase has a clear output and sign-off point. I use async communication to keep things moving without endless meetings.</div></div>
+        </div>
+        <div class="svc-faq-item">
+          <button class="svc-faq-btn" onClick="{{ toggle3 }}"><span>Do you take on smaller one-off tasks?</span><span ref="{{ setIcon3 }}" class="svc-faq-icon">+</span></button>
+          <div ref="{{ setBody3 }}" class="svc-faq-body"><div class="svc-faq-inner">For existing clients, yes. For new clients, the minimum engagement is a defined project scope — I don't do hourly freelance for standalone tasks. This keeps quality consistent and protects both sides.</div></div>
+        </div>
+        <div class="svc-faq-item">
+          <button class="svc-faq-btn" onClick="{{ toggle4 }}"><span>How do I get started?</span><span ref="{{ setIcon4 }}" class="svc-faq-icon">+</span></button>
+          <div ref="{{ setBody4 }}" class="svc-faq-body"><div class="svc-faq-inner">Send a short brief to the email below — what you're building, your timeline, and your budget range. I'll respond within 48 hours. If there's a fit, we schedule a 30-minute discovery call to align on scope.</div></div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== FOOTER CTA ===== -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.08); overflow:hidden;">
+    <div style="padding:clamp(60px,8vw,110px) clamp(22px,5vw,72px) 0; max-width:1480px; margin:0 auto;">
+      <div class="reveal-y" data-reveal="" style="font-size:clamp(52px,12vw,160px); font-weight:700; letter-spacing:-0.04em; line-height:0.88; color:#F2F2F2; text-wrap:balance;">LET'S TALK.</div>
+      <div style="margin-top:clamp(28px,4vw,56px); display:flex; flex-wrap:wrap; justify-content:space-between; align-items:flex-end; gap:24px; padding-bottom:clamp(36px,5vw,64px); border-top:1px solid rgba(255,255,255,0.08); margin-top:clamp(36px,5vw,72px); padding-top:clamp(28px,3vw,40px);">
+        <div style="display:flex; flex-direction:column; gap:10px;">
+          <a href="mailto:hello@ydang.io" style="font-size:clamp(15px,1.4vw,20px); font-weight:500; color:#F2F2F2; text-decoration:none; letter-spacing:-0.01em; transition:opacity .2s;" style-hover="opacity:.6;">hello@ydang.io</a>
+          <a href="../#contact" style="font-size:14px; color:#7A7A7A; text-decoration:none; font-family:'JetBrains Mono',monospace; letter-spacing:0.1em; text-transform:uppercase; transition:color .2s;" style-hover="color:#F2F2F2;">Start a project →</a>
+        </div>
+        <div style="display:flex; flex-wrap:wrap; gap:clamp(18px,2.5vw,36px); font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:#5A5A5A; align-items:center;">
+          <a href="../" style="color:#5A5A5A; text-decoration:none; transition:color .2s;" style-hover="color:#F2F2F2;">Home</a>
+          <a href="../work/work2.dc.html" style="color:#5A5A5A; text-decoration:none; transition:color .2s;" style-hover="color:#F2F2F2;">Work</a>
+          <a href="../service/Service.dc.html" style="color:#F2F2F2; text-decoration:none;">Services</a>
+          <a href="../#philosophy" style="color:#5A5A5A; text-decoration:none; transition:color .2s;" style-hover="color:#F2F2F2;">About</a>
+          <a href="../#contact" style="color:#5A5A5A; text-decoration:none; transition:color .2s;" style-hover="color:#F2F2F2;">Contact</a>
+          <span>© 2026 Y Dang</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.state = { open: null };
+  }
+
+  componentDidMount(){
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const root = this.rootEl || document;
+    this._reveals = [...root.querySelectorAll('[data-reveal]')];
+
+    this._io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.classList.remove('pre');
+        e.target.classList.add('is-in');
+        obs.unobserve(e.target);
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -4% 0px' });
+
+    this._reveals.forEach((el, i) => {
+      el.style.transitionDelay = Math.min(i * 40, 200) + 'ms';
+      if (this.reduce){ el.classList.add('is-in'); return; }
+      el.classList.add('pre');
+      this._io.observe(el);
+    });
+
+    this._fallback = setTimeout(() => {
+      this._reveals.forEach(el => { el.classList.remove('pre'); el.classList.add('is-in'); });
+    }, 1800);
+  }
+
+  componentWillUnmount(){
+    if (this._io) this._io.disconnect();
+    if (this._fallback) clearTimeout(this._fallback);
+  }
+
+  _toggle(idx){
+    const wasOpen = this.state.open === idx;
+    this.setState({ open: wasOpen ? null : idx }, () => {
+      [0,1,2,3,4].forEach(i => {
+        const body = this['body' + i];
+        const icon = this['icon' + i];
+        if (!body || !icon) return;
+        const isOpen = this.state.open === i;
+        body.classList.toggle('open', isOpen);
+        icon.classList.toggle('open', isOpen);
+      });
+    });
+  }
+
+  renderVals(){
+    return {
+      setRoot: (el) => { if (el) this.rootEl = el; },
+      setFaq: (el) => { if (el) this.faqEl = el; },
+      setIcon0: (el) => { if (el) this.icon0 = el; },
+      setIcon1: (el) => { if (el) this.icon1 = el; },
+      setIcon2: (el) => { if (el) this.icon2 = el; },
+      setIcon3: (el) => { if (el) this.icon3 = el; },
+      setIcon4: (el) => { if (el) this.icon4 = el; },
+      setBody0: (el) => { if (el) this.body0 = el; },
+      setBody1: (el) => { if (el) this.body1 = el; },
+      setBody2: (el) => { if (el) this.body2 = el; },
+      setBody3: (el) => { if (el) this.body3 = el; },
+      setBody4: (el) => { if (el) this.body4 = el; },
+      toggle0: () => this._toggle(0),
+      toggle1: () => this._toggle(1),
+      toggle2: () => this._toggle(2),
+      toggle3: () => this._toggle(3),
+      toggle4: () => this._toggle(4)
+    };
+  }
+}
+</script>
+<script src="../shared/site-nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<style>
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html,body{ width:100%; height:100%; overflow:hidden; background:#0a0a0a; }
+  body{ -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility; }
+  ::selection{ background:#E9A93C; color:#0a0a0a; }
+
+  .cy-nav a{ color:#eaeaea; text-decoration:none; opacity:.45; transition:opacity .25s; }
+  .cy-nav a:hover, .cy-nav a.active{ opacity:1; }
+
+  .cy-seg{ width:30px; height:1px; background:#eaeaea; opacity:.2; transition:opacity .3s, width .3s; }
+  .cy-seg.active{ opacity:1; width:42px; }
+
+  .cy-name{ transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1); }
+
+  @keyframes cypulse{ 0%,100%{ opacity:.4; transform:scale(1);} 50%{ opacity:1; transform:scale(1.5);} }
+  .cy-dot{ width:6px; height:6px; border-radius:50%; background:#eaeaea; animation:cypulse 2s ease-in-out infinite; }
+
+  .cy-stage{ cursor:grab; }
+  .cy-stage.grabbing{ cursor:grabbing; }
+
+  .project-overlay{
+    position:fixed;
+    inset:0;
+    z-index:200;
+    display:grid;
+    grid-template-columns:1fr;
+    overflow-x:hidden;
+    overflow-y:auto;
+    scrollbar-width:none;
+    visibility:hidden;
+    opacity:0;
+    pointer-events:none;
+    color:#f2f2f2;
+    background:linear-gradient(110deg, rgba(160,160,160,.6) 0%, rgba(20,20,20,.56) 42%, rgba(0,0,0,0) 78%);
+    transition:opacity .45s ease, visibility 0s linear .45s;
+  }
+  .project-overlay::-webkit-scrollbar{ display:none; }
+  .project-overlay.is-open{
+    visibility:visible;
+    opacity:1;
+    pointer-events:auto;
+    transition:opacity .45s ease, visibility 0s linear 0s;
+  }
+  .project-backdrop{
+    position:fixed;
+    top:0;
+    bottom:0;
+    left:0;
+    width:77%;
+    z-index:0;
+    display:none;
+    background:linear-gradient(90deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.5) 58%, rgba(0,0,0,0) 100%);
+    opacity:0;
+    transition:opacity .62s cubic-bezier(.16,1,.3,1);
+  }
+  .project-overlay.is-open .project-backdrop{ opacity:1; }
+  .project-panel{
+    grid-column:1;
+    position:sticky;
+    top:0;
+    z-index:2;
+    min-height:100dvh;
+    display:flex;
+    flex-direction:column;
+    padding:calc(64px + 1.5rem) clamp(1.25rem,2vw,2rem) 2.5rem;
+    max-width:min(100%, 48rem);
+    opacity:0;
+    transform:translateX(-1.25rem);
+    transition:opacity .55s cubic-bezier(.16,1,.3,1) .08s, transform .65s cubic-bezier(.16,1,.3,1) .08s;
+  }
+  .project-overlay.is-open .project-panel{ opacity:1; transform:translateX(0); }
+  .project-meta,
+  .project-counter,
+  .project-specs dt{
+    font-family:'JetBrains Mono',monospace;
+    font-size:.6875rem;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:#8a8a8a;
+  }
+  .project-title{
+    margin:2.1rem 0 0;
+    font-size:clamp(3.4rem,7vw,7rem);
+    font-weight:700;
+    line-height:.9;
+    letter-spacing:0;
+    text-transform:uppercase;
+    color:#d8d8d8;
+    background:linear-gradient(115deg, #ffffff 0%, #b1b1b1 18%, #ffffff 33%, #c9c9c9 52%, #8c8c8c 68%, #ffffff 86%, #bababa 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:
+      1px 1px 0 rgba(255,255,255,.26),
+      2px 2px 0 rgba(135,135,135,.24),
+      3px 4px 0 rgba(42,42,42,.22),
+      5px 7px 8px rgba(0,0,0,.58);
+    filter:none;
+    max-width:43rem;
+  }
+  .project-line{ display:block; overflow:hidden; padding-bottom:.08em; margin-bottom:-.08em; }
+  .project-line{ padding-left:.04em; padding-right:.18em; margin-left:-.04em; }
+  .project-line span{
+    display:block;
+    transform:translateY(110%);
+    transition:transform .92s cubic-bezier(.16,1,.3,1);
+    will-change:transform;
+  }
+  .project-overlay.is-open .project-line span{ transform:translateY(0); }
+  .project-line:nth-child(2) span{ transition-delay:.08s; }
+  .project-role{
+    margin:2.1rem 0 0;
+    font-size:clamp(1.12rem,1rem + .65vw,1.55rem);
+    font-style:normal;
+    line-height:1.55;
+  }
+  .project-description{
+    max-width:31rem;
+    margin:1.8rem 0 0;
+    font-size:1rem;
+    line-height:1.58;
+    color:#e1e1e1;
+  }
+  .project-counter{ margin:3.75rem 0 0; }
+  .project-specs{
+    display:none;
+    flex-direction:column;
+    gap:.55rem;
+    max-width:28rem;
+    margin:auto 0 0;
+    padding-top:1.45rem;
+    border-top:1px solid rgba(255,255,255,.12);
+  }
+  .project-specs div{ display:grid; grid-template-columns:7.2rem 1fr; gap:1.25rem; align-items:baseline; }
+  .project-specs dt,
+  .project-specs dd{ margin:0; }
+  .project-specs dd{ color:#fff; font-size:.94rem; line-height:1.55; }
+  .project-scroll-slots{ grid-column:1; pointer-events:none; }
+  .project-scroll-slots div{ height:100dvh; }
+  .project-close{
+    position:fixed;
+    top:calc(64px + 1.5rem);
+    right:clamp(1.25rem,2vw,2rem);
+    z-index:4;
+    width:44px;
+    height:44px;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:999px;
+    border:2px solid rgba(255,255,255,.92);
+    background:rgba(255,255,255,.94);
+    color:#0a0a0a;
+    opacity:0;
+    cursor:pointer;
+    transition:opacity .45s ease .18s, background-color .2s ease, color .2s ease, border-color .2s ease;
+  }
+  .project-overlay.is-open .project-close{ opacity:1; }
+  .project-close::before{
+    content:'';
+    position:absolute;
+    inset:-7px;
+    border-radius:inherit;
+    border:2px solid rgba(255,255,255,.88);
+  }
+  .project-close:hover{ background:#0a0a0a; color:#fff; border-color:#fff; }
+  .cy-ui{ transition:opacity .28s ease; }
+  .is-project-open .cy-ui{
+    opacity:0;
+    pointer-events:none !important;
+  }
+  .is-project-open .cy-stage{ cursor:default !important; }
+
+  @media (min-width:768px){
+    .project-overlay{ grid-template-columns:56% 44%; }
+    .project-backdrop{ display:block; }
+    .project-panel{ padding:20vh 4rem 7vh clamp(3.25rem,5vw,6rem); }
+    .project-title{ font-size:clamp(4rem,6.1vw,6.9rem); }
+    .project-specs{ display:flex; }
+    .project-scroll-slots{ grid-column:2; }
+    .project-close{ top:calc(72px + 2.5rem); }
+  }
+
+  @media (max-width:760px){ .cy-nav{ display:none !important; } }
+</style>
+<link rel="stylesheet" href="../shared/site-nav.css">
+</helmet>
+
+<div ref="{{ setRoot }}" style="position:fixed; inset:0; background:#0a0a0a; color:#eaeaea; font-family:'Hanken Grotesk',system-ui,sans-serif; overflow:hidden;">
+
+  <div ref="{{ setMount }}" style="position:absolute; inset:0;"></div>
+
+  <!-- ===== overlay ===== -->
+  <div class="cy-ui" style="position:absolute; inset:0; pointer-events:none; z-index:10;">
+
+    <!-- header -->
+    <header class="site-nav-shell">
+      <nav class="hero-nav site-nav" data-site-nav aria-label="Primary"></nav>
+    </header>
+
+    <!-- index top-left -->
+    <div ref="{{ setIndex }}" style="position:absolute; top:78px; left:32px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; opacity:.5;">01 / 06</div>
+
+    <!-- active project name (floating) -->
+    <div ref="{{ setNameBlock }}" class="cy-name" style="position:absolute; left:0; right:0; bottom:clamp(130px,17vh,200px); text-align:center; mix-blend-mode:difference;">
+      <div ref="{{ setName }}" style="font-size:clamp(1.56rem,3.44vw,2.66rem); font-weight:700; letter-spacing:-0.03em; line-height:1;">Patina Concept</div>
+      <div ref="{{ setStack }}" style="font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:11px;">Figma · Prototype · Design System</div>
+    </div>
+
+    <!-- progress -->
+    <div ref="{{ setProgress }}" style="position:absolute; bottom:74px; left:50%; transform:translateX(-50%); display:flex; gap:8px; align-items:center;"></div>
+
+    <!-- hint -->
+    <div style="position:absolute; bottom:34px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:10px; font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; opacity:.38; white-space:nowrap;">
+      <span class="cy-dot"></span> ← Drag · Molette · Arrow keys ↑ ↓ ← →
+    </div>
+
+  </div>
+
+  <section ref="{{ setProjectOverlay }}" class="project-overlay" aria-hidden="true">
+    <div class="project-backdrop" data-close-project></div>
+    <article class="project-panel" role="dialog" aria-modal="true" aria-labelledby="project-title">
+      <div ref="{{ setProjectMeta }}" class="project-meta">01 · 2026</div>
+      <h1 ref="{{ setProjectTitle }}" id="project-title" class="project-title"></h1>
+      <div ref="{{ setProjectRole }}" class="project-role"></div>
+      <p ref="{{ setProjectDescription }}" class="project-description"></p>
+      <div ref="{{ setProjectCounter }}" class="project-counter">01 / 06</div>
+      <dl class="project-specs">
+        <div>
+          <dt>Type</dt>
+          <dd ref="{{ setProjectType }}"></dd>
+        </div>
+        <div>
+          <dt>Stack</dt>
+          <dd ref="{{ setProjectStack }}"></dd>
+        </div>
+        <div>
+          <dt>Tags</dt>
+          <dd ref="{{ setProjectTags }}"></dd>
+        </div>
+      </dl>
+    </article>
+    <button ref="{{ setProjectClose }}" class="project-close" type="button" aria-label="Close project">×</button>
+    <div class="project-scroll-slots" aria-hidden="true">
+      <div></div>
+      <div></div>
+    </div>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.projects = [
+      { index:'01', type:'Product Design', year:'2026', name:'Patina Concept', display:'PATINA', role:'UX/UI · IA · Product Design', description:'A custom product site exploring patina as material memory — massive type, page transitions, and a slow, deliberate scroll.', stack:['Figma','Next.js','GSAP'], tags:['E-commerce','Editorial'], accent:'#2DD4BF' },
+      { index:'02', type:'Interactive', year:'2026', name:'Interactive Pet Demo', display:'MOTION', role:'Front-end · Motion · Canvas', description:'A playful interactive prototype built around direct manipulation, tactile motion, and lightweight canvas rendering.', stack:['React','GSAP','Canvas'], tags:['Prototype','Interaction'], accent:'#6FB97F' },
+      { index:'03', type:'UI System', year:'2025', name:'SaaS Dashboard', display:'SYSTEM', role:'UX/UI · Design System · Data Viz', description:'An operational dashboard system focused on dense scanning, predictable controls, and reusable chart patterns.', stack:['Next.js','Design System','Charts'], tags:['SaaS','Dashboard'], accent:'#A8B85E' },
+      { index:'04', type:'Visual System', year:'2026', name:'Portfolio System', display:'ROTONDE', role:'Creative Direction · Front-end', description:'A personal portfolio framework using cinematic WebGL composition, editorial typography, and precise interaction states.', stack:['Next.js','GSAP','WebGL'], tags:['Portfolio','Visual System'], accent:'#E9A93C' },
+      { index:'05', type:'Editorial', year:'2025', name:'Editorial Commerce', display:'MAISON', role:'UX/UI · Art Direction · Commerce', description:'A commerce experience with editorial pacing, product storytelling, and conversion paths kept close to the visual narrative.', stack:['Next.js','GSAP'], tags:['Commerce','Editorial'], accent:'#EA6B2E' },
+      { index:'06', type:'Microsite', year:'2024', name:'Brand Microsite', display:'LAUNCH', role:'Creative Front-end · WebGL', description:'A launch microsite designed around atmospheric motion, responsive art direction, and fast first-load rendering.', stack:['WebGL','GSAP','Three.js'], tags:['Brand','Microsite'], accent:'#C2502B' }
+    ];
+    this._projectOpen = false;
+  }
+
+  componentDidMount(){
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    // progress segments (one per project)
+    if (this.progressEl){
+      this.segs = [];
+      this.projects.forEach((_, i) => {
+        const s = document.createElement('div');
+        s.className = 'cy-seg' + (i === 0 ? ' active' : '');
+        this.progressEl.appendChild(s);
+        this.segs.push(s);
+      });
+    }
+    this._waitThree(0);
+  }
+
+  _waitThree(t){
+    if (window.THREE && this.mountEl){
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => this._init()).catch(() => this._init());
+      else this._init();
+      return;
+    }
+    if (t > 80) return;
+    this._t = setTimeout(() => this._waitThree(t + 1), 100);
+  }
+
+  _hexA(hex, a){
+    const h = hex.replace('#','');
+    const n = parseInt(h.length === 3 ? h.split('').map(c=>c+c).join('') : h, 16);
+    return 'rgba(' + ((n>>16)&255) + ',' + ((n>>8)&255) + ',' + (n&255) + ',' + a + ')';
+  }
+
+  _makeTexture(p){
+    const cw = 1024, ch = 640, dpr = 1;
+    const c = document.createElement('canvas');
+    c.width = cw; c.height = ch;
+    const ctx = c.getContext('2d');
+
+    ctx.fillStyle = '#2a2824';
+    ctx.fillRect(0, 0, cw, ch);
+    const g = ctx.createRadialGradient(230, 170, 30, 230, 170, 920);
+    g.addColorStop(0, this._hexA(p.accent, 0.4));
+    g.addColorStop(1, 'rgba(0,0,0,0.18)');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, cw, ch);
+    ctx.strokeStyle = 'rgba(255,255,255,0.07)';
+    ctx.lineWidth = 1;
+    for (let x = 0; x <= cw; x += 56){ ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, ch); ctx.stroke(); }
+    for (let y = 0; y <= ch; y += 56){ ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(cw, y); ctx.stroke(); }
+
+    // outer frame so the card reads against the dark scene
+    ctx.strokeStyle = 'rgba(255,255,255,0.32)';
+    ctx.lineWidth = 5;
+    ctx.strokeRect(2.5, 2.5, cw - 5, ch - 5);
+
+    // left accent line
+    ctx.fillStyle = p.accent;
+    ctx.fillRect(0, 0, 7, ch);
+
+    // ghost name centre
+    ctx.fillStyle = 'rgba(255,255,255,0.18)';
+    ctx.font = "800 168px 'Hanken Grotesk', sans-serif";
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillText(p.display, cw / 2, ch / 2 + 8);
+    ctx.textAlign = 'left'; ctx.textBaseline = 'alphabetic';
+
+    // top-left label box
+    ctx.strokeStyle = 'rgba(255,255,255,0.2)';
+    ctx.lineWidth = 1.5;
+    ctx.font = "500 17px 'JetBrains Mono', monospace";
+    const lbl = p.type.toUpperCase();
+    const lw = ctx.measureText(lbl).width + 34;
+    if (ctx.roundRect){ ctx.beginPath(); ctx.roundRect(44, 44, lw, 40, 3); ctx.stroke(); }
+    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+    ctx.fillText(lbl, 61, 70);
+
+    // top-right
+    ctx.textAlign = 'right';
+    ctx.fillStyle = 'rgba(255,255,255,0.4)';
+    ctx.font = "400 16px 'JetBrains Mono', monospace";
+    ctx.fillText('VIEW · COLLECTION', cw - 44, 70);
+    ctx.textAlign = 'left';
+
+    // bottom-left stack
+    ctx.fillStyle = 'rgba(255,255,255,0.5)';
+    ctx.font = "400 16px 'JetBrains Mono', monospace";
+    ctx.fillText(p.index + ' / 06   ·   ' + p.stack.join(' · '), 44, ch - 44);
+
+    // bottom-right year
+    ctx.textAlign = 'right';
+    ctx.fillStyle = p.accent;
+    ctx.font = "700 64px 'Hanken Grotesk', sans-serif";
+    ctx.fillText(p.year, cw - 44, ch - 38);
+    ctx.textAlign = 'left';
+
+    // bottom accent bar
+    ctx.fillStyle = p.accent;
+    ctx.fillRect(0, ch - 7, cw, 7);
+
+    const tex = new THREE.CanvasTexture(c);
+    tex.anisotropy = 8;
+    if ('SRGBColorSpace' in THREE) tex.colorSpace = THREE.SRGBColorSpace;
+    return tex;
+  }
+
+  _barrelGeo(w, h, curv){
+    const geo = new THREE.PlaneGeometry(w, h, 32, 8);
+    const pos = geo.attributes.position;
+    for (let i = 0; i < pos.count; i++){
+      const x = pos.getX(i);
+      const y = pos.getY(i);
+      // barrel in X (horizontal curve) + slight vertical curve for the cylinder wall
+      pos.setZ(i, pos.getZ(i) + curv * (x * x) + curv * 0.25 * (y * y));
+    }
+    pos.needsUpdate = true;
+    return geo;
+  }
+
+  _nearestAngle(current, target){
+    return current + Math.atan2(Math.sin(target - current), Math.cos(target - current));
+  }
+
+  _modalTwistForProject(p){
+    const idx = this.projects.indexOf(p);
+    return THREE.MathUtils.degToRad(idx >= 2 && idx <= 4 ? 18 : -18);
+  }
+
+  _init(){
+    // create a fresh canvas every mount — avoids WebGL context conflicts on hot-reload
+    const canvas = document.createElement('canvas');
+    canvas.className = 'cy-stage';
+    canvas.style.cssText = 'display:block;width:100%;height:100%;cursor:grab;position:absolute;inset:0;';
+    this.mountEl.appendChild(canvas);
+    this._canvas = canvas;
+    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: false, preserveDrawingBuffer: true });
+    renderer.setClearColor(0x0a0a0a, 1);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer = renderer;
+
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.06);
+    const camera = new THREE.PerspectiveCamera(65, 1, 0.1, 100);  // zoomed in 30% vs 82° baseline
+    camera.position.set(0, 0, 0);
+    camera.lookAt(0, 0, -1);
+    this.camera = camera; this.scene = scene;
+
+    const RADIUS = 5.5;  // +10%
+    const geo = this._barrelGeo(3.2, 1.9, 0.14);
+    const group = new THREE.Group();
+    scene.add(group);
+    this.group = group;
+
+    // 6 projects per tier, spaced 60° apart.
+    // Middle (tier 1) = active ring with all 6 real projects.
+    // Top/bottom (tier 0,2) = decorative repeat, offset 30° (half-step) for stagger effect.
+    const perTier = 6;
+    const stepA = (Math.PI * 2) / perTier;   // 60°
+    const tiers = [
+      { y: 2.5,  off: stepA / 2 },   // top — offset 30° so le
+      { y: 0,    off: 0 },            // middle — active ring
+      { y: -2.5, off: stepA / 2 }    // bottom — offset 30° so le
+    ];
+    this.cards = [];
+    let slot = 0;
+    for (let t = 0; t < tiers.length; t++){
+      for (let k = 0; k < perTier; k++){
+        const angle = tiers[t].off + k * stepA;
+        const p = this.projects[slot % this.projects.length];
+        const mat = new THREE.MeshBasicMaterial({ map: this._makeTexture(p), transparent: true, side: THREE.DoubleSide });
+        const mesh = new THREE.Mesh(geo, mat);
+        mesh.position.set(Math.sin(angle) * RADIUS, tiers[t].y, -Math.cos(angle) * RADIUS);
+        mesh.lookAt(0, tiers[t].y, 0);            // face the central axis
+        group.add(mesh);
+        this.cards.push({ mesh, mat, p, tier: t, basePos: mesh.position.clone(), baseRot: mesh.rotation.clone() });
+        slot++;
+      }
+    }
+
+    this.camAngle = 0;
+    this.camTarget = 0;
+    this.pitchAngle = 0;
+    this.pitchTarget = 0;
+    this.MAX_PITCH = Math.PI / 6;   // ±30°
+    this.snapStep = stepA;  // 60° — snaps only between middle-ring cards
+    this._activeProj = -1;
+    this._v = new THREE.Vector3();
+    this._fwd = new THREE.Vector3();
+    this._cardDir = new THREE.Vector3();
+
+    // camera euler order so pitch (x) applies after yaw (handled by group)
+    camera.rotation.order = 'YXZ';
+
+    // ---- interaction ----
+    this._snapTimer = null;
+    const queueSnap = () => {
+      clearTimeout(this._snapTimer);
+      this._snapTimer = setTimeout(() => {
+        this.camTarget = Math.round(this.camTarget / this.snapStep) * this.snapStep;
+      }, 90);
+    };
+    this._onWheel = (e) => {
+      e.preventDefault();
+      if (this._projectOpen) return;
+      // horizontal scroll / shift+scroll → yaw; plain vertical → yaw for carousel feel
+      this.camTarget += e.deltaY * 0.0016;
+      queueSnap();
+    };
+    this._onKey = (e) => {
+      if (e.key === 'Escape' && this._projectOpen){ e.preventDefault(); this._closeProject(); }
+      else if (this._projectOpen) return;
+      else if (e.key === 'ArrowRight'){ e.preventDefault(); this.camTarget = Math.round(this.camTarget / this.snapStep) * this.snapStep + this.snapStep; }
+      else if (e.key === 'ArrowLeft'){ e.preventDefault(); this.camTarget = Math.round(this.camTarget / this.snapStep) * this.snapStep - this.snapStep; }
+      else if (e.key === 'ArrowUp'){ e.preventDefault(); this.pitchTarget = Math.max(-this.MAX_PITCH, this.pitchTarget - Math.PI / 8); }
+      else if (e.key === 'ArrowDown'){ e.preventDefault(); this.pitchTarget = Math.min(this.MAX_PITCH, this.pitchTarget + Math.PI / 8); }
+    };
+    this._dragActive = false;
+    this._down = (e) => {
+      if (this._projectOpen) return;
+      const t = e.touches ? e.touches[0] : e;
+      this._lastX = t.clientX; this._lastY = t.clientY;
+      this._startX = t.clientX; this._startY = t.clientY;
+      this._didDrag = false;
+      this._dragActive = true;
+      canvas.classList.add('grabbing');
+    };
+    this._move = (e) => {
+      if (!this._dragActive) return;
+      const t = e.touches ? e.touches[0] : e;
+      const dx = t.clientX - this._lastX;
+      const dy = t.clientY - this._lastY;
+      this._lastX = t.clientX; this._lastY = t.clientY;
+      if (Math.abs(t.clientX - this._startX) + Math.abs(t.clientY - this._startY) > 8) this._didDrag = true;
+      // horizontal drag → yaw, vertical drag → pitch
+      this.camTarget += dx * 0.00552;    // reversed horizontal drag
+      this.pitchTarget += dy * 0.00368;  // -8% sensitivity
+      this.pitchTarget = Math.max(-this.MAX_PITCH, Math.min(this.MAX_PITCH, this.pitchTarget));
+    };
+    this._up = () => { if (!this._dragActive) return; this._dragActive = false; canvas.classList.remove('grabbing'); queueSnap(); };
+    this._click = () => {
+      if (this._didDrag || this._projectOpen) return;
+      this._openProject();
+    };
+    this._closeClick = () => this._closeProject();
+    this._overlayClick = (e) => {
+      if (e.target && e.target.hasAttribute && e.target.hasAttribute('data-close-project')) this._closeProject();
+    };
+
+    canvas.addEventListener('wheel', this._onWheel, { passive: false });
+    canvas.addEventListener('mousedown', this._down);
+    canvas.addEventListener('click', this._click);
+    canvas.addEventListener('touchstart', this._down, { passive: true });
+    window.addEventListener('mousemove', this._move);
+    window.addEventListener('touchmove', this._move, { passive: false });
+    window.addEventListener('mouseup', this._up);
+    canvas.addEventListener('touchend', this._up);
+    canvas.addEventListener('touchcancel', this._up);
+    window.addEventListener('keydown', this._onKey);
+    if (this.projectCloseEl) this.projectCloseEl.addEventListener('click', this._closeClick);
+    if (this.projectOverlayEl) this.projectOverlayEl.addEventListener('click', this._overlayClick);
+
+    // resize (robust)
+    this._lw = 0; this._lh = 0;
+    this._resize = () => {
+      const w = canvas.clientWidth || window.innerWidth, h = canvas.clientHeight || window.innerHeight;
+      if (w < 1 || h < 1 || (w === this._lw && h === this._lh)) return;
+      this._lw = w; this._lh = h;
+      renderer.setSize(w, h, false);
+      camera.aspect = w / h; camera.updateProjectionMatrix();
+    };
+    window.addEventListener('resize', this._resize);
+    if (typeof ResizeObserver !== 'undefined'){ this._ro = new ResizeObserver(() => this._resize()); this._ro.observe(canvas); }
+    this._resize();
+
+    this._loop = this._loop.bind(this);
+    this._raf = requestAnimationFrame(this._loop);
+  }
+
+  _loop(now){
+    this._raf = requestAnimationFrame(this._loop);
+    if (this._resize) this._resize();
+
+    const ease = this.reduce ? 1 : 0.072;  // -10% speed
+    this.camAngle  += (this.camTarget  - this.camAngle)  * ease;
+    this.pitchAngle += (this.pitchTarget - this.pitchAngle) * ease;
+
+    // group rotates around Y for horizontal navigation
+    this.group.rotation.y = -this.camAngle;
+    // camera tilts for vertical look (pitch)
+    this.camera.rotation.x = this.pitchAngle;
+
+    // get camera forward in world space (accounts for both yaw and pitch)
+    this.camera.getWorldDirection(this._fwd);
+
+    // emphasise + find active
+    // first pass: find which MIDDLE-TIER card the camera is facing (active ring only)
+    let best = -Infinity, bestCard = null;
+    for (const c of this.cards){
+      if (c.tier !== 1) continue;   // only the middle ring drives navigation
+      c.mesh.getWorldPosition(this._v);
+      this._cardDir.copy(this._v).normalize();
+      const align = this._fwd.dot(this._cardDir);
+      if (align > best){ best = align; bestCard = c; }
+    }
+    if (bestCard){
+      const idx = this.projects.indexOf(bestCard.p);
+      if (idx !== this._activeProj){ this._activeProj = idx; this._updateOverlay(idx); }
+    }
+
+    // second pass: active card = scale 1.0, all others = 0.77 (active is 30% bigger)
+    for (const c of this.cards){
+      c.mesh.getWorldPosition(this._v);
+      this._cardDir.copy(this._v).normalize();
+      const align = this._fwd.dot(this._cardDir);
+      const vis = Math.max(0, align);
+      const isActive = bestCard && c === bestCard;
+      const targetSc = isActive ? (this._projectOpen ? 1.65 : 1.27) : 0.64;
+      const targetOp = isActive ? 1.0 : Math.max(0.10, 0.10 + 0.65 * Math.pow(vis, 1.6));
+      const targetX = isActive && this._projectOpen ? c.basePos.x * 0.9 : c.basePos.x;
+      const targetZ = isActive && this._projectOpen ? c.basePos.z * 0.9 : c.basePos.z;
+      const rawTargetRY = c.baseRot.y + (isActive && this._projectOpen ? this._modalTwistForProject(c.p) : 0);
+      const targetRY = this._nearestAngle(c.mesh.rotation.y, rawTargetRY);
+      c.mat.opacity  += (targetOp - c.mat.opacity)  * 0.1;
+      c.mesh.scale.setScalar(c.mesh.scale.x + (targetSc - c.mesh.scale.x) * 0.1);
+      c.mesh.position.x += (targetX - c.mesh.position.x) * 0.1;
+      c.mesh.position.z += (targetZ - c.mesh.position.z) * 0.1;
+      c.mesh.rotation.y += (targetRY - c.mesh.rotation.y) * 0.1;
+    }
+
+    this.renderer.render(this.scene, this.camera);
+  }
+
+  _updateOverlay(idx){
+    const p = this.projects[idx];
+    if (this.indexEl) this.indexEl.textContent = p.index + ' / 06';
+    if (this.nameEl) this.nameEl.textContent = p.name;
+    if (this.stackEl) this.stackEl.textContent = p.stack.join(' · ');
+    if (this.segs) this.segs.forEach((s, i) => { s.className = 'cy-seg' + (i === idx ? ' active' : ''); });
+    this._renderProjectModal(idx);
+    if (this.nameBlockEl && !this.reduce){
+      this.nameBlockEl.style.opacity = '0';
+      this.nameBlockEl.style.transform = 'translateY(10px)';
+      clearTimeout(this._nbT);
+      this._nbT = setTimeout(() => { this.nameBlockEl.style.opacity = '1'; this.nameBlockEl.style.transform = 'none'; }, 150);
+    }
+  }
+
+  _titleLines(name){
+    const parts = String(name || '').trim().split(/\s+/);
+    if (parts.length <= 1) return [String(name || '').toUpperCase()];
+    return [parts[0].toUpperCase(), parts.slice(1).join(' ').toUpperCase()];
+  }
+
+  _renderProjectModal(idx){
+    const p = this.projects[idx] || this.projects[0];
+    if (!p) return;
+    if (this.projectMetaEl) this.projectMetaEl.textContent = p.index + ' · ' + p.year;
+    if (this.projectTitleEl){
+      this.projectTitleEl.innerHTML = this._titleLines(p.name).map((line) => '<span class="project-line"><span>' + line + '</span></span>').join('');
+    }
+    if (this.projectRoleEl) this.projectRoleEl.textContent = p.role || p.type;
+    if (this.projectDescriptionEl) this.projectDescriptionEl.textContent = p.description || '';
+    if (this.projectCounterEl) this.projectCounterEl.textContent = p.index + ' / ' + String(this.projects.length).padStart(2, '0');
+    if (this.projectTypeEl) this.projectTypeEl.textContent = p.type;
+    if (this.projectStackEl) this.projectStackEl.textContent = p.stack.join(', ');
+    if (this.projectTagsEl) this.projectTagsEl.textContent = (p.tags || []).join(', ');
+  }
+
+  _openProject(){
+    if (this._activeProj < 0) this._activeProj = 0;
+    this._renderProjectModal(this._activeProj);
+    this._projectOpen = true;
+    if (this.rootEl) this.rootEl.classList.add('is-project-open');
+    if (this.projectOverlayEl){
+      this.projectOverlayEl.classList.add('is-open');
+      this.projectOverlayEl.setAttribute('aria-hidden', 'false');
+    }
+  }
+
+  _closeProject(){
+    this._projectOpen = false;
+    if (this.rootEl) this.rootEl.classList.remove('is-project-open');
+    if (this.projectOverlayEl){
+      this.projectOverlayEl.classList.remove('is-open');
+      this.projectOverlayEl.setAttribute('aria-hidden', 'true');
+    }
+  }
+
+  componentWillUnmount(){
+    if (this._t) clearTimeout(this._t);
+    if (this._snapTimer) clearTimeout(this._snapTimer);
+    if (this._raf) cancelAnimationFrame(this._raf);
+    if (this._ro) this._ro.disconnect();
+    window.removeEventListener('resize', this._resize);
+    window.removeEventListener('keydown', this._onKey);
+    window.removeEventListener('mousemove', this._move);
+    window.removeEventListener('touchmove', this._move);
+    window.removeEventListener('mouseup', this._up);
+    if (this.projectCloseEl) this.projectCloseEl.removeEventListener('click', this._closeClick);
+    if (this.projectOverlayEl) this.projectOverlayEl.removeEventListener('click', this._overlayClick);
+    if (this._canvas){
+      this._canvas.removeEventListener('wheel', this._onWheel);
+      this._canvas.removeEventListener('mousedown', this._down);
+      this._canvas.removeEventListener('click', this._click);
+      this._canvas.removeEventListener('touchstart', this._down);
+      this._canvas.removeEventListener('touchend', this._up);
+      this._canvas.removeEventListener('touchcancel', this._up);
+      if (this._canvas.parentNode) this._canvas.parentNode.removeChild(this._canvas);
+    }
+    if (this.renderer) this.renderer.dispose();
+  }
+
+  renderVals(){
+    return {
+      setRoot: (el) => { if (el) this.rootEl = el; },
+      setMount: (el) => { if (el) this.mountEl = el; },
+      setIndex: (el) => { if (el) this.indexEl = el; },
+      setNameBlock: (el) => { if (el) this.nameBlockEl = el; },
+      setName: (el) => { if (el) this.nameEl = el; },
+      setStack: (el) => { if (el) this.stackEl = el; },
+      setProgress: (el) => { if (el) this.progressEl = el; },
+      setProjectOverlay: (el) => { if (el) this.projectOverlayEl = el; },
+      setProjectMeta: (el) => { if (el) this.projectMetaEl = el; },
+      setProjectTitle: (el) => { if (el) this.projectTitleEl = el; },
+      setProjectRole: (el) => { if (el) this.projectRoleEl = el; },
+      setProjectDescription: (el) => { if (el) this.projectDescriptionEl = el; },
+      setProjectCounter: (el) => { if (el) this.projectCounterEl = el; },
+      setProjectType: (el) => { if (el) this.projectTypeEl = el; },
+      setProjectStack: (el) => { if (el) this.projectStackEl = el; },
+      setProjectTags: (el) => { if (el) this.projectTagsEl = el; },
+      setProjectClose: (el) => { if (el) this.projectCloseEl = el; }
+    };
+  }
+}
+</script>
+<script src="../shared/site-nav.js"></script>
+</body>
+</html>
