@@ -4,6 +4,16 @@
 
 An independent luxury-jewellery social poster concept gallery with **10 AI-generated image posters**, each designed for **1080 × 1350 px (4:5)** Facebook/Instagram feeds. The gallery has a warm ivory/cream background and each jewellery house uses a distinct creative direction.
 
+## Website navigation — Three tabs
+
+The mini-site now has three accessible, mobile-responsive sections, selected by the top navigation:
+
+1. **Jewelry** (default) — original gallery of 10 AI jewellery campaign concepts, with large preview and PNG export (1080 × 1350). Deep-link: `#jewelry`.
+2. **Automotive** — editorial automotive art-direction landing section with a demonstration vehicle illustration and three clearly labeled *concept direction studies*: Performance, Heritage and Electric. The repository does **not** currently have genuine automotive artwork assets inside this gallery; replace the placeholders with actual project materials when available. Deep-link: `#automotive`.
+3. **Other Designs** — editorial resource tiles linking to the owner's existing [Design portfolio](../portfolio/), [Flickr graphic design layouts](https://www.flickr.com/photos/56033193@N08/), and [Figma brand system](https://www.figma.com/design/QWncoG9J1rGakt8mDJ1fu8/Draft-pool--F2-?node-id=693-387). A fourth tile reserves space for future print, campaign and packaging materials. The tile artwork is a visual placeholder, not a claim of work delivered. Deep-link: `#other-designs`.
+
+Tabs use buttons with ARIA roles, keyboard arrow/Home/End support, URL hash deep links, and responsive grids. They require no router, framework or build system.
+
 ## Complete AI photo poster set
 
 1. **Tiffany & Co.** — `assets/tiffany-blue-promise.jpg` — robin's-egg blue, minimalism, diamond and gift box.
