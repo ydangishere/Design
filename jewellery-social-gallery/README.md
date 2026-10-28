@@ -9,10 +9,30 @@ An independent luxury-jewellery social poster concept gallery with **10 AI-gener
 The mini-site now has three accessible, mobile-responsive sections, selected by the top navigation:
 
 1. **Jewelry** (default) — original gallery of 10 AI jewellery campaign concepts, with large preview and PNG export (1080 × 1350). Deep-link: `#jewelry`.
-2. **Automotive** — editorial automotive art-direction landing section with a demonstration vehicle illustration and three clearly labeled *concept direction studies*: Performance, Heritage and Electric. The repository does **not** currently have genuine automotive artwork assets inside this gallery; replace the placeholders with actual project materials when available. Deep-link: `#automotive`.
+2. **Automotive** — complete set of **10 individually downloadable retro/vintage automobile and motorcycle posters** in five visual approaches, with a filter by style, fullscreen preview, next/previous navigation and 1080 × 1350 PNG export. Deep-link: `#automotive`.
 3. **Other Designs** — editorial resource tiles linking to the owner's existing [Design portfolio](../portfolio/), [Flickr graphic design layouts](https://www.flickr.com/photos/56033193@N08/), and [Figma brand system](https://www.figma.com/design/QWncoG9J1rGakt8mDJ1fu8/Draft-pool--F2-?node-id=693-387). A fourth tile reserves space for future print, campaign and packaging materials. The tile artwork is a visual placeholder, not a claim of work delivered. Deep-link: `#other-designs`.
 
 Tabs use buttons with ARIA roles, keyboard arrow/Home/End support, URL hash deep links, and responsive grids. They require no router, framework or build system.
+
+
+## Automotive Retro/Vintage Collection — 10 Posters, 5 Styles
+
+There are **10 original social poster compositions**, 1080 × 1350 px, presented in the Automotive tab. Each image is an independent concept study assembled from AI-generated automobile/motorcycle imagery and styled with bespoke typography and layouts. Website assets are compressed WebP for performance; the poster modal provides client-side export to 1080 × 1350 PNG or direct download of the source WebP file.
+
+| # | Brand | Model inspiration | Art direction | Image |
+| --- | --- | --- | --- | --- |
+| 01 | Ford Mustang | 1967 Fastback | Editorial | `assets/automotive/01-ford-retro-poster.webp` |
+| 02 | Peugeot | Vintage French sedan | Art Nouveau | `assets/automotive/02-peugeot-retro-poster.webp` |
+| 03 | Volkswagen | Type 2 Samba | 3D / CGI | `assets/automotive/03-volkswagen-retro-poster.webp` |
+| 04 | Jaguar | E-Type | Minimalism | `assets/automotive/04-jaguar-retro-poster.webp` |
+| 05 | Rolls-Royce | Silver Cloud era | Minimalism | `assets/automotive/05-rolls-royce-retro-poster.webp` |
+| 06 | Harley-Davidson | Classic cruiser | Editorial | `assets/automotive/06-harley-davidson-retro-poster.webp` |
+| 07 | Porsche | Classic 911 | 3D / CGI | `assets/automotive/07-porsche-retro-poster.webp` |
+| 08 | Mercedes-Benz | 300 SL Gullwing | Art Deco | `assets/automotive/08-mercedes-benz-retro-poster.webp` |
+| 09 | Land Rover | Classic Series / Defender | Art Nouveau | `assets/automotive/09-land-rover-retro-poster.webp` |
+| 10 | Chevrolet | 1957 Bel Air | Art Deco | `assets/automotive/10-chevrolet-retro-poster.webp` |
+
+Each style applies to exactly two designs. The retro concept images are interpretations, not historical verification or authentic original advertising. No official affiliation is claimed. Logos and brands, where visible on vintage vehicle imagery, belong to their owners.
 
 ## Complete AI photo poster set
 
