@@ -74,7 +74,7 @@ h1{color:#2C261F}h1 em{color:#A87C4C}
 .modalPoster img{object-fit:contain;background:#f6efe5}
 #downloadSvg[hidden]{display:none}
 
-/* Three-collection gallery navigation */
+/* Four-collection gallery navigation */
 [hidden]{display:none!important}
 .collection-tabs{position:sticky;top:0;z-index:60;background:#faf6efeF;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid #dacdb9;box-shadow:0 4px 25px #59452a0b}
 .tabs-inner{max-width:1600px;margin:auto;padding:0 clamp(18px,5vw,76px);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0}
@@ -192,6 +192,44 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 .auto-overlay .auto-nav-btn:hover{border-color:#e6e9de}
 @media(max-width:760px){.auto-gallery-intro{flex-direction:column;align-items:flex-start}.auto-filterbar{gap:7px}.auto-filter-btn{font-size:10px;padding:9px 12px}.auto-gallery-note{grid-template-columns:1fr;gap:12px}}
 
+
+/* Brand Guideline gallery / four-tab navigation */
+.tabs-inner{grid-template-columns:repeat(4,minmax(0,1fr))}
+.brand-kit-wrap{max-width:1600px;padding:0 clamp(18px,5vw,76px) 95px;margin:auto}
+.brand-kit-feature{display:grid;grid-template-columns:1.12fr 1fr;min-height:540px;border:1px solid #d9c9b5;background:#f8f4ed;box-shadow:0 20px 65px #58412d18;overflow:hidden}
+.brand-kit-preview{min-height:540px;background:radial-gradient(ellipse at 78% 19%,#35574a,transparent 54%),linear-gradient(135deg,#233b33,#162622);color:#e5d6c0;display:flex;flex-direction:column;padding:clamp(24px,3.6vw,52px);position:relative;isolation:isolate;overflow:hidden}
+.brand-kit-preview:before{content:"";position:absolute;border:1px solid #ffffff20;width:390px;height:390px;right:-115px;top:20%;border-radius:50%;pointer-events:none;z-index:-1}
+.brand-kit-top,.brand-kit-bottom-caption{font-size:10px;letter-spacing:.17em;line-height:1.7;display:flex;justify-content:space-between;gap:14px;color:#c9b99f}
+.brand-kit-visual{display:flex;justify-content:space-between;align-items:center;gap:20px;flex:1}
+.brand-kit-monogram{font-family:Georgia,serif;font-size:clamp(85px,12vw,190px);line-height:1;border:1px solid #b9a98b5e;border-radius:50%;width:clamp(150px,17vw,240px);height:clamp(150px,17vw,240px);display:grid;place-items:center}
+.brand-kit-typo{display:flex;flex-direction:column;gap:9px}
+.brand-kit-typo small{font:10px "DM Sans",sans-serif;letter-spacing:.13em;opacity:.8}
+.brand-kit-typo strong{font:normal clamp(65px,10vw,140px)/1 Georgia,serif;letter-spacing:-.08em}
+.brand-kit-typo span{font-family:Georgia,serif;font-size:clamp(16px,2vw,26px);line-height:1.22}
+.brand-kit-tokens{display:flex;align-items:center;gap:8px;padding:18px 0;border-block:1px solid #d1c0a345}
+.brand-kit-tokens span{width:33px;height:33px;border:1px solid #ffffff30}
+.brand-kit-tokens i{flex:1}
+.brand-kit-tokens b{font-size:9px;letter-spacing:.16em;font-weight:500}
+.brand-kit-bottom-caption{justify-content:flex-start;margin-top:22px;flex-wrap:wrap}
+.brand-kit-copy{padding:clamp(30px,5vw,70px);display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:18px}
+.brand-kit-index{font-size:10px;color:#9d7a54;letter-spacing:.2em}
+.brand-kit-copy h2{font:400 clamp(31px,3.45vw,52px)/1.15 "Playfair Display",Georgia,serif;color:#2b251d;letter-spacing:-.036em;margin:0}
+.brand-kit-copy>p:not(.brand-kit-disclaimer){font-size:14px;line-height:1.85;color:#796d5f;margin:0}
+.brand-kit-tags{display:flex;gap:7px;flex-wrap:wrap}
+.brand-kit-tags span{border:1px solid #d8c8b4;color:#776550;padding:9px 11px;font-size:10px}
+.brand-kit-cta{display:inline-flex;align-items:center;justify-content:space-between;gap:30px;padding:16px 22px;background:#2e332c;color:#fff8eb;min-width:190px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;transition:background .2s,transform .2s}
+.brand-kit-cta:hover{background:#8c6946;transform:translateY(-2px)}
+.brand-kit-cta:focus-visible{outline:3px solid #a37a4e;outline-offset:3px}
+.brand-kit-cta span{font-size:20px}
+.brand-kit-copy .brand-kit-disclaimer{font-size:11px;color:#998c7d;line-height:1.6;margin:0}
+.brand-kit-pillars{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid #d6c6b4}
+.brand-kit-pillars>div{padding:30px 20px 14px 0;margin-right:24px;border-right:1px solid #d6c6b4}
+.brand-kit-pillars>div:last-child{border-right:0}
+.brand-kit-pillars span{font-size:10px;letter-spacing:.13em;color:#976f45;font-weight:600}
+.brand-kit-pillars p{font-size:13px;line-height:1.8;color:#7a6f5f}
+@media(max-width:960px){.brand-kit-feature{grid-template-columns:1fr}.brand-kit-preview{min-height:420px}.brand-kit-copy{padding:36px}}
+@media(max-width:700px){.tabs-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-tab{min-height:49px;padding:9px 11px;justify-content:center}.collection-tab:first-child{padding-left:11px}.collection-tab:last-child{padding-right:11px;justify-content:center}.tab-label{white-space:normal;overflow:visible;text-overflow:clip;font-size:11px;letter-spacing:.05em}.brand-kit-preview{min-height:345px;padding:23px}.brand-kit-monogram{width:115px;height:115px;font-size:82px;flex-shrink:0}.brand-kit-typo strong{font-size:70px}.brand-kit-typo span{font-size:16px}.brand-kit-typo small{font-size:8px}.brand-kit-copy{padding:29px}.brand-kit-copy h2{font-size:32px}.brand-kit-pillars{grid-template-columns:1fr}.brand-kit-pillars>div{border-right:0;border-bottom:1px solid #d6c6b4;margin:0;padding:18px 0}.brand-kit-tokens b{display:none}.brand-kit-top,.brand-kit-bottom-caption{font-size:8px}}
+
 </style>
 </head>
 <body>
@@ -201,6 +239,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <button type="button" class="collection-tab" role="tab" id="tab-jewelry" data-collection="jewelry" aria-controls="panel-jewelry" aria-selected="true" tabindex="0"><span class="tab-left"><span class="tab-num">01 /</span><span class="tab-label">Jewelry</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
   <button type="button" class="collection-tab" role="tab" id="tab-automotive" data-collection="automotive" aria-controls="panel-automotive" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">02 /</span><span class="tab-label">Automotive</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
   <button type="button" class="collection-tab" role="tab" id="tab-other-designs" data-collection="other-designs" aria-controls="panel-other-designs" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">03 /</span><span class="tab-label">Other Designs</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+  <button type="button" class="collection-tab" role="tab" id="tab-brand-guideline" data-collection="brand-guideline" aria-controls="panel-brand-guideline" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">04 /</span><span class="tab-label">Brand Guideline</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
  </div>
 </nav>
 <main>
@@ -268,6 +307,36 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
  </div>
  <p class="material-note">Các ảnh mockup trong tab này chỉ minh họa hướng bố cục. Các liên kết “Explore” dẫn tới nguồn portfolio / graphic layout / Figma có sẵn; không coi mockup là tác phẩm khách hàng đã bàn giao.</p>
 </div>
+</section>
+<section id="panel-brand-guideline" class="collection-panel" role="tabpanel" aria-labelledby="tab-brand-guideline" tabindex="0" hidden>
+ <div class="collection-intro">
+  <div><div class="eyebrow"><i></i>Brand Direction / Design Systems / SaaS</div><h1 class="collection-title">Identity,<br><em>built to scale.</em></h1><p class="collection-lead">Một không gian riêng cho Brand Guideline, Design System và hệ thống sản phẩm SaaS liên quan — nơi nhận diện thương hiệu và trải nghiệm sản phẩm được phát triển đồng nhất.</p></div>
+  <aside class="collection-aside"><strong>One language. Every touchpoint.</strong>Brand identity, component systems and product design.<br><br>01 / Featured Figma project.</aside>
+ </div>
+ <div class="brand-kit-wrap">
+  <div class="collection-kicker">Featured design material / 001</div>
+  <div class="brand-kit-feature">
+   <div class="brand-kit-preview" aria-label="Visual illustration of a design system">
+    <div class="brand-kit-top"><span>BRAND / SYSTEMS</span><span>SAAS — 01</span></div>
+    <div class="brand-kit-visual"><div class="brand-kit-monogram" aria-hidden="true">A</div><div class="brand-kit-typo"><small>FOUNDATIONS / TYPOGRAPHY</small><strong>Aa</strong><span>Structured identity.<br>Unified experiences.</span></div></div>
+    <div class="brand-kit-tokens"><span style="background:#213e37"></span><span style="background:#ae8c64"></span><span style="background:#e3d6c2"></span><span style="background:#f8f2e9"></span><i></i><b>DESIGN TOKENS</b></div>
+    <div class="brand-kit-bottom-caption">BRAND IDENTITY <span>·</span> DESIGN SYSTEM <span>·</span> PRODUCT LANGUAGE</div>
+   </div>
+   <div class="brand-kit-copy">
+    <div class="brand-kit-index">FEATURED CASE STUDY / FIGMA</div>
+    <h2>SaaS Brand Kit with Brand Guideline, Design System and Related Core Products System</h2>
+    <p>Khám phá bộ tài liệu và hệ thống thiết kế SaaS qua Figma. Nhấn vào đường dẫn để xem project gốc, gồm nội dung Brand Guideline, Design System và hệ thống sản phẩm cốt lõi liên quan.</p>
+    <div class="brand-kit-tags"><span>Brand Guideline</span><span>Design System</span><span>Core Products</span></div>
+    <a class="brand-kit-cta" href="https://www.figma.com/design/QWncoG9J1rGakt8mDJ1fu8/Draft-pool--F2-?node-id=693-387&amp;t=A5Dyo9QyZ30jWR7T-4" target="_blank" rel="noopener noreferrer" aria-label="View SaaS Brand Kit in Figma">View link <span aria-hidden="true">↗</span></a>
+    <p class="brand-kit-disclaimer">Hình minh họa ở bên trái là concept do website tạo, không phải screenshot chính thức từ file Figma.</p>
+   </div>
+  </div>
+  <div class="brand-kit-pillars">
+    <div><span>01 / BRAND GUIDELINE</span><p>Identity, color, typography and consistent brand usage.</p></div>
+    <div><span>02 / DESIGN SYSTEM</span><p>Tokens, component patterns and interface foundations.</p></div>
+    <div><span>03 / CORE PRODUCTS</span><p>Connected design language across SaaS products.</p></div>
+  </div>
+ </div>
 </section>
 </main>
 <footer class="bottom"><div><strong>DESIGN / STUDIES</strong> — An independent multi-discipline design gallery.<br>Unofficial creative studies. Not affiliated with, endorsed or commissioned by the featured brands.</div><div>Jewelry collection: 10 AI-generated concept posters, not official product photography.<br>Automotive and Other Designs are creative study / material sections.</div></footer>
@@ -408,11 +477,11 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
 <script>
 (function(){
  'use strict';
- var keys=['jewelry','automotive','other-designs'];
+ var keys=['jewelry','automotive','other-designs','brand-guideline'];
  var tabs=Array.prototype.slice.call(document.querySelectorAll('#collection-tabs [role="tab"]'));
  var panels=keys.map(function(k){return document.getElementById('panel-'+k)});
  var counter=document.querySelector('.countpill');
- var tabNames={jewelry:'Jewelry',automotive:'Automotive','other-designs':'Other Designs'};
+ var tabNames={jewelry:'Jewelry',automotive:'Automotive','other-designs':'Other Designs','brand-guideline':'Brand Guideline'};
  function selectTab(key,updateHash,scrollTop){
    var chosen=keys.indexOf(key)>=0?key:'jewelry';
    tabs.forEach(function(tab){
@@ -421,7 +490,7 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
      tab.tabIndex=on?0:-1;
    });
    panels.forEach(function(panel,i){panel.hidden=keys[i]!==chosen});
-   if(counter)counter.textContent=chosen==='jewelry'?'10 JEWELRY POSTERS':chosen==='automotive'?'AUTOMOTIVE / STUDIES':'OTHER DESIGN MATERIALS';
+   if(counter)counter.textContent=chosen==='jewelry'?'10 JEWELRY POSTERS':chosen==='automotive'?'10 AUTOMOTIVE POSTERS':chosen==='other-designs'?'OTHER DESIGN MATERIALS':'SAAS BRAND KIT / FIGMA';
    document.title=tabNames[chosen]+' — Design Studies';
    if(updateHash&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#'+chosen);
    if(scrollTop)window.scrollTo({top:0,behavior:'auto'});
