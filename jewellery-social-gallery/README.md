@@ -4,17 +4,20 @@
 
 Static GitHub Pages site with a warm cream editorial gallery and 10 jewellery-house-inspired poster concepts, all in a **1080 × 1350 (4:5)** social media format.
 
-## Gallery: three AI-photo posters + seven vector posters
+## Gallery: six AI-photo posters + four vector posters
 
-The three original vector artwork entries for **Bvlgari**, **Harry Winston**, and **Graff** have been replaced by these new **AI-generated jewellery campaign images**:
+Six original vector artwork entries — **Tiffany & Co.**, **Cartier**, **Van Cleef & Arpels**, **Bvlgari**, **Harry Winston**, and **Graff** — have now been replaced by **AI-generated jewellery campaign images**:
 
+- `assets/tiffany-blue-promise.jpg` — photoreal diamond solitaire resting on an aqua jewellery box with white satin ribbon.
+- `assets/cartier-crimson-desire.jpg` — diamond-set gold ring on dramatic rich burgundy fabric.
+- `assets/van-cleef-poetic-garden.jpg` — malachite-inspired four-petal gold pendant with a cream botanical setting.
 - `assets/bvlgari-roman-nights.jpg` — dark-emerald Roman setting, serpent bracelet with gold, emerald and diamonds.
 - `assets/harry-winston-midnight-brilliance.jpg` — dramatic midnight-blue velvet, sparkling diamond necklace.
 - `assets/graff-beyond-brilliance.jpg` — minimalist warm-ivory still-life of an emerald-cut diamond ring.
 
 These images are 1080 × 1350 JPEG files, optimized for website loading. The poster viewer displays the same photo as the gallery, and the **Download PNG** button converts it into a full-size 1080 × 1350 PNG in the browser. Their SVG download button is hidden.
 
-The other seven brand-inspired poster entries retain their original **editable SVG illustrations**, with built-in PNG and SVG downloads.
+The other four brand-inspired poster entries retain their original **editable SVG illustrations**, with built-in PNG and SVG downloads.
 
 ## Four Canva AI designs (separate concepts)
 

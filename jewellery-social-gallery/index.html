@@ -78,7 +78,7 @@ h1{color:#2C261F}h1 em{color:#A87C4C}
 <body>
 <header class="top"><a href="#" class="brandlock"><span class="seal">M</span><span>MAISON / STUDIES</span></a><div class="topright"><span class="hideMobile">Independent creative study</span><span class="countpill">10 EDITORIAL CONCEPTS</span></div></header>
 <main>
-<section class="hero"><div><div class="eyebrow"><i></i>Luxury Jewellery · Visual Exploration / 2026</div><h1>Ten houses.<br><em>Ten identities.</em></h1><p class="lead">10 poster nghệ thuật lấy cảm hứng từ ngôn ngữ thị giác riêng của những nhà kim hoàn nổi tiếng thế giới — mỗi thiết kế có bảng màu, bố cục và biểu tượng đặc trưng. Sẵn sàng xuất PNG 1080 × 1350, gồm 3 mẫu AI photorealistic mới và 7 bản vector.</p></div><aside class="heroaside"><strong>Made to feel distinct.</strong>Three premium AI-generated campaign photographs and seven original vector artworks, created for the social feed.<br><br>1080 × 1350 px / Instagram 4:5</aside></section>
+<section class="hero"><div><div class="eyebrow"><i></i>Luxury Jewellery · Visual Exploration / 2026</div><h1>Ten houses.<br><em>Ten identities.</em></h1><p class="lead">10 poster nghệ thuật lấy cảm hứng từ ngôn ngữ thị giác riêng của những nhà kim hoàn nổi tiếng thế giới — mỗi thiết kế có bảng màu, bố cục và biểu tượng đặc trưng. Sẵn sàng xuất PNG 1080 × 1350, gồm 6 mẫu AI photorealistic và 4 bản vector.</p></div><aside class="heroaside"><strong>Made to feel distinct.</strong>Six premium AI-generated campaign photographs and four original vector artworks, created for the social feed.<br><br>1080 × 1350 px / Instagram 4:5</aside></section>
 <div class="toolbar"><div class="toolbarLeft"><span class="sectionindex">01—10</span><span class="sectionname">The campaign gallery</span></div><div class="toolbarRight">CLICK TO EXPLORE &nbsp; <span>↗</span> &nbsp;·&nbsp; EXPORT PNG / SVG FOR VECTOR</div></div>
 <section id="grid" class="grid" aria-label="10 jewellery brand-inspired social posters"></section>
 <section class="ai-showcase" aria-label="AI poster experiments"><div class="ai-panel"><div class="ai-eyebrow">Creative process / AI-assisted art direction</div><h2 class="ai-headline">Four more campaign studies.</h2><p class="ai-intro">Bốn phiên bản hình ảnh do AI hỗ trợ đã được dựng dưới dạng thiết kế chỉnh sửa trên Canva. Bộ 10 poster vector phía trên vẫn có thể xuất PNG 1080 × 1350 trực tiếp.</p><div class="ai-grid">
@@ -88,7 +88,7 @@ h1{color:#2C261F}h1 em{color:#A87C4C}
 <a class="ai-item ai-garden" href="https://canva.link/9bgkjwfdhdzwps1" target="_blank" rel="noopener noreferrer"><small>04 / Poetic nature</small><strong>Poetic<br>Garden</strong><span class="ai-action">View AI concept ↗</span></a>
 </div><div class="ai-footnote">Unofficial visual studies, not campaigns or licensed product imagery. To download editable artwork, open a design in Canva.</div></div></section>
 </main>
-<footer class="bottom"><div><strong>MAISON / STUDIES</strong> — An independent designer concept gallery.<br>Unofficial creative studies. Not affiliated with, endorsed or commissioned by the featured brands.</div><div>Three AI-generated jewellery images and seven original vector studies, not official product photography.<br>For portfolio and inspiration; brand marks and names belong to their owners.</div></footer>
+<footer class="bottom"><div><strong>MAISON / STUDIES</strong> — An independent designer concept gallery.<br>Unofficial creative studies. Not affiliated with, endorsed or commissioned by the featured brands.</div><div>Six AI-generated jewellery images and four original vector studies, not official product photography.<br>For portfolio and inspiration; brand marks and names belong to their owners.</div></footer>
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Chi tiết poster" aria-hidden="true"><button class="close" id="close" aria-label="Đóng">×</button><div class="modal"><div class="modalPoster" id="modalPoster"></div><div class="details"><div class="detailIndex" id="modalNum"></div><h2 id="modalBrand"></h2><p id="modalDescription"></p><div class="specs"><span>FORMAT<br><strong>4:5 / 1080 × 1350</strong></span><span>ARTWORK<br><strong id="modalArtwork">Vector / SVG</strong></span><span>LICENSE<br><strong>Concept only</strong></span></div><button class="cta" id="downloadPng">↓ TẢI POSTER PNG</button><button class="cta secondary" id="downloadSvg">↓ TẢI VECTOR SVG</button><p class="notice">Đây là poster concept độc lập, không phải quảng cáo chính thức. Cần quyền sử dụng thương hiệu trước khi đăng như một chiến dịch thương mại.</p></div></div></div>
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 <script>
@@ -96,9 +96,9 @@ h1{color:#2C261F}h1 em{color:#A87C4C}
 'use strict';
 var W=1080,H=1350;
 var brands=[
-{id:'tiffany',name:'Tiffany & Co.',display:'TIFFANY & CO.',cat:'The iconic blue',bg:'#ACD7D2',ink:'#21484A',head:['A LITTLE BLUE','GOES FOREVER.'],description:'Blue-box minimalism: bảng màu xanh pastel đặc trưng, nhiều khoảng trắng, viên kim cương đơn độc và typography thanh lịch.',tag:'NEW YORK · SINCE 1837'},
-{id:'cartier',name:'Cartier',display:'Cartier',cat:'Parisian red',bg:'#710D25',ink:'#F8E6CB',head:['A STUDY','IN DESIRE.'],description:'Parisian grandeur: đỏ burgundy, vàng kim, vòng tay tượng hình và bố cục điện ảnh giàu độ tương phản.',tag:'PARIS · A LEGACY OF FORM'},
-{id:'vancleef',name:'Van Cleef & Arpels',display:'Van Cleef & Arpels',cat:'Poetic nature',bg:'#F0EBD9',ink:'#263F30',head:['THE ART','OF LUCK.'],description:'Poetic nature: lá cây, họa tiết bốn cánh gợi cảm hứng may mắn, dây chuyền vàng và chất thơ của haute joaillerie.',tag:'A POETIC UNIVERSE'},
+{id:'tiffany',name:'Tiffany & Co.',display:'TIFFANY & CO.',cat:'The iconic blue',bg:'#ACD7D2',ink:'#21484A',head:['A LITTLE BLUE','GOES FOREVER.'],description:'Blue-box elegance: ảnh AI nhẫn kim cương platinum trên hộp xanh pastel và dải lụa trắng, ánh sáng studio mềm mại.',tag:'NEW YORK · SINCE 1837'},
+{id:'cartier',name:'Cartier',display:'Cartier',cat:'Parisian red',bg:'#710D25',ink:'#F8E6CB',head:['A STUDY','IN DESIRE.'],description:'Parisian grandeur: ảnh AI nhẫn vàng kim đính kim cương trên nền nhung đỏ burgundy, ánh sáng điện ảnh.',tag:'PARIS · A LEGACY OF FORM'},
+{id:'vancleef',name:'Van Cleef & Arpels',display:'Van Cleef & Arpels',cat:'Poetic nature',bg:'#F0EBD9',ink:'#263F30',head:['THE ART','OF LUCK.'],description:'Poetic nature: ảnh AI dây chuyền vàng với mặt cỏ bốn cánh xanh malachite trên nền đá kem và hoa lá.',tag:'A POETIC UNIVERSE'},
 {id:'bvlgari',name:'Bvlgari',display:'BVLGARI',cat:'Roman boldness',bg:'#082F2B',ink:'#E5BD78',head:['BORN','TO DAZZLE.'],description:'Roman luxury: ảnh AI vòng tay rắn vàng đính emerald và kim cương trên đá marble xanh, ánh sáng điện ảnh.',tag:'ROMA · 1884'},
 {id:'winston',name:'Harry Winston',display:'HARRY WINSTON',cat:'Midnight diamonds',bg:'#10243A',ink:'#E1EAF2',head:['LET THERE','BE LIGHT.'],description:'Midnight diamonds: ảnh AI dây chuyền kim cương rực sáng trên velvet xanh đêm, phong cách red-carpet.',tag:'THE HOUSE OF DIAMONDS'},
 {id:'graff',name:'Graff',display:'GRAFF',cat:'Diamond authority',bg:'#E6E5DF',ink:'#191A19',head:['BEYOND','BRILLIANCE.'],description:'Quiet luxury: ảnh AI nhẫn kim cương emerald-cut trên nền đá kem, ánh sáng tinh tế và bố cục minimal.',tag:'AN EXERCISE IN RARITY'},
@@ -160,6 +160,9 @@ a+=txt(540,1281,'AN INDEPENDENT VISUAL STUDY  ·  2026',15,ink,{'text-anchor':'m
 return '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1350" role="img" aria-label="'+b.name+' — social jewellery poster concept">'+defs+a+'</svg>';
 }
 var photoPosters={
+  tiffany:'assets/tiffany-blue-promise.jpg',
+  cartier:'assets/cartier-crimson-desire.jpg',
+  vancleef:'assets/van-cleef-poetic-garden.jpg',
   bvlgari:'assets/bvlgari-roman-nights.jpg',
   winston:'assets/harry-winston-midnight-brilliance.jpg',
   graff:'assets/graff-beyond-brilliance.jpg'
