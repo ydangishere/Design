@@ -20,7 +20,7 @@ Tabs use buttons with ARIA roles, keyboard arrow/Home/End support, URL hash deep
 
 ## Automotive Retro/Vintage Collection — 10 Posters, 5 Styles
 
-There are **10 original social poster compositions**, 1080 × 1350 px, presented in the Automotive tab. Each image is an independent concept study assembled from AI-generated automobile/motorcycle imagery and styled with bespoke typography and layouts. Website assets are compressed WebP for performance; the poster modal provides client-side export to 1080 × 1350 PNG or direct download of the source WebP file.
+There are **10 retro automotive posters** at 1080 × 1350 px in the Automotive tab, made by extracting vehicle scenes from the collage provided by the user and re-laying them out to Facebook/Instagram 4:5 format. The source vehicle images are preserved as cropped material, not AI-regenerated; source collage resolution is limited (~200 px wide per vehicle poster). Website assets are compressed WebP for performance; the poster modal provides client-side export to 1080 × 1350 PNG or direct download of the source WebP file.
 
 | # | Brand | Model inspiration | Art direction | Image |
 | --- | --- | --- | --- | --- |
@@ -33,9 +33,9 @@ There are **10 original social poster compositions**, 1080 × 1350 px, presented
 | 07 | Porsche | Classic 911 | 3D / CGI | `assets/automotive/07-porsche-retro-poster.webp` |
 | 08 | Mercedes-Benz | 300 SL Gullwing | Art Deco | `assets/automotive/08-mercedes-benz-retro-poster.webp` |
 | 09 | Land Rover | Classic Series / Defender | Art Nouveau | `assets/automotive/09-land-rover-retro-poster.webp` |
-| 10 | Chevrolet | 1957 Bel Air | Art Deco | `assets/automotive/10-chevrolet-retro-poster.webp` |
+| 10 | Ferrari | Vintage racing coupe | Art Deco | `assets/automotive/10-ferrari-retro-poster.webp` |
 
-Each style applies to exactly two designs. The retro concept images are interpretations, not historical verification or authentic original advertising. No official affiliation is claimed. Logos and brands, where visible on vintage vehicle imagery, belong to their owners.
+The 5 style labels are portfolio categorization references rather than a claim that every composition is a pure example of the named movement. The designs are not historical verification or authentic original advertising. No official affiliation is claimed. Logos and brands, where visible on vintage vehicle imagery, belong to their owners.
 
 ## Brand Guideline — SaaS Brand Kit
 

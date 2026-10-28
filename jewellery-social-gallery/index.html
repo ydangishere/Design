@@ -282,7 +282,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <div>
    <div class="eyebrow"><i></i>Automotive / Heritage Campaign Studies / 2026</div>
    <h1 class="collection-title">Ten icons.<br><em>Five directions.</em></h1>
-   <p class="collection-lead">Bộ 10 poster xe retro và vintage: 10 thương hiệu, 5 phong cách art direction riêng biệt. Mỗi thiết kế đặt chiếc xe làm trung tâm, kết hợp hình ảnh AI, bố cục editorial và typography chọn lọc. Tất cả theo tỷ lệ social 4:5.</p>
+   <p class="collection-lead">10 poster retro/vintage được dựng lại từ chính ảnh tổng hợp bạn cung cấp, giữ các mẫu xe và bố cục lấy từ hình gốc. Từng poster được tái dàn trang theo khung Facebook/Instagram 1080 × 1350 px (4:5), không tạo lại xe bằng AI.</p>
   </div>
   <aside class="collection-aside"><strong>Classics, reimagined.</strong>Minimalism · Art Deco · Editorial · Art Nouveau · 3D / CGI.<br><br>10 standalone posters / 1080 × 1350 px.</aside>
  </div>
@@ -299,7 +299,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <button class="auto-filter-btn" type="button" data-auto-filter="3D / CGI" aria-pressed="false">3D / CGI <span>02</span></button>
  </div>
  <section id="auto-grid" class="grid auto-poster-grid" aria-label="10 retro and vintage automotive posters" aria-live="polite"></section>
- <div class="auto-gallery-note"><span>✳ &nbsp; INDEPENDENT VISUAL STUDIES</span><p>Đây là thiết kế concept độc lập, lấy cảm hứng từ các dòng xe cổ và tinh thần thương hiệu; không phải quảng cáo được hãng xe xác nhận hay ủy quyền. Chất lượng hình xe trong bản concept được phát triển từ ảnh AI và dàn trang lại theo từng phong cách.</p></div>
+ <div class="auto-gallery-note"><span>✳ &nbsp; INDEPENDENT VISUAL STUDIES</span><p>Bộ ảnh này được cắt và tái bố cục trực tiếp từ collage do người dùng cung cấp, không sinh lại hình xe bằng AI. Vì ảnh đầu vào chỉ có độ rộng khoảng 200 px mỗi mẫu nên hình xe có thể mềm khi phóng to. Các thiết kế không phải quảng cáo chính thức của thương hiệu.</p></div>
 </section>
 <section id="panel-other-designs" class="collection-panel" role="tabpanel" aria-labelledby="tab-other-designs" tabindex="0" hidden>
 <div class="collection-intro">
@@ -387,7 +387,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
    <h2 id="autoModalTitle"></h2>
    <div class="auto-details-kicker" id="autoModalStyle"></div>
    <p id="autoModalDescription"></p>
-   <div class="specs"><span>FORMAT<br><strong>1080 × 1350</strong></span><span>ARTWORK<br><strong>AI + Editorial</strong></span><span>USAGE<br><strong>Concept Only</strong></span></div>
+   <div class="specs"><span>FORMAT<br><strong>1080 × 1350</strong></span><span>ARTWORK<br><strong>Source collage + layout</strong></span><span>USAGE<br><strong>Concept Only</strong></span></div>
    <button type="button" class="cta" id="autoDownloadPng">↓ TẢI POSTER PNG</button>
    <a class="cta secondary" id="autoDownloadOriginal" href="#" download style="display:block;text-align:center;text-decoration:none">↓ TẢI WEBP</a>
    <div class="auto-nextprev"><button type="button" class="auto-nav-btn" id="autoPrev">← Previous</button><button type="button" class="auto-nav-btn" id="autoNext">Next →</button></div>
@@ -561,7 +561,7 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
     {id:'porsche',brand:'Porsche',model:'Classic 911',style:'3D / CGI',title:'Timeless Velocity',image:'assets/automotive/07-porsche-retro-poster.webp',description:'Classic precision meets sculptural metallic rings, blue-gray CGI-informed staging and powerful automotive editorial geometry.'},
     {id:'mercedes-benz',brand:'Mercedes-Benz',model:'300 SL Gullwing-era study',style:'Art Deco',title:'Sculpted in Silver',image:'assets/automotive/08-mercedes-benz-retro-poster.webp',description:'An Art Deco homage to a legendary classic coupe: geometric gold architecture, silver bodywork and a deep charcoal palette.'},
     {id:'land-rover',brand:'Land Rover',model:'Classic Defender / Series',style:'Art Nouveau',title:'Beyond the Horizon',image:'assets/automotive/09-land-rover-retro-poster.webp',description:'Organic topographic curves and forest-inspired lettering frame a vintage off-road hero in a poetic olive-green exploration study.'},
-    {id:'chevrolet',brand:'Chevrolet',model:'Bel Air / 1957',style:'Art Deco',title:'The American Dream',image:'assets/automotive/10-chevrolet-retro-poster.webp',description:'Bold red 1950s American classic, chrome reflections and gold geometric sunbursts in a vintage Art Deco campaign composition.'}
+    {id:'ferrari',brand:'Ferrari',model:'Vintage race coupe',style:'Art Deco',title:'Passion Drives Us',image:'assets/automotive/10-ferrari-retro-poster.webp',description:'A vintage red racing coupe from the supplied automotive poster collage, re-composed as a 1080 × 1350 social design while preserving the original vehicle photo as the artwork source.'}
   ];
   var currentFilter='All',selected=null,lastOpener=null,available=posters.map(function(_,i){return i});
   var grid=document.getElementById('auto-grid'),filters=Array.prototype.slice.call(document.querySelectorAll('[data-auto-filter]'));
