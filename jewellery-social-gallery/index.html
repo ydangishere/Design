@@ -230,6 +230,26 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 @media(max-width:960px){.brand-kit-feature{grid-template-columns:1fr}.brand-kit-preview{min-height:420px}.brand-kit-copy{padding:36px}}
 @media(max-width:700px){.tabs-inner{grid-template-columns:repeat(2,minmax(0,1fr))}.collection-tab{min-height:49px;padding:9px 11px;justify-content:center}.collection-tab:first-child{padding-left:11px}.collection-tab:last-child{padding-right:11px;justify-content:center}.tab-label{white-space:normal;overflow:visible;text-overflow:clip;font-size:11px;letter-spacing:.05em}.brand-kit-preview{min-height:345px;padding:23px}.brand-kit-monogram{width:115px;height:115px;font-size:82px;flex-shrink:0}.brand-kit-typo strong{font-size:70px}.brand-kit-typo span{font-size:16px}.brand-kit-typo small{font-size:8px}.brand-kit-copy{padding:29px}.brand-kit-copy h2{font-size:32px}.brand-kit-pillars{grid-template-columns:1fr}.brand-kit-pillars>div{border-right:0;border-bottom:1px solid #d6c6b4;margin:0;padding:18px 0}.brand-kit-tokens b{display:none}.brand-kit-top,.brand-kit-bottom-caption{font-size:8px}}
 
+
+/* Six supplied graphic-design reference images: Other Designs */
+.reference-gallery{margin:6px 0 48px}
+.reference-gallery-header{display:flex;align-items:end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin:0 0 23px}
+.reference-gallery-header .collection-subtitle{margin:9px 0}
+.reference-gallery-header p{font-size:13px;line-height:1.8;color:#776a5b;max-width:680px;margin:0}
+.reference-gallery-count{white-space:nowrap;font-size:11px;color:#957b60;letter-spacing:.16em;padding-bottom:7px}
+.reference-gallery-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.reference-work{margin:0;min-width:0;background:#fffaf3;border:1px solid #dfd1bd}
+.reference-work>a{display:flex;align-items:center;justify-content:center;aspect-ratio:1/1.08;position:relative;overflow:hidden;background:linear-gradient(135deg,#e8e1d7,#f9f5ec)}
+.reference-work img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .3s ease}
+.reference-work>a:hover img{transform:scale(1.025)}
+.reference-work>a:focus-visible{outline:3px solid #a2784a;outline-offset:-3px}
+.reference-work figcaption{padding:17px 18px 20px;border-top:1px solid #e2d5c4;display:flex;flex-direction:column;gap:5px}
+.reference-work figcaption strong{font:400 20px/1.3 Georgia,serif;color:#2f271d}
+.reference-work figcaption span{font-size:10px;line-height:1.5;color:#8a7763;letter-spacing:.11em;text-transform:uppercase}
+.reference-gallery-note{font-size:11px;line-height:1.75;color:#837462;border-top:1px solid #d9c8b3;padding-top:17px;margin-top:23px}
+@media(max-width:940px){.reference-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
+@media(max-width:540px){.reference-gallery-grid{grid-template-columns:1fr}.reference-work>a{aspect-ratio:1/1.03}.reference-gallery{margin-bottom:39px}}
+
 </style>
 </head>
 <body>
@@ -287,7 +307,13 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 <div class="collection-body">
  <div class="collection-kicker">Creative archive / Selected directions</div>
  <h2 class="collection-subtitle">Other design materials.</h2>
- <div class="other-grid">
+ <section id="other-reference-gallery" class="reference-gallery" aria-label="Six supplied graphic design images"><div class="reference-gallery-header"><div><div class="collection-kicker">Selected imagery / Six references</div><h2 class="collection-subtitle">Graphic design image gallery.</h2><p>Six curated visual references across Swiss Modernism, Art Deco, Brutalism, editorial collage, and jewelry art direction. Click any image to view it in full.</p></div><div class="reference-gallery-count">01 — 06 / IMAGE ARCHIVE</div></div><div class="reference-gallery-grid"><figure class="reference-work"><a href="assets/other-designs/01-swiss-modernism.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Swiss Modernism image"><img loading="lazy" decoding="async" src="assets/other-designs/01-swiss-modernism.png" alt="Swiss Modernism — International Typographic Style / Geometric layout"></a><figcaption><span>01 / Visual reference</span><strong>Swiss Modernism</strong><span>International Typographic Style / Geometric layout</span></figcaption></figure>
+<figure class="reference-work"><a href="assets/other-designs/02-art-deco-silhouette.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Art Deco Silhouette image"><img loading="lazy" decoding="async" src="assets/other-designs/02-art-deco-silhouette.png" alt="Art Deco Silhouette — Vintage jewelry illustration / Monochrome"></a><figcaption><span>02 / Visual reference</span><strong>Art Deco Silhouette</strong><span>Vintage jewelry illustration / Monochrome</span></figcaption></figure>
+<figure class="reference-work"><a href="assets/other-designs/03-brutalist-grunge.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Brutalist Grunge image"><img loading="lazy" decoding="async" src="assets/other-designs/03-brutalist-grunge.png" alt="Brutalist Grunge — Experimental typography / Urban collage"></a><figcaption><span>03 / Visual reference</span><strong>Brutalist Grunge</strong><span>Experimental typography / Urban collage</span></figcaption></figure>
+<figure class="reference-work"><a href="assets/other-designs/04-editorial-collage.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Editorial Collage image"><img loading="lazy" decoding="async" src="assets/other-designs/04-editorial-collage.png" alt="Editorial Collage — Fashion editorial / Mixed-media composition"></a><figcaption><span>04 / Visual reference</span><strong>Editorial Collage</strong><span>Fashion editorial / Mixed-media composition</span></figcaption></figure>
+<figure class="reference-work"><a href="assets/other-designs/05-minimal-jewelry.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Minimal Jewelry image"><img loading="lazy" decoding="async" src="assets/other-designs/05-minimal-jewelry.png" alt="Minimal Jewelry — Product photography / Quiet luxury"></a><figcaption><span>05 / Visual reference</span><strong>Minimal Jewelry</strong><span>Product photography / Quiet luxury</span></figcaption></figure>
+<figure class="reference-work"><a href="assets/other-designs/06-art-deco-jewelry.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Art Deco Jewelry image"><img loading="lazy" decoding="async" src="assets/other-designs/06-art-deco-jewelry.png" alt="Art Deco Jewelry — High jewelry / Geometric glamour"></a><figcaption><span>06 / Visual reference</span><strong>Art Deco Jewelry</strong><span>High jewelry / Geometric glamour</span></figcaption></figure></div><p class="reference-gallery-note">Images supplied as visual references. Original creators and rightsholders retain their respective rights.</p></section>
+<div class="other-grid">
   <a class="work-tile work-tile--big" href="../portfolio/" target="_blank" rel="noopener noreferrer" aria-label="Open existing digital and product design portfolio">
    <div class="tile-art tile-art--ui"><span class="line-frame" aria-hidden="true"></span><div class="ui-window" aria-hidden="true"><div class="ui-side"></div><div class="ui-hero"></div><div class="ui-row r1"></div><div class="ui-row r2"></div><div class="ui-row r3"></div></div></div>
    <div class="tile-caption"><span><small>01 / Existing portfolio</small><strong>Digital &amp; Product Design</strong></span><span class="tile-link">Explore ↗</span></div>
