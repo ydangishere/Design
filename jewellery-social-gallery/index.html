@@ -28,6 +28,48 @@ h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(52px,8.1vw,124px
 .cta{border:0;background:var(--lime);color:#152017;font-weight:700;padding:16px 23px;border-radius:3px;font-size:12px;letter-spacing:.08em;width:100%;max-width:350px;text-transform:uppercase}.cta:hover{background:#e6ffb3}.secondary{background:transparent;color:#d4e7b7;border:1px solid #7d9070;margin-top:12px}.secondary:hover{background:#252d20}.notice{font-size:11px!important;color:#8f9c8a!important;margin-top:22px}.toast{position:fixed;bottom:25px;left:50%;transform:translateX(-50%);z-index:150;background:#d5f0a4;color:#132016;padding:12px 22px;border-radius:40px;font-size:12px;box-shadow:0 15px 30px #0008;opacity:0;pointer-events:none;transition:opacity .2s}.toast.show{opacity:1}
 @media(max-width:1250px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}}@media(max-width:990px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.hero{grid-template-columns:1fr}.heroaside{border-left:0;border-top:1px solid var(--line);padding:17px 0 0;max-width:520px}.modal{grid-template-columns:minmax(250px,420px) 1fr}}@media(max-width:720px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 13px}.cardmeta h3{font-size:15px}.hero{padding-top:45px}.topright .hideMobile{display:none}.modal{display:flex;flex-direction:column;align-items:stretch;padding:64px 20px 28px}.modalPoster{max-width:440px;max-height:none;margin:auto}.details h2{font-size:42px}.details{max-width:440px;margin:auto;width:100%}.top{height:65px}.grid{padding-bottom:60px}}@media(max-width:350px){.grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+/* Warm ivory editorial gallery — luxury art-direction update */
+:root{color-scheme:light;--bg:#F8F2E8;--paper:#2F281F;--muted:#827568;--line:#DCD0BE;--lime:#8C663F}
+body{background:radial-gradient(ellipse at 12% -8%,#fffdf7 0%,transparent 38%),linear-gradient(180deg,#FAF6EF 0%,#F1E7D9 100%);color:var(--paper)}
+body:before{opacity:.12;z-index:0}
+.top,.hero,.toolbar,.grid,.bottom,.ai-showcase{position:relative;z-index:1}
+.top{border-color:var(--line);background:#FFFDF9a8;backdrop-filter:blur(8px)}
+.seal{border-color:#B89D75;color:#82613C}
+.topright{color:#776F63}
+.countpill{border-color:#D8C7AD;color:#68533D;background:#FCF7EE}
+.eyebrow{color:#8E6C44}.eyebrow i{background:#9F7644}
+h1{color:#2C261F}h1 em{color:#A87C4C}
+.lead,.heroaside{color:#736A60}.heroaside{border-color:var(--line)}.heroaside strong{color:#3B3127}
+.sectionindex{border-color:#C6AD8D;color:#82623C;background:#FCF9F3}
+.sectionname{color:#3A3027}
+.toolbarRight{color:#807265}.toolbarRight span{color:#9C7145}
+.cardmeta h3{color:#30281F}.cardmeta p{color:#867769}.cardmeta .num{color:#876746;border-color:#CCB89C}
+.poster{box-shadow:0 22px 44px #58412d26;transition:transform .28s,box-shadow .28s}
+.card:hover .poster,.card:focus-within .poster{transform:translateY(-5px);box-shadow:0 28px 65px #58412d35}
+.poster:before{background:#17120eb9}
+.bottom{border-color:var(--line);color:#807266;background:#FAF6EE}
+.bottom strong{color:#57412B}
+.ai-showcase{max-width:1600px;margin:0 auto 92px;padding:0 clamp(18px,5vw,76px)}
+.ai-panel{border-top:1px solid var(--line);padding-top:39px}
+.ai-eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#916D46}
+.ai-headline{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:clamp(31px,4vw,52px);line-height:1.18;margin:12px 0 10px;letter-spacing:-.035em}
+.ai-intro{color:#786A5B;max-width:690px;font-size:13px;line-height:1.8;margin-bottom:26px}
+.ai-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}
+.ai-item{min-height:190px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;padding:19px 20px;border:1px solid #cbbba5;transition:transform .25s,box-shadow .25s}
+.ai-item:hover{transform:translateY(-4px);box-shadow:0 18px 36px #4a35211f}
+.ai-item:before{content:"";width:136px;height:136px;border:1px solid currentColor;opacity:.2;position:absolute;right:-22px;top:-33px;border-radius:50%;box-shadow:0 0 0 19px #ffffff0d,0 0 0 43px #ffffff0e}
+.ai-item small{font-size:10px;letter-spacing:.17em;text-transform:uppercase;opacity:.78}
+.ai-item strong{font-family:Georgia,serif;font-weight:400;font-size:24px;line-height:1.18;position:relative}
+.ai-item .ai-action{font-size:11px;letter-spacing:.08em;text-transform:uppercase;position:relative}
+.ai-red{background:linear-gradient(135deg,#751229,#3B0D1D);color:#FFF0DD}
+.ai-blue{background:linear-gradient(135deg,#BDE5DF,#86CBC8);color:#244545}
+.ai-roman{background:linear-gradient(135deg,#151512,#324032);color:#EAD19F}
+.ai-garden{background:linear-gradient(135deg,#DDE5D1,#F8F2E2);color:#344E3B}
+.ai-footnote{font-size:11px;color:#8A7D6B;margin-top:18px;line-height:1.7}
+@media(max-width:990px){.ai-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:560px){.ai-grid{grid-template-columns:1fr 1fr;gap:10px}.ai-item{min-height:155px;padding:15px}.ai-item strong{font-size:19px}}
+
 </style>
 </head>
 <body>
@@ -36,6 +78,12 @@ h1{font-family:'Playfair Display',Georgia,serif;font-size:clamp(52px,8.1vw,124px
 <section class="hero"><div><div class="eyebrow"><i></i>Luxury Jewellery · Visual Exploration / 2026</div><h1>Ten houses.<br><em>Ten identities.</em></h1><p class="lead">10 poster nghệ thuật lấy cảm hứng từ ngôn ngữ thị giác riêng của những nhà kim hoàn nổi tiếng thế giới — mỗi thiết kế có bảng màu, bố cục và biểu tượng đặc trưng. Sẵn sàng xuất PNG chất lượng cao để trình bày trên mạng xã hội.</p></div><aside class="heroaside"><strong>Made to feel distinct.</strong>Original vector artworks, bespoke compositions, editorial typography, crafted for the social feed.<br><br>1080 × 1350 px / Instagram 4:5</aside></section>
 <div class="toolbar"><div class="toolbarLeft"><span class="sectionindex">01—10</span><span class="sectionname">The campaign gallery</span></div><div class="toolbarRight">CLICK TO EXPLORE &nbsp; <span>↗</span> &nbsp;·&nbsp; EXPORT PNG / SVG</div></div>
 <section id="grid" class="grid" aria-label="10 jewellery brand-inspired social posters"></section>
+<section class="ai-showcase" aria-label="AI poster experiments"><div class="ai-panel"><div class="ai-eyebrow">Creative process / AI-assisted art direction</div><h2 class="ai-headline">Four more campaign studies.</h2><p class="ai-intro">Bốn phiên bản hình ảnh do AI hỗ trợ đã được dựng dưới dạng thiết kế chỉnh sửa trên Canva. Bộ 10 poster vector phía trên vẫn có thể xuất PNG 1080 × 1350 trực tiếp.</p><div class="ai-grid">
+<a class="ai-item ai-red" href="https://canva.link/2x6960cty10e0wy" target="_blank" rel="noopener noreferrer"><small>01 / Parisian grandeur</small><strong>Crimson<br>Legacy</strong><span class="ai-action">View AI concept ↗</span></a>
+<a class="ai-item ai-blue" href="https://canva.link/lzipljhe9c6zzip" target="_blank" rel="noopener noreferrer"><small>02 / Modern romance</small><strong>The Blue<br>Promise</strong><span class="ai-action">View AI concept ↗</span></a>
+<a class="ai-item ai-roman" href="https://canva.link/8wu50gzunwortnk" target="_blank" rel="noopener noreferrer"><small>03 / Roman heritage</small><strong>Roman<br>Gold</strong><span class="ai-action">View AI concept ↗</span></a>
+<a class="ai-item ai-garden" href="https://canva.link/9bgkjwfdhdzwps1" target="_blank" rel="noopener noreferrer"><small>04 / Poetic nature</small><strong>Poetic<br>Garden</strong><span class="ai-action">View AI concept ↗</span></a>
+</div><div class="ai-footnote">Unofficial visual studies, not campaigns or licensed product imagery. To download editable artwork, open a design in Canva.</div></div></section>
 </main>
 <footer class="bottom"><div><strong>MAISON / STUDIES</strong> — An independent designer concept gallery.<br>Unofficial creative studies. Not affiliated with, endorsed or commissioned by the featured brands.</div><div>All jewellery artwork is original vector illustration, not official brand product photography.<br>For portfolio and inspiration; brand marks and names belong to their owners.</div></footer>
 <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Chi tiết poster" aria-hidden="true"><button class="close" id="close" aria-label="Đóng">×</button><div class="modal"><div class="modalPoster" id="modalPoster"></div><div class="details"><div class="detailIndex" id="modalNum"></div><h2 id="modalBrand"></h2><p id="modalDescription"></p><div class="specs"><span>FORMAT<br><strong>4:5 / 1080 × 1350</strong></span><span>ARTWORK<br><strong>Vector / SVG</strong></span><span>LICENSE<br><strong>Concept only</strong></span></div><button class="cta" id="downloadPng">↓ TẢI POSTER PNG</button><button class="cta secondary" id="downloadSvg">↓ TẢI VECTOR SVG</button><p class="notice">Đây là poster concept độc lập, không phải quảng cáo chính thức. Cần quyền sử dụng thương hiệu trước khi đăng như một chiến dịch thương mại.</p></div></div></div>
