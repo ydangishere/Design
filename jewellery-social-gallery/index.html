@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#FAF6EF">
 <title>Design Studies — Jewelry / Automotive / Other Designs</title>
-<meta name="description" content="A curated design gallery with three sections: Jewelry, Automotive, and Other Designs. Luxury posters, art direction, brand systems, and visual materials.">
+<meta name="description" content="Jewelry, automotive, graphic design and brand systems. Explore original Flickr design files, view artworks up close and download individual images.">
+<link rel="stylesheet" href="other-designs.css">
+<script src="other-designs.js" defer></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{color-scheme:dark;--bg:#111410;--paper:#e9e7df;--muted:#a0a49c;--line:#353b34;--lime:#d4ed9c}
@@ -301,12 +303,19 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 </section>
 <section id="panel-other-designs" class="collection-panel" role="tabpanel" aria-labelledby="tab-other-designs" tabindex="0" hidden>
 <div class="collection-intro">
- <div><div class="eyebrow"><i></i>Selected Works / Design Materials</div><h1 class="collection-title">Beyond the<br><em>ordinary.</em></h1><p class="collection-lead">Không gian tổng hợp graphic design, brand identity, digital design và các visual materials khác. Các đường dẫn bên dưới mở những portfolio và bộ mẫu đã có của bạn.</p></div>
- <aside class="collection-aside"><strong>Ideas across disciplines.</strong>Brand systems, campaign visuals, digital interfaces and art direction.<br><br>Selected existing resources / Evolving collection.</aside>
+ <div><div class="eyebrow"><i></i>Selected Works / Graphic &amp; Digital</div><h1 class="collection-title">Beyond the<br><em>ordinary.</em></h1><p class="collection-lead">Từ thiết kế in ấn đến chiến dịch social và giao diện digital. Khám phá bộ tuyển chọn từ kho Flickr — xem chi tiết và tải từng ảnh.</p></div>
+ <aside class="collection-aside"><strong>Ideas across disciplines.</strong>Print, campaigns, digital interfaces &amp; spatial design.<br><br><a class="other-source-link" href="https://www.flickr.com/photos/56033193@N08/" target="_blank" rel="noopener noreferrer">From the Flickr archive ↗</a></aside>
 </div>
 <div class="collection-body">
- <div class="collection-kicker">Creative archive / Selected directions</div>
- <h2 class="collection-subtitle">Other design materials.</h2>
+ <section class="other-archive" aria-labelledby="other-archive-title">
+  <div class="other-archive-heading"><div><div class="collection-kicker">The graphic &amp; digital collection</div><h2 class="collection-subtitle" id="other-archive-title">An archive of ideas.</h2></div><p class="other-result-count" id="other-result-count" role="status" aria-live="polite"></p></div>
+  <div class="other-filters" id="other-filters" role="group" aria-label="Lọc thiết kế theo nhóm"></div>
+  <div class="other-gallery" id="other-gallery"></div>
+  <div class="other-load-row"><button class="other-action" type="button" id="other-load-more" hidden>Xem thêm thiết kế ↓</button></div>
+  <noscript><p>Bật JavaScript để xem gallery, hoặc <a href="https://www.flickr.com/photos/56033193@N08/">xem kho ảnh trên Flickr ↗</a>.</p></noscript>
+  <p class="other-archive-note">Ảnh được giữ nguyên từ file Flickr cung cấp, không chỉnh sửa hoặc tạo lại bằng AI. Flickr hiện giới hạn tải công khai ở cạnh dài tối đa 1024 px cho tài khoản miễn phí. Bản quyền theo từng trang nguồn.</p>
+ </section>
+ <details class="other-existing"><summary>Visual references &amp; more resources <span aria-hidden="true">+</span></summary>
  <section id="other-reference-gallery" class="reference-gallery" aria-label="Six supplied graphic design images"><div class="reference-gallery-header"><div><div class="collection-kicker">Selected imagery / Six references</div><h2 class="collection-subtitle">Graphic design image gallery.</h2><p>Six curated visual references across Swiss Modernism, Art Deco, Brutalism, editorial collage, and jewelry art direction. Click any image to view it in full.</p></div><div class="reference-gallery-count">01 — 06 / IMAGE ARCHIVE</div></div><div class="reference-gallery-grid"><figure class="reference-work"><a href="assets/other-designs/01-swiss-modernism.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Swiss Modernism image"><img loading="lazy" decoding="async" src="assets/other-designs/01-swiss-modernism.png" alt="Swiss Modernism — International Typographic Style / Geometric layout"></a><figcaption><span>01 / Visual reference</span><strong>Swiss Modernism</strong><span>International Typographic Style / Geometric layout</span></figcaption></figure>
 <figure class="reference-work"><a href="assets/other-designs/02-art-deco-silhouette.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Art Deco Silhouette image"><img loading="lazy" decoding="async" src="assets/other-designs/02-art-deco-silhouette.png" alt="Art Deco Silhouette — Vintage jewelry illustration / Monochrome"></a><figcaption><span>02 / Visual reference</span><strong>Art Deco Silhouette</strong><span>Vintage jewelry illustration / Monochrome</span></figcaption></figure>
 <figure class="reference-work"><a href="assets/other-designs/03-brutalist-grunge.png" target="_blank" rel="noopener noreferrer" aria-label="View full-size Brutalist Grunge image"><img loading="lazy" decoding="async" src="assets/other-designs/03-brutalist-grunge.png" alt="Brutalist Grunge — Experimental typography / Urban collage"></a><figcaption><span>03 / Visual reference</span><strong>Brutalist Grunge</strong><span>Experimental typography / Urban collage</span></figcaption></figure>
@@ -331,7 +340,8 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
    <div class="tile-caption"><span><small>04 / Future materials</small><strong>Campaigns, Print &amp; Packaging</strong></span><span class="tile-link">Collection space</span></div>
   </div>
  </div>
- <p class="material-note">Các ảnh mockup trong tab này chỉ minh họa hướng bố cục. Các liên kết “Explore” dẫn tới nguồn portfolio / graphic layout / Figma có sẵn; không coi mockup là tác phẩm khách hàng đã bàn giao.</p>
+ <p class="material-note">Các ảnh mockup trong phần tài nguyên này chỉ minh họa hướng bố cục. Các liên kết “Explore” dẫn tới nguồn portfolio / graphic layout / Figma có sẵn; không coi mockup là tác phẩm khách hàng đã bàn giao.</p>
+ </details>
 </div>
 </section>
 <section id="panel-brand-guideline" class="collection-panel" role="tabpanel" aria-labelledby="tab-brand-guideline" tabindex="0" hidden>

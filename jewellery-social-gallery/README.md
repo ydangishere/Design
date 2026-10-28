@@ -10,7 +10,8 @@ The mini-site has four accessible, mobile-responsive sections selected by the to
 
 1. **Jewelry** (default) — original gallery of 10 AI jewellery campaign concepts, with large preview and PNG export (1080 × 1350). Deep-link: `#jewelry`.
 2. **Automotive** — complete set of **10 individually downloadable retro/vintage automobile and motorcycle posters** in five visual approaches, with a filter by style, fullscreen preview, next/previous navigation and 1080 × 1350 PNG export. Deep-link: `#automotive`.
-3. **Other Designs** — editorial resource tiles linking to the owner's existing [Design portfolio](../portfolio/), [Flickr graphic design layouts](https://www.flickr.com/photos/56033193@N08/), and [Figma brand system](https://www.figma.com/design/QWncoG9J1rGakt8mDJ1fu8/Draft-pool--F2-?node-id=693-387). A fourth tile reserves space for future print, campaign and packaging materials. The tile artwork is a visual placeholder, not a claim of work delivered. Deep-link: `#other-designs`.
+3. **Other Designs** — **48 original Flickr design files** selected from the owner's 323 public photos, with a cream gallery matching Jewelry, category filters, 12-at-a-time browsing, a keyboard-accessible image viewer, 2× zoom and per-image downloads. The files are unchanged JPGs, not recreated by AI. Deep-link: `#other-designs`. The previous six visual references and portfolio/Figma resource links remain under “Visual references & more resources”.
+
 
 4. **Brand Guideline** — dedicated SaaS Brand Kit case-study card with the original Figma project link; visual presentation is illustrative, not an extracted Figma preview. Deep-link: `#brand-guideline`.
 
@@ -85,3 +86,15 @@ The site is self-contained in `index.html`; it runs as a static GitHub Pages fol
 ## Rights
 
 Unofficial design concepts only. Brand names and marks remain property of their owners. These images do not depict verified authentic products and should not be marketed as official advertisements. Clear any required permissions before commercial use.
+
+## Flickr graphic and digital archive — 48 files
+
+- Public profile inspected in Cloud Browser: https://www.flickr.com/photos/56033193@N08/
+- Categories: Print & Editorial, Social & Campaigns, Digital & UI, and 3D & Events.
+- Files: `assets/other-designs/flickr-*.jpg`. Total size is approximately 4.8 MB.
+- Source records, public download URLs, original titles, dimensions and SHA-256 hashes: `assets/other-designs/flickr-sources.json`.
+- Flickr limits free-member public downloads to a maximum long edge of 1024px. The larger “Original” size was unavailable publicly. Files preserve the exact downloaded image bytes; no crop, resize, re-encoding or AI recreation was applied.
+- Flickr source pages state “All rights reserved”. Download availability is not a blanket redistribution or commercial-use license; rights remain with the respective owners. Source links are provided per image.
+- Display titles describe visible content for easier browsing; Flickr's original titles remain in the viewer and source records.
+- Native `<dialog>` provides modal focus containment, Escape dismissal and background isolation. Arrow keys navigate images when unzoomed; zoomed images scroll. Closing returns focus to the opener.
+- `other-designs.css` extends the existing cream Jewelry palette and typography; `other-designs.js` owns the archive data and interactions. No framework or build step is required.
