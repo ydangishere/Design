@@ -1,33 +1,34 @@
-# Maison Studies — Jewellery Social Poster Gallery
+# Maison Studies — Luxury Jewellery Facebook Poster Gallery
 
-A static GitHub Pages mini-site with a warm cream gallery showcasing **10 independently illustrated luxury-jewellery-inspired social posters**. Each poster is built as an original editable SVG composition at **1080 × 1350 (4:5)** for Facebook / Instagram feeds.
+**Website:** https://ydangishere.github.io/Design/jewellery-social-gallery/
 
-**GitHub Pages URL:** https://ydangishere.github.io/Design/jewellery-social-gallery/
+Static GitHub Pages site with a warm cream editorial gallery and 10 jewellery-house-inspired poster concepts, all in a **1080 × 1350 (4:5)** social media format.
 
-## 10 completed vector concept posters
-Tiffany & Co. · Cartier · Van Cleef & Arpels · Bvlgari · Harry Winston · Graff · Chopard · Piaget · Buccellati · Mikimoto.
+## Gallery: three AI-photo posters + seven vector posters
 
-Click any poster to view it at large size, then choose **TẢI POSTER PNG** to download a 1080×1350 Facebook-ready image; **TẢI VECTOR SVG** for the editable illustration.
+The three original vector artwork entries for **Bvlgari**, **Harry Winston**, and **Graff** have been replaced by these new **AI-generated jewellery campaign images**:
 
-## 4 additional AI-assisted Canva social poster designs
+- `assets/bvlgari-roman-nights.jpg` — dark-emerald Roman setting, serpent bracelet with gold, emerald and diamonds.
+- `assets/harry-winston-midnight-brilliance.jpg` — dramatic midnight-blue velvet, sparkling diamond necklace.
+- `assets/graff-beyond-brilliance.jpg` — minimalist warm-ivory still-life of an emerald-cut diamond ring.
 
-1. Cartier-inspired — Crimson Legacy: https://canva.link/2x6960cty10e0wy
-2. Tiffany-inspired — The Blue Promise: https://canva.link/lzipljhe9c6zzip
-3. Bvlgari-inspired — Roman Gold: https://canva.link/8wu50gzunwortnk
-4. Van Cleef & Arpels-inspired — Poetic Garden: https://canva.link/9bgkjwfdhdzwps1
+These images are 1080 × 1350 JPEG files, optimized for website loading. The poster viewer displays the same photo as the gallery, and the **Download PNG** button converts it into a full-size 1080 × 1350 PNG in the browser. Their SVG download button is hidden.
 
-These are separate Canva drafts, not exported image files in this repository. Additional Canva image generation was blocked because the user account reached its Canva AI credits quota. Do not represent the remaining six SVG designs as AI-generated photographs.
+The other seven brand-inspired poster entries retain their original **editable SVG illustrations**, with built-in PNG and SVG downloads.
 
-## Features
-- Cream/ivory editorial presentation with a responsive luxury grid.
-- Ten original SVG posters, distinct in colour, visual identity, typography, product motifs and jewellery illustration.
-- Modal poster viewer; keyboard left/right navigation and Esc to close.
-- Client-side export to transparent-source SVG or 1080×1350 PNG.
-- Four AI-assisted Canva links in the gallery's secondary collection.
-- A single self-contained `index.html`, no build tools needed.
+## Four Canva AI designs (separate concepts)
 
-## Usage
-The existing GitHub Pages configuration should serve this folder automatically if the repository is published from the `master` branch. The webpage itself requires no backend. Open `index.html` locally in any modern browser if needed.
+- [Cartier-inspired](https://canva.link/2x6960cty10e0wy)
+- [Tiffany-inspired](https://canva.link/lzipljhe9c6zzip)
+- [Bvlgari-inspired](https://canva.link/8wu50gzunwortnk)
+- [Van Cleef-inspired](https://canva.link/9bgkjwfdhdzwps1)
 
-## Rights
-Unofficial creative/portfolio studies only, not advertisements endorsed or commissioned by the brands. No official product photography is included in the SVG posters. Brand names and marks belong to their owners. Obtain appropriate rights before commercial use.
+These are editable Canva designs that are linked from the site and are not copies of the gallery's embedded photographs.
+
+## How to use
+
+Open `index.html` locally or visit the GitHub Pages URL. Click any poster to enlarge it; use the download button to export an image. Left and right arrow keys navigate through posters, and Escape closes the preview. No build system or backend is needed.
+
+## Usage rights
+
+All designs are independent **unofficial portfolio concepts**. The AI imagery is synthetic, not official jewelry product photography. Brand-inspired typography and visuals are not affiliated with or commissioned by the original brands. Secure appropriate trademark and commercial rights before using them in an advertisement.
