@@ -20,7 +20,7 @@ Tabs use buttons with ARIA roles, keyboard arrow/Home/End support, URL hash deep
 
 ## Automotive Retro/Vintage Collection — 10 Posters, 5 Styles
 
-There are **10 retro automotive posters** at 1080 × 1350 px in the Automotive tab, made by extracting the complete original narrow posters from the user-supplied collage, preserving all their existing text, brand motifs and vehicle imagery, and adding a blurred extension of the same image at the sides to achieve Facebook/Instagram 4:5. Each original poster stays intact in a centered vertical strip without being stretched, cropped or re-typeset; no vehicles were AI-regenerated. The source collage resolution is limited (~200 px wide per original poster). Website assets are compressed WebP for performance; the poster modal provides client-side export to 1080 × 1350 PNG or direct download of the source WebP file.
+There are **10 retro automotive posters** at 1080 × 1350 px in the Automotive tab, created as full-frame 4:5 AI poster concepts following the user's selected retro automotive reference designs, featuring full-width scenes and original typography inspiration. The website now uses the 10 newly generated full-frame 1080×1350 posters instead of the previous narrow crops and blurred sidebars. These are AI-assisted interpretations of the user's references, not pixel-identical source extractions. Website assets are compressed WebP for performance; the poster modal provides client-side export to 1080 × 1350 PNG or direct download of the source WebP file.
 
 | # | Brand | Model inspiration | Art direction | Image |
 | --- | --- | --- | --- | --- |

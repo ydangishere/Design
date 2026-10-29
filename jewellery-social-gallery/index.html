@@ -291,7 +291,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <div>
    <div class="eyebrow"><i></i>Automotive / Heritage Campaign Studies / 2026</div>
    <h1 class="collection-title">Ten icons.<br><em>Five directions.</em></h1>
-   <p class="collection-lead">10 poster retro/vintage được dựng lại từ chính ảnh tổng hợp bạn cung cấp, giữ các mẫu xe và bố cục lấy từ hình gốc. Từng poster giữ nguyên toàn bộ thiết kế gốc ở chính giữa; hai bên được mở rộng bằng nền mờ lấy từ ảnh đó để vừa khung Facebook/Instagram 1080 × 1350 px (4:5), không kéo giãn hình xe hoặc vẽ lại bằng AI.</p>
+   <p class="collection-lead">10 poster retro/vintage được dựng lại từ chính ảnh tổng hợp bạn cung cấp, giữ các mẫu xe và bố cục lấy từ hình gốc. Mười poster vintage đã được dựng thành artwork 4:5 toàn khung, theo các mẫu bạn chọn, không còn cột ảnh hẹp hay nền mờ hai bên. Mỗi ảnh xuất 1080 × 1350 px để đăng Facebook/Instagram.</p>
   </div>
   <aside class="collection-aside"><strong>Classics, reimagined.</strong>Minimalism · Art Deco · Editorial · Art Nouveau · 3D / CGI.<br><br>10 standalone posters / 1080 × 1350 px.</aside>
  </div>
@@ -308,7 +308,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <button class="auto-filter-btn" type="button" data-auto-filter="3D / CGI" aria-pressed="false">3D / CGI <span>02</span></button>
  </div>
  <section id="auto-grid" class="grid auto-poster-grid" aria-label="10 retro and vintage automotive posters" aria-live="polite"></section>
- <div class="auto-gallery-note"><span>✳ &nbsp; INDEPENDENT VISUAL STUDIES</span><p>10 poster giữ nguyên thiết kế trong collage bạn cung cấp. Toàn bộ chữ, logo và ảnh xe nằm nguyên trong cột poster ở giữa; hai bên mở rộng bằng nền mờ, không cắt mất nội dung, không tạo lại xe bằng AI. Vì ảnh đầu vào chỉ có độ rộng khoảng 200 px mỗi mẫu nên hình xe có thể mềm khi phóng to. Các thiết kế không phải quảng cáo chính thức của thương hiệu.</p></div>
+ <div class="auto-gallery-note"><span>✳ &nbsp; INDEPENDENT VISUAL STUDIES</span><p>Bộ 10 ảnh này được tạo lại theo hình tham chiếu với tỷ lệ 4:5 toàn khung. Đây là poster concept AI, không phải hình xe gốc hay quảng cáo chính thức của hãng. Vì ảnh đầu vào chỉ có độ rộng khoảng 200 px mỗi mẫu nên hình xe có thể mềm khi phóng to. Các thiết kế không phải quảng cáo chính thức của thương hiệu.</p></div>
 </section>
 <section id="panel-fnb" class="collection-panel" role="tabpanel" aria-labelledby="tab-fnb" tabindex="0" hidden>
  <div class="collection-body" style="padding-top:clamp(42px,6vw,82px)">
@@ -319,7 +319,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   </div>
  </div>
  <section id="fnb-grid" class="grid auto-poster-grid fnb-grid" aria-label="4 F&B coffee campaign posters"></section>
- <p class="fnb-note">04 independent F&amp;B advertising studies · Portrait 4:5 · Click để xem lớn và tải từng poster.</p>
+ <p class="fnb-note">04 independent F&amp;B advertising studies · Portrait 4:5 · Click để xem lớn và tải từng poster PNG.</p>
 </section>
 <section id="panel-other-designs" class="collection-panel" role="tabpanel" aria-labelledby="tab-other-designs" tabindex="0" hidden>
 <div class="collection-intro">
@@ -425,7 +425,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
    <div class="auto-details-kicker" id="fnbModalType"></div>
    <p id="fnbModalDescription"></p>
    <div class="specs"><span>FORMAT<br><strong>Portrait 4:5</strong></span><span>ARTWORK<br><strong>AI-assisted illustration</strong></span><span>COLLECTION<br><strong>F&amp;B / Coffee</strong></span></div>
-   <a class="cta" id="fnbDownload" href="#" download style="display:block;text-align:center;text-decoration:none">↓ TẢI POSTER</a>
+   <a class="cta" id="fnbDownload" href="#" download style="display:block;text-align:center;text-decoration:none">↓ TẢI POSTER PNG</a>
    <div class="auto-nextprev"><button type="button" class="auto-nav-btn" id="fnbPrev">← Previous</button><button type="button" class="auto-nav-btn" id="fnbNext">Next →</button></div>
   </div>
  </div>
@@ -587,16 +587,16 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
 (function(){
   'use strict';
   var posters=[
-    {id:'ford',brand:'Ford Mustang',model:'Fastback / 1967',style:'Editorial',title:'A Legend Never Ages',image:'assets/automotive/01-ford-retro-poster.webp?v=exact-4x5',description:'Original Ford Mustang poster: coastal sunset, blue sky, pony motif, classic car and caption remain unchanged.'},
-    {id:'peugeot',brand:'Peugeot',model:'French vintage sedan',style:'Art Nouveau',title:'L’esprit toujours plus loin',image:'assets/automotive/02-peugeot-retro-poster.webp?v=exact-4x5',description:'Original Peugeot vintage-sedan poster with European stone architecture, gold type and dark atmosphere preserved.'},
-    {id:'volkswagen',brand:'Volkswagen',model:'Type 2 Samba Bus',style:'3D / CGI',title:'Good People. Better Journeys.',image:'assets/automotive/03-volkswagen-retro-poster.webp?v=exact-4x5',description:'Original Volkswagen camper on sunlit sand beneath palms; all poster text and graphics preserved.'},
-    {id:'jaguar',brand:'Jaguar',model:'E-Type / 1961',style:'Minimalism',title:'Grace in Motion.',image:'assets/automotive/04-jaguar-retro-poster.webp?v=exact-4x5',description:'Original Jaguar sports coupe by a light stone arch, including its original headline and visual treatment.'},
-    {id:'rolls-royce',brand:'Rolls-Royce',model:'Silver Cloud-era study',style:'Minimalism',title:'Beyond Time.',image:'assets/automotive/05-rolls-royce-retro-poster.webp?v=exact-4x5',description:'Original Rolls-Royce vehicle beneath a grand stone arch, with its original brand styling and slogan.'},
-    {id:'harley-davidson',brand:'Harley-Davidson',model:'Classic cruiser heritage',style:'Editorial',title:'Freedom Lives Here.',image:'assets/automotive/06-harley-davidson-retro-poster.webp?v=exact-4x5',description:'Original Harley-Davidson cruiser amid orange sunset mountains, featuring its original crest and headline.'},
-    {id:'porsche',brand:'Porsche',model:'Classic 911',style:'3D / CGI',title:'Precision Creates Emotion.',image:'assets/automotive/07-porsche-retro-poster.webp?v=exact-4x5',description:'Original Porsche sports car by geometric architecture and red-and-white racing stripes.'},
-    {id:'mercedes-benz',brand:'Mercedes-Benz',model:'300 SL Gullwing-era study',style:'Art Deco',title:'Engineered for a Brighter Tomorrow.',image:'assets/automotive/08-mercedes-benz-retro-poster.webp?v=exact-4x5',description:'Original classic Mercedes-Benz gullwing coupe, architectural setting and typographic hierarchy.'},
-    {id:'land-rover',brand:'Land Rover',model:'Classic Defender / Series',style:'Art Nouveau',title:'Adventure Without Limits.',image:'assets/automotive/09-land-rover-retro-poster.webp?v=exact-4x5',description:'Original green classic Land Rover against an alpine landscape, preserving source typography.'},
-    {id:'ferrari',brand:'Ferrari',model:'Vintage race coupe',style:'Art Deco',title:'Passion Drives Us.',image:'assets/automotive/10-ferrari-retro-poster.webp?v=exact-4x5',description:'Original red Ferrari racing coupe in a graphic red architectural environment, with full artwork intact.'}
+    {id:'ford',brand:'Ford Mustang',model:'Fastback / 1967',style:'Editorial',title:'A Legend Never Ages',image:'assets/automotive/01-ford-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'peugeot',brand:'Peugeot',model:'French vintage sedan',style:'Art Nouveau',title:'L’esprit toujours plus loin',image:'assets/automotive/02-peugeot-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'volkswagen',brand:'Volkswagen',model:'Type 2 Samba Bus',style:'3D / CGI',title:'Good People. Better Journeys.',image:'assets/automotive/03-volkswagen-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'jaguar',brand:'Jaguar',model:'E-Type / 1961',style:'Minimalism',title:'Grace in Motion.',image:'assets/automotive/04-jaguar-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'rolls-royce',brand:'Rolls-Royce',model:'Silver Cloud-era study',style:'Minimalism',title:'Beyond Time.',image:'assets/automotive/05-rolls-royce-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'harley-davidson',brand:'Harley-Davidson',model:'Classic cruiser heritage',style:'Editorial',title:'Freedom Lives Here.',image:'assets/automotive/06-harley-davidson-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'porsche',brand:'Porsche',model:'Classic 911',style:'3D / CGI',title:'Precision Creates Emotion.',image:'assets/automotive/07-porsche-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'mercedes-benz',brand:'Mercedes-Benz',model:'300 SL Gullwing-era study',style:'Art Deco',title:'Engineered for a Brighter Tomorrow.',image:'assets/automotive/08-mercedes-benz-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'land-rover',brand:'Land Rover',model:'Classic Defender / Series',style:'Art Nouveau',title:'Adventure Without Limits.',image:'assets/automotive/09-land-rover-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'},
+    {id:'ferrari',brand:'Ferrari',model:'Vintage race coupe',style:'Art Deco',title:'Passion Drives Us.',image:'assets/automotive/10-ferrari-retro-poster.webp?v=retro-ai-fullframe-20261029',description:'Retro automotive AI concept inspired by the supplied poster reference, full-frame Facebook 4:5 artwork'}
   ];
   var currentFilter='All',selected=null,lastOpener=null,available=posters.map(function(_,i){return i});
   var grid=document.getElementById('auto-grid'),filters=Array.prototype.slice.call(document.querySelectorAll('[data-auto-filter]'));
