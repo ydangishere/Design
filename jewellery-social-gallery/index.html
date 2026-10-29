@@ -262,6 +262,24 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 @media(max-width:940px){.reference-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}}
 @media(max-width:540px){.reference-gallery-grid{grid-template-columns:1fr}.reference-work>a{aspect-ratio:1/1.03}.reference-gallery{margin-bottom:39px}}
 
+
+/* Jewelry / three new user-supplied product visuals */
+.jewelry-new-collection{max-width:1600px;margin:0 auto;padding:32px clamp(18px,5vw,76px) 62px}
+.jewelry-new-header{display:flex;justify-content:space-between;align-items:flex-end;gap:26px;margin-bottom:26px;border-top:1px solid #d5c3ad;padding-top:30px}
+.jewelry-new-kicker{display:block;color:#9c7650;letter-spacing:.19em;font-size:10px;font-weight:600;margin-bottom:12px}
+.jewelry-new-header h2{font:400 clamp(30px,3.7vw,50px)/1.15 "Playfair Display",Georgia,serif;letter-spacing:-.03em;margin:0 0 14px;color:#302920}
+.jewelry-new-header h2 em{font-weight:400;color:#a07851}
+.jewelry-new-header p{color:#817466;font-size:13px;line-height:1.8;max-width:740px;margin:0}
+.jewelry-new-count{white-space:nowrap;color:#9b805e;font-size:10px;letter-spacing:.12em;padding-bottom:6px}
+.new-jewelry-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:100%!important;padding:0!important}
+.new-jewelry-grid .poster{background:#f1e6d8}
+.new-jewelry-grid .poster img.jewelry-study-image{object-fit:contain;width:100%;height:100%;display:block}
+.new-jewelry-grid .cardmeta{padding:16px 0 2px}
+.new-jewelry-grid .cardmeta p{max-width:280px}
+#downloadJewelrySource[hidden]{display:none!important}
+@media(max-width:860px){.new-jewelry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.jewelry-new-header{align-items:flex-start}.jewelry-new-count{display:none}}
+@media(max-width:580px){.new-jewelry-grid{grid-template-columns:1fr!important}.jewelry-new-collection{padding-bottom:44px}}
+
 </style>
 </head>
 <body>
@@ -279,6 +297,13 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 <main>
 <section id="panel-jewelry" class="collection-panel" role="tabpanel" aria-labelledby="tab-jewelry" tabindex="0">
 <section class="hero"><div><div class="eyebrow"><i></i>Luxury Jewellery · Visual Exploration / 2026</div><h1>Ten houses.<br><em>Ten identities.</em></h1><p class="lead">10 poster nghệ thuật lấy cảm hứng từ ngôn ngữ thị giác riêng của những nhà kim hoàn nổi tiếng thế giới — mỗi thiết kế có bảng màu, bố cục và biểu tượng đặc trưng. Sẵn sàng xuất PNG 1080 × 1350, với 10 mẫu AI photorealistic theo phong cách riêng của từng thương hiệu.</p></div><aside class="heroaside"><strong>Made to feel distinct.</strong>Ten premium AI-generated concept posters, each with distinctive art direction, rendered for the social feed.<br><br>1080 × 1350 px / Instagram 4:5</aside></section>
+<section class="jewelry-new-collection" aria-labelledby="jewelry-new-title">
+  <div class="jewelry-new-header">
+    <div><span class="jewelry-new-kicker">JUST ADDED / 03 PRODUCT VISUALS</span><h2 id="jewelry-new-title">Jewelry <em>Photography Studies.</em></h2><p>Ba hình trang sức bạn cung cấp được trưng bày nguyên tỷ lệ, không cắt sản phẩm. Nhấp để phóng to, tải PNG cho mạng xã hội hoặc tải hình nguyên tỷ lệ.</p></div>
+    <span class="jewelry-new-count">01 / NEW MATERIALS</span>
+  </div>
+  <div id="newJewelryGrid" class="grid new-jewelry-grid" aria-label="3 new jewelry product photographs"></div>
+</section>
 <div class="toolbar"><div class="toolbarLeft"><span class="sectionindex">01—10</span><span class="sectionname">The campaign gallery</span></div><div class="toolbarRight">CLICK TO EXPLORE &nbsp; <span>↗</span> &nbsp;·&nbsp; EXPORT PNG / SVG FOR VECTOR</div></div>
 <section id="grid" class="grid" aria-label="10 jewellery brand-inspired social posters"></section>
 <section class="ai-showcase" aria-label="AI poster experiments"><div class="ai-panel"><div class="ai-eyebrow">Creative process / AI-assisted art direction</div><h2 class="ai-headline">Four more campaign studies.</h2><p class="ai-intro">Bốn phiên bản hình ảnh do AI hỗ trợ đã được dựng dưới dạng thiết kế chỉnh sửa trên Canva. Bộ 10 poster vector phía trên vẫn có thể xuất PNG 1080 × 1350 trực tiếp.</p><div class="ai-grid">
@@ -407,7 +432,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 </section>
 </main>
 <footer class="bottom"><div><strong>DESIGN / STUDIES</strong> — An independent multi-discipline design gallery.<br>Unofficial creative studies. Not affiliated with, endorsed or commissioned by the featured brands.</div><div>Jewelry collection: 10 AI-generated concept posters, not official product photography.<br>Automotive and Other Designs are creative study / material sections.</div></footer>
-<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Chi tiết poster" aria-hidden="true"><button class="close" id="close" aria-label="Đóng">×</button><div class="modal"><div class="modalPoster" id="modalPoster"></div><div class="details"><div class="detailIndex" id="modalNum"></div><h2 id="modalBrand"></h2><p id="modalDescription"></p><div class="specs"><span>FORMAT<br><strong>4:5 / 1080 × 1350</strong></span><span>ARTWORK<br><strong id="modalArtwork">Vector / SVG</strong></span><span>LICENSE<br><strong>Concept only</strong></span></div><button class="cta" id="downloadPng">↓ TẢI POSTER PNG</button><button class="cta secondary" id="downloadSvg">↓ TẢI VECTOR SVG</button><p class="notice">Đây là poster concept độc lập, không phải quảng cáo chính thức. Cần quyền sử dụng thương hiệu trước khi đăng như một chiến dịch thương mại.</p></div></div></div>
+<div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Chi tiết poster" aria-hidden="true"><button class="close" id="close" aria-label="Đóng">×</button><div class="modal"><div class="modalPoster" id="modalPoster"></div><div class="details"><div class="detailIndex" id="modalNum"></div><h2 id="modalBrand"></h2><p id="modalDescription"></p><div class="specs"><span>FORMAT<br><strong>4:5 / 1080 × 1350</strong></span><span>ARTWORK<br><strong id="modalArtwork">Vector / SVG</strong></span><span>LICENSE<br><strong>Concept only</strong></span></div><button class="cta" id="downloadPng">↓ TẢI POSTER PNG</button><button class="cta secondary" id="downloadSvg">↓ TẢI VECTOR SVG</button><a class="cta secondary" id="downloadJewelrySource" hidden href="#" download style="display:block;text-align:center;text-decoration:none">↓ TẢI ẢNH NGUYÊN TỶ LỆ (WEBP)</a><p class="notice">Đây là poster concept độc lập, không phải quảng cáo chính thức. Cần quyền sử dụng thương hiệu trước khi đăng như một chiến dịch thương mại.</p></div></div></div>
 
 <div class="overlay auto-overlay" id="autoOverlay" role="dialog" aria-modal="true" aria-label="Chi tiết poster automotive" aria-hidden="true">
  <button type="button" class="close" id="autoClose" aria-label="Đóng poster automotive">×</button>
@@ -458,6 +483,13 @@ var brands=[
 {id:'buccellati',name:'Buccellati',display:'BUCCELLATI',cat:'Italian craftsmanship',bg:'#E7D7BF',ink:'#5D4838',head:['CRAFTED','TO ENDURE.'],description:'Minimalism + heritage craftsmanship: vòng tay vàng khắc họa tiết thủ công tinh xảo, nền đá kem và ánh sáng tự nhiên.',tag:'MILANO · AN ART OF DETAIL'},
 {id:'mikimoto',name:'Mikimoto',display:'MIKIMOTO',cat:'Pearl serenity',bg:'#F3EEE9',ink:'#34363D',head:['A QUIET','KIND OF LUXURY.'],description:'Minimalism + Art Nouveau: chuỗi ngọc trai nuôi cấy sáng bóng trên nền ivory/blush, bố cục thanh thoát và tinh tế.',tag:'THE ORIGIN OF CULTURED PEARLS'}
 ];
+var jewelryPhotoStudies=[
+  {id:'ruby-necklace-study',name:'Ruby High Jewellery',display:'RUBY HIGH JEWELLERY',cat:'Ruby & diamond necklace',bg:'#B70A14',ink:'#FFF0E4',study:true,head:[],description:'Ảnh trang sức bạn cung cấp: dây chuyền kim cương và đá đỏ trên tượng trưng bày màu đỏ. Giữ nguyên bố cục ảnh gốc.',tag:'PRODUCT PHOTOGRAPHY STUDY'},
+  {id:'blue-solitaire-study',name:'Blue Diamond Solitaire',display:'BLUE DIAMOND SOLITAIRE',cat:'Diamond ring / turquoise',bg:'#D9F1EF',ink:'#254F53',study:true,head:[],description:'Ảnh trang sức bạn cung cấp: nhẫn kim cương solitaire trên hộp màu turquoise. Không cắt hoặc kéo giãn hình gốc.',tag:'PRODUCT PHOTOGRAPHY STUDY'},
+  {id:'emerald-necklace-study',name:'Emerald & Gold Pendant',display:'EMERALD & GOLD PENDANT',cat:'Emerald / ruby / gold',bg:'#EFDDDA',ink:'#594235',study:true,head:[],description:'Ảnh trang sức bạn cung cấp: dây chuyền vàng và mặt đá xanh với các điểm nhấn đỏ, trên nền pastel. Giữ nguyên tỷ lệ ảnh vuông.',tag:'PRODUCT PHOTOGRAPHY STUDY'}
+];
+brands=brands.concat(jewelryPhotoStudies);
+
 function attrs(o){return Object.keys(o||{}).map(function(k){return ' '+k+'="'+String(o[k]).replace(/&/g,'&amp;').replace(/"/g,'&quot;')+'"';}).join('');}
 function el(t,o,body){return '<'+t+attrs(o)+'>'+ (body||'') +'</'+t+'>';}
 function g(body,o){return el('g',o,body);}
@@ -520,20 +552,23 @@ var photoPosters={
   chopard:'assets/chopard-joyful-radiance.jpg',
   piaget:'assets/piaget-golden-radiance.jpg',
   buccellati:'assets/buccellati-crafted-to-endure.jpg',
-  mikimoto:'assets/mikimoto-quiet-luxury.jpg'
+  mikimoto:'assets/mikimoto-quiet-luxury.jpg',
+  'ruby-necklace-study':'assets/jewelry-studies/ruby-high-jewellery-necklace.webp',
+  'blue-solitaire-study':'assets/jewelry-studies/tiffany-blue-solitaire-ring.webp',
+  'emerald-necklace-study':'assets/jewelry-studies/emerald-serpenti-necklace.webp'
 };
 function posterMarkup(b){
   if(photoPosters[b.id]){
-    return '<img src="'+photoPosters[b.id]+'" alt="AI jewellery poster concept — '+b.name+'" loading="lazy" decoding="async">';
+    return '<img class="'+(b.study?'jewelry-study-image':'')+'" src="'+photoPosters[b.id]+'" alt="Jewelry artwork — '+b.name+'" loading="lazy" decoding="async">';
   }
   return design(b);
 }
-var grid=document.getElementById('grid'), overlay=document.getElementById('overlay'), focus=null;
-brands.forEach(function(b,i){var card=document.createElement('article');card.className='card';var btn=document.createElement('button');btn.className='cardbutton';btn.type='button';btn.setAttribute('aria-label','Xem poster '+b.name);var frame=document.createElement('div');frame.className='poster';frame.innerHTML=posterMarkup(b);btn.appendChild(frame);btn.addEventListener('click',function(){open(i)});card.appendChild(btn);var meta=document.createElement('div');meta.className='cardmeta';var words=document.createElement('div');var name=document.createElement('h3');name.textContent=b.name;var cat=document.createElement('p');cat.textContent=b.cat;words.appendChild(name);words.appendChild(cat);meta.appendChild(words);var idx=document.createElement('span');idx.className='num';idx.textContent=String(i+1).padStart(2,'0');meta.appendChild(idx);card.appendChild(meta);grid.appendChild(card);});
+var grid=document.getElementById('grid'), studyGrid=document.getElementById('newJewelryGrid'), overlay=document.getElementById('overlay'), focus=null;
+brands.forEach(function(b,i){var card=document.createElement('article');card.className='card';var btn=document.createElement('button');btn.className='cardbutton';btn.type='button';btn.setAttribute('aria-label','Xem poster '+b.name);var frame=document.createElement('div');frame.className='poster';if(b.study)frame.style.background=b.bg;frame.innerHTML=posterMarkup(b);btn.appendChild(frame);btn.addEventListener('click',function(){open(i)});card.appendChild(btn);var meta=document.createElement('div');meta.className='cardmeta';var words=document.createElement('div');var name=document.createElement('h3');name.textContent=b.name;var cat=document.createElement('p');cat.textContent=b.cat;words.appendChild(name);words.appendChild(cat);meta.appendChild(words);var idx=document.createElement('span');idx.className='num';idx.textContent=String(i+1).padStart(2,'0');meta.appendChild(idx);card.appendChild(meta);(b.study?studyGrid:grid).appendChild(card);});
 var toastTimer;function toast(s){var t=document.getElementById('toast');t.textContent=s;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(function(){t.classList.remove('show')},2600);}
-function open(i){focus=i;var b=brands[i];document.getElementById('modalPoster').innerHTML=posterMarkup(b);document.getElementById('modalArtwork').textContent=photoPosters[b.id]?'AI photography / JPG':'Vector / SVG';document.getElementById('downloadSvg').hidden=!!photoPosters[b.id];document.getElementById('modalNum').textContent='CONCEPT '+String(i+1).padStart(2,'0')+' / 10   —   '+b.cat.toUpperCase();document.getElementById('modalBrand').textContent=b.name;document.getElementById('modalDescription').textContent=b.description;overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('close').focus();}
+function open(i){focus=i;var b=brands[i];document.getElementById('modalPoster').innerHTML=posterMarkup(b);document.getElementById('modalArtwork').textContent=b.study?'Photo / WebP':photoPosters[b.id]?'AI photography / JPG':'Vector / SVG';document.getElementById('downloadSvg').hidden=!!photoPosters[b.id];var originalLink=document.getElementById('downloadJewelrySource');originalLink.hidden=!b.study;if(b.study){originalLink.href=photoPosters[b.id];originalLink.download=b.id+'-original.webp';}document.getElementById('modalNum').textContent='CONCEPT '+String(i+1).padStart(2,'0')+' / '+brands.length+'   —   '+b.cat.toUpperCase();document.getElementById('modalBrand').textContent=b.name;document.getElementById('modalDescription').textContent=b.description;overlay.classList.add('active');overlay.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';document.getElementById('close').focus();}
 function close(){overlay.classList.remove('active');overlay.setAttribute('aria-hidden','true');document.body.style.overflow='';focus=null;}
-document.getElementById('close').addEventListener('click',close);overlay.addEventListener('click',function(e){if(e.target===overlay)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&focus!==null)close();if(focus!==null&&e.key==='ArrowRight')open((focus+1)%brands.length);if(focus!==null&&e.key==='ArrowLeft')open((focus+9)%brands.length);});
+document.getElementById('close').addEventListener('click',close);overlay.addEventListener('click',function(e){if(e.target===overlay)close();});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&focus!==null)close();if(focus!==null&&e.key==='ArrowRight')open((focus+1)%brands.length);if(focus!==null&&e.key==='ArrowLeft')open((focus+brands.length-1)%brands.length);});
 function save(blob,filename){var u=URL.createObjectURL(blob),link=document.createElement('a');link.href=u;link.download=filename;document.body.appendChild(link);link.click();link.remove();setTimeout(function(){URL.revokeObjectURL(u)},2000);}
 document.getElementById('downloadSvg').addEventListener('click',function(){if(focus===null)return;var b=brands[focus];if(photoPosters[b.id])return;var svg=design(b);save(new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),b.id+'-social-poster-concept.svg');toast('Đã tải SVG — có thể chỉnh sửa bằng Figma / Illustrator');});
 document.getElementById('downloadPng').addEventListener('click',function(){if(focus===null)return;var b=brands[focus];
@@ -542,7 +577,7 @@ if(photoPosters[b.id]){
   photo.onload=function(){
     try{
       var canvas=document.createElement('canvas');canvas.width=W;canvas.height=H;
-      canvas.getContext('2d').drawImage(photo,0,0,W,H);
+      var ctx=canvas.getContext('2d');if(b.study){ctx.fillStyle=b.bg;ctx.fillRect(0,0,W,H);var scale=Math.min(W/photo.width,H/photo.height),dw=Math.round(photo.width*scale),dh=Math.round(photo.height*scale);ctx.drawImage(photo,(W-dw)/2,(H-dh)/2,dw,dh);}else{ctx.drawImage(photo,0,0,W,H);}
       canvas.toBlob(function(out){
         if(out){save(out,b.id+'-facebook-1080x1350.png');toast('Đã tải poster AI PNG 1080 × 1350');}
         else toast('Không thể tải PNG — hãy thử lại.');
@@ -572,7 +607,7 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
      tab.tabIndex=on?0:-1;
    });
    panels.forEach(function(panel,i){panel.hidden=keys[i]!==chosen});
-   if(counter)counter.textContent=chosen==='jewelry'?'10 JEWELRY POSTERS':chosen==='automotive'?'10 AUTOMOTIVE POSTERS':chosen==='fnb'?'4 F&B POSTERS':chosen==='other-designs'?'OTHER DESIGN MATERIALS':chosen==='games-online'?'15 GAME POSTERS':'SAAS BRAND KIT / FIGMA';
+   if(counter)counter.textContent=chosen==='jewelry'?'13 JEWELRY VISUALS':chosen==='automotive'?'10 AUTOMOTIVE POSTERS':chosen==='fnb'?'4 F&B POSTERS':chosen==='other-designs'?'OTHER DESIGN MATERIALS':chosen==='games-online'?'15 GAME POSTERS':'SAAS BRAND KIT / FIGMA';
    document.title=tabNames[chosen]+' — Design Studies';
    if(updateHash&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#'+chosen);
    if(scrollTop)window.scrollTo({top:0,behavior:'auto'});

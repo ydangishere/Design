@@ -4,11 +4,25 @@
 
 An independent luxury-jewellery social poster concept gallery with **10 AI-generated image posters**, each designed for **1080 × 1350 px (4:5)** Facebook/Instagram feeds. The gallery has a warm ivory/cream background and each jewellery house uses a distinct creative direction.
 
+## Featured Jewelry Photography — 3 Newly Added Images
+
+The Jewelry tab now presents three **user-provided product photographs** in a featured row **above** the original 10 brand-inspired campaign posters. These are not AI-remakes or official brand campaign claims.
+
+| Featured photograph | Repository asset | Source resolution |
+| --- | --- | --- |
+| Ruby High Jewellery — diamond-and-ruby necklace on sculptural red display | `assets/jewelry-studies/ruby-high-jewellery-necklace.webp` | 1600 × 1999 |
+| Blue Diamond Solitaire — diamond ring and turquoise jewellery box | `assets/jewelry-studies/tiffany-blue-solitaire-ring.webp` | 1280 × 1280 |
+| Emerald & Gold Pendant — green gemstone pendant on a warm pastel background | `assets/jewelry-studies/emerald-serpenti-necklace.webp` | 1536 × 1536 |
+
+These images were optimized to WebP for gallery loading while preserving their original aspect ratios. In the modal, **TẢI ẢNH NGUYÊN TỶ LỆ (WEBP)** downloads a native-aspect asset. **TẢI POSTER PNG** exports a 1080×1350 Facebook-friendly canvas; square source photographs are fitted without cropping against complementary solid-color backgrounds.
+
+The old 10 Jewelry concepts, Automotive, F&B, Games Online, Other Designs, and Brand Guideline tabs are unchanged.
+
 ## Website navigation — Four tabs
 
 The mini-site has four accessible, mobile-responsive sections selected by the top navigation:
 
-1. **Jewelry** (default) — original gallery of 10 AI jewellery campaign concepts, with large preview and PNG export (1080 × 1350). Deep-link: `#jewelry`.
+1. **Jewelry** (default) — 13 jewelry gallery visuals: 3 user-supplied product photographs plus 10 AI jewellery campaign concepts, with large preview and PNG export (1080 × 1350). Deep-link: `#jewelry`.
 2. **Automotive** — complete set of **10 individually downloadable retro/vintage automobile and motorcycle posters** in five visual approaches, with a filter by style, fullscreen preview, next/previous navigation and 1080 × 1350 PNG export. Deep-link: `#automotive`.
 3. **Other Designs** — **48 original Flickr design files** selected from the owner's 323 public photos, with a cream gallery matching Jewelry, category filters, 12-at-a-time browsing, a keyboard-accessible image viewer, 2× zoom and per-image downloads. The files are unchanged JPGs, not recreated by AI. Deep-link: `#other-designs`. The previous six visual references and portfolio/Figma resource links remain under “Visual references & more resources”.
 
