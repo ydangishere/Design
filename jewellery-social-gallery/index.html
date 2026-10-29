@@ -280,6 +280,20 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 @media(max-width:860px){.new-jewelry-grid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.jewelry-new-header{align-items:flex-start}.jewelry-new-count{display:none}}
 @media(max-width:580px){.new-jewelry-grid{grid-template-columns:1fr!important}.jewelry-new-collection{padding-bottom:44px}}
 
+
+/* WWE Champions project: original Figma Home preview */
+.wwe-project-preview{display:flex;flex-direction:column;align-items:center;gap:22px;padding:30px 24px;background:#181b2d;color:#f8f2e9;overflow:hidden;min-width:0}
+.wwe-preview-label{font-size:10px;letter-spacing:.15em;line-height:1.7;text-align:center}
+.wwe-preview-window{width:min(100%,300px);height:440px;overflow:hidden;border:1px solid #ffffff35;box-shadow:0 16px 40px #0005}
+.wwe-preview-window img{display:block;width:100%;height:auto;transition:transform .25s}
+.wwe-project-preview:hover .wwe-preview-window img{transform:scale(1.025);transform-origin:top}
+.wwe-project-preview:focus-visible{outline:3px solid #a37a4e;outline-offset:-5px}
+.wwe-project-actions{display:flex;flex-wrap:wrap;gap:12px;max-width:100%}
+.wwe-project-actions .brand-kit-cta{min-width:0;max-width:100%;letter-spacing:.06em}
+.wwe-home-cta{background:transparent;color:#2e332c;border:1px solid #2e332c}
+.wwe-home-cta:hover{color:#fff8eb}
+@media(max-width:700px){.wwe-project-preview{padding:24px 20px}.wwe-preview-window{height:390px}.wwe-project-actions{width:100%}.wwe-project-actions .brand-kit-cta{width:100%}}
+
 </style>
 </head>
 <body>
@@ -403,7 +417,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
 <section id="panel-brand-guideline" class="collection-panel" role="tabpanel" aria-labelledby="tab-brand-guideline" tabindex="0" hidden>
  <div class="collection-intro">
   <div><div class="eyebrow"><i></i>Brand Direction / Design Systems / SaaS</div><h1 class="collection-title">Identity,<br><em>built to scale.</em></h1><p class="collection-lead">Một không gian riêng cho Brand Guideline, Design System và hệ thống sản phẩm SaaS liên quan — nơi nhận diện thương hiệu và trải nghiệm sản phẩm được phát triển đồng nhất.</p></div>
-  <aside class="collection-aside"><strong>One language. Every touchpoint.</strong>Brand identity, component systems and product design.<br><br>01 / Featured Figma project.</aside>
+  <aside class="collection-aside"><strong>One language. Every touchpoint.</strong>Brand identity, component systems and product design.<br><br>02 / Featured Figma projects.</aside>
  </div>
  <div class="brand-kit-wrap">
   <div class="collection-kicker">Featured design material / 001</div>
@@ -428,6 +442,28 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
     <div><span>02 / DESIGN SYSTEM</span><p>Tokens, component patterns and interface foundations.</p></div>
     <div><span>03 / CORE PRODUCTS</span><p>Connected design language across SaaS products.</p></div>
   </div>
+ </div>
+
+ <div class="brand-kit-wrap" id="wwe-champions">
+  <div class="collection-kicker">Featured design material / 002</div>
+  <article class="brand-kit-feature" aria-labelledby="wwe-project-title">
+   <a class="wwe-project-preview" href="https://www.figma.com/design/HUKAnGbbvfDKPQamuzZHza/WWE-V2--edit---y-console---Copy---Copy-?node-id=24970-25291&amp;t=F5T2JDAHlhUXOTZJ-4" target="_blank" rel="noopener noreferrer" aria-label="Mở thiết kế trang Home WWE Champions trên Figma">
+    <span class="wwe-preview-label">WWE CHAMPIONS / HOME</span>
+    <div class="wwe-preview-window"><img src="assets/brand-kits/wwe-champions-home.png" alt="Thiết kế Home WWE Champions với banner đô vật, Special Offer, Flash Market và News" width="300" height="1600" loading="lazy" decoding="async"></div>
+    <span class="wwe-preview-label">XEM TRANG HOME TRÊN FIGMA ↗</span>
+   </a>
+   <div class="brand-kit-copy">
+    <div class="brand-kit-index">WWE CHAMPIONS / FIGMA</div>
+    <h2 id="wwe-project-title">WWE Champions<br>Brand Guideline &amp; Home</h2>
+    <p>Bộ Brand Guideline và thiết kế trang Home của WWE Champions. Xem hệ thống màu sắc, typography, button và các thành phần giao diện, cùng cách ứng dụng trên trang chủ.</p>
+    <div class="brand-kit-tags"><span>Brand Guideline</span><span>UI Components</span><span>Home Page</span></div>
+    <div class="wwe-project-actions">
+     <a class="brand-kit-cta" href="https://www.figma.com/design/HUKAnGbbvfDKPQamuzZHza/WWE-V2--edit---y-console---Copy---Copy-?node-id=25489-12808&amp;t=F5T2JDAHlhUXOTZJ-4" target="_blank" rel="noopener noreferrer" aria-label="View WWE Champions Brand Guideline in Figma">Brand Guideline <span aria-hidden="true">↗</span></a>
+     <a class="brand-kit-cta wwe-home-cta" href="https://www.figma.com/design/HUKAnGbbvfDKPQamuzZHza/WWE-V2--edit---y-console---Copy---Copy-?node-id=24970-25291&amp;t=F5T2JDAHlhUXOTZJ-4" target="_blank" rel="noopener noreferrer" aria-label="View WWE Champions Home in Figma">Home <span aria-hidden="true">↗</span></a>
+    </div>
+    <p class="brand-kit-disclaimer">Ảnh xem trước được xuất trực tiếp từ thiết kế Home trong file Figma.</p>
+   </div>
+  </article>
  </div>
 </section>
 </main>
