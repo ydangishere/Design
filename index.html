@@ -64,9 +64,40 @@
     .career-table td strong {
       display: inline-block;
     }
+    [hidden] { display: none !important; }
+    .design-tabs { display: flex; gap: 8px; padding: 8px; margin-bottom: 32px; border: 1px solid #dcd6cc; border-radius: 12px; background: #faf7f1; }
+    .design-tab { border: 0; border-radius: 7px; background: transparent; color: #5d5144; padding: 12px 24px; font: 600 14px 'Open Sans', sans-serif; cursor: pointer; }
+    .design-tab[aria-selected="true"] { background: #25201a; color: #fff8ec; }
+    .design-tab:focus-visible, .fnb-link:focus-visible, .fnb-close:focus-visible { outline: 3px solid #a95722; outline-offset: 3px; }
+    .fnb-heading { padding: 34px; margin-bottom: 28px; background: #211b16; color: #fff7e8; border-radius: 12px; }
+    .fnb-heading small { color: #ecb575; letter-spacing: .14em; font-weight: 600; }
+    .fnb-heading h1 { font: 400 clamp(36px, 7vw, 64px)/1.1 Georgia, serif; letter-spacing: -.04em; margin: 18px 0; }
+    .fnb-heading p { color: #e3d1b9; max-width: 650px; margin-bottom: 0; }
+    .fnb-gallery { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 30px 22px; }
+    .fnb-work { margin: 0; min-width: 0; }
+    .fnb-view { display: block; width: 100%; padding: 0; border: 0; background: #eee5d6; cursor: zoom-in; border-radius: 8px; overflow: hidden; }
+    .fnb-view img { display: block; width: 100%; height: auto; }
+    .fnb-view:focus-visible { outline: 3px solid #a95722; outline-offset: 4px; }
+    .fnb-work figcaption { padding: 14px 0 0; }
+    .fnb-work h3 { font-size: 18px; margin: 0 0 3px; }
+    .fnb-work p { margin: 0 0 10px; color: #77634f; font-size: 13px; }
+    .fnb-link { color: #73451f; font-size: 13px; font-weight: 600; text-underline-offset: 4px; }
+    .fnb-dialog { position: fixed; max-width: 95vw; max-height: 94vh; padding: 0; border: 0; border-radius: 10px; background: #201b16; color: #fff8ec; }
+    .fnb-dialog::backdrop { background: #100c09e8; }
+    .fnb-dialog-image { display: block; width: auto; max-width: 92vw; max-height: 76vh; object-fit: contain; margin: auto; }
+    .fnb-dialog-bar { display: flex; justify-content: space-between; gap: 20px; align-items: center; padding: 16px 22px; }
+    .fnb-dialog-bar h3 { font-size: 15px; margin: 0; }
+    .fnb-dialog-bar a { color: #f4c48a; white-space: nowrap; }
+    .fnb-close { display: block; margin: 10px 12px 10px auto; padding: 8px 14px; border: 1px solid #796c5e; border-radius: 5px; background: #201b16; color: #fff8ec; cursor: pointer; }
+    @media (max-width: 560px) { .fnb-gallery { grid-template-columns: 1fr; } .fnb-heading { padding: 26px; } .fnb-dialog-bar { flex-wrap: wrap; } }
   </style>
 </head>
 <body>
+  <nav class="design-tabs" role="tablist" aria-label="Design collections">
+    <button class="design-tab" type="button" role="tab" id="tab-cv" aria-controls="panel-cv" aria-selected="true" tabindex="0" data-tab="cv">CV</button>
+    <button class="design-tab" type="button" role="tab" id="tab-fnb" aria-controls="panel-fnb" aria-selected="false" tabindex="-1" data-tab="fnb">F&amp;B</button>
+  </nav>
+  <div id="panel-cv" role="tabpanel" aria-labelledby="tab-cv">
   <h1>Candidate Report</h1>
 
   <div class="section personal-details">
@@ -250,5 +281,85 @@
       <li>Data Leadership & Team Management - <a href="https://www.figma.com/design/VzqXj5PCmcyqsfUz0wQZ6V/CV--Copy-?node-id=2039-152&t=w7Mk7vdtfkso5bFN-4" target="_blank">View link</a></li>
     </ul>
   </div>
+  </div>
+  <section id="panel-fnb" role="tabpanel" aria-labelledby="tab-fnb" hidden>
+    <header class="fnb-heading">
+      <small>FOOD &amp; BEVERAGE / COFFEE CAMPAIGN</small>
+      <h1>Four flavours.<br>One bold voice.</h1>
+      <p>Bốn poster cà phê lấy cảm hứng từ phong cách Polish Poster School: hình ảnh siêu thực, nét vẽ tay và chất liệu in thô. Nhấn vào ảnh để xem lớn và tải từng poster.</p>
+    </header>
+    <div class="fnb-gallery">
+      <figure class="fnb-work">
+        <button type="button" class="fnb-view" aria-label="Xem lớn Đánh thức giác quan"><img src="jewellery-social-gallery/assets/fnb/01-danh-thuc-giac-quan.webp" alt="Đánh thức giác quan — tách cà phê đen hóa thành con mắt với mặt trời đỏ" loading="lazy" decoding="async"></button>
+        <figcaption><h3>Đánh thức giác quan</h3><p>01 / Cà phê đen</p><a class="fnb-link" href="jewellery-social-gallery/assets/fnb/01-danh-thuc-giac-quan.webp" download>Tải poster ↓</a></figcaption>
+      </figure>
+      <figure class="fnb-work">
+        <button type="button" class="fnb-view" aria-label="Xem lớn Gu đậm chất riêng"><img src="jewellery-social-gallery/assets/fnb/02-gu-dam-chat-rieng.webp" alt="Gu đậm chất riêng — hơi latte tạo thành khuôn mặt màu cam hồng" loading="lazy" decoding="async"></button>
+        <figcaption><h3>Gu đậm chất riêng</h3><p>02 / Latte</p><a class="fnb-link" href="jewellery-social-gallery/assets/fnb/02-gu-dam-chat-rieng.webp" download>Tải poster ↓</a></figcaption>
+      </figure>
+      <figure class="fnb-work">
+        <button type="button" class="fnb-view" aria-label="Xem lớn Mát lạnh bừng hứng"><img src="jewellery-social-gallery/assets/fnb/03-mat-lanh-bung-hung.webp" alt="Mát lạnh bừng hứng — ly cold brew với khu vườn tím trên nền xanh" loading="lazy" decoding="async"></button>
+        <figcaption><h3>Mát lạnh bừng hứng</h3><p>03 / Cold brew</p><a class="fnb-link" href="jewellery-social-gallery/assets/fnb/03-mat-lanh-bung-hung.webp" download>Tải poster ↓</a></figcaption>
+      </figure>
+      <figure class="fnb-work">
+        <button type="button" class="fnb-view" aria-label="Xem lớn Chậm một nhịp"><img src="jewellery-social-gallery/assets/fnb/04-cham-mot-nhip.webp" alt="Chậm một nhịp — ly cà phê sữa đá hóa thành đồng hồ trên nền xanh cobalt" loading="lazy" decoding="async"></button>
+        <figcaption><h3>Chậm một nhịp</h3><p>04 / Cà phê sữa đá</p><a class="fnb-link" href="jewellery-social-gallery/assets/fnb/04-cham-mot-nhip.webp" download>Tải poster ↓</a></figcaption>
+      </figure>
+    </div>
+  </section>
+  <dialog class="fnb-dialog" id="fnb-dialog" aria-labelledby="fnb-dialog-title">
+    <button type="button" class="fnb-close">Đóng ×</button>
+    <img class="fnb-dialog-image" id="fnb-dialog-image" alt="">
+    <div class="fnb-dialog-bar"><h3 id="fnb-dialog-title"></h3><a id="fnb-dialog-download" download>Tải poster ↓</a></div>
+  </dialog>
+  <script>
+  (function () {
+    var tabs = Array.from(document.querySelectorAll('[data-tab]'));
+    var originalTitle = document.title;
+    var dialog = document.getElementById('fnb-dialog');
+    function selectTab(key, updateHash) {
+      if (dialog.open) dialog.close();
+      tabs.forEach(function (tab) {
+        var active = tab.dataset.tab === key;
+        tab.setAttribute('aria-selected', String(active));
+        tab.tabIndex = active ? 0 : -1;
+        document.getElementById(tab.getAttribute('aria-controls')).hidden = !active;
+      });
+      document.title = key === 'fnb' ? 'F&B — Coffee Poster Collection' : originalTitle;
+      if (updateHash) history.replaceState(null, '', '#' + key);
+    }
+    function syncHash() { selectTab(location.hash === '#fnb' ? 'fnb' : 'cv', false); }
+    tabs.forEach(function (tab, index) {
+      tab.addEventListener('click', function () { selectTab(tab.dataset.tab, true); });
+      tab.addEventListener('keydown', function (event) {
+        var next;
+        if (event.key === 'ArrowRight' || event.key === 'ArrowLeft') next = (index + 1) % tabs.length;
+        if (event.key === 'Home') next = 0;
+        if (event.key === 'End') next = tabs.length - 1;
+        if (next !== undefined) { event.preventDefault(); tabs[next].focus(); selectTab(tabs[next].dataset.tab, true); }
+      });
+    });
+    document.querySelectorAll('.fnb-view').forEach(function (button) {
+      button.addEventListener('click', function () {
+        var figure = button.closest('figure');
+        var source = button.querySelector('img');
+        var image = document.getElementById('fnb-dialog-image');
+        image.src = source.src;
+        image.alt = source.alt;
+        document.getElementById('fnb-dialog-title').textContent = figure.querySelector('h3').textContent;
+        document.getElementById('fnb-dialog-download').href = source.src;
+        dialog.showModal();
+      });
+    });
+    dialog.querySelector('.fnb-close').addEventListener('click', function () { dialog.close(); });
+    dialog.addEventListener('click', function (event) {
+      if (event.target !== dialog) return;
+      var box = dialog.getBoundingClientRect();
+      if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close();
+    });
+    window.addEventListener('hashchange', syncHash);
+    syncHash();
+  })();
+  </script>
 </body>
 </html>
