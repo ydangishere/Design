@@ -4,10 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#FAF6EF">
-<title>Design Studies — Jewelry / Automotive / Other Designs</title>
-<meta name="description" content="Jewelry, automotive, graphic design and brand systems. Explore original Flickr design files, view artworks up close and download individual images.">
+<title>Design Studies — Jewelry / Automotive / Games Online</title>
+<meta name="description" content="Jewelry, automotive, online game posters, graphic design and brand systems. Explore original Flickr design files, view artworks up close and download individual images.">
 <link rel="stylesheet" href="other-designs.css">
 <script src="other-designs.js" defer></script>
+<link rel="stylesheet" href="games-online.css">
+<script src="games-online.js" defer></script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600&display=swap');
 :root{color-scheme:dark;--bg:#111410;--paper:#e9e7df;--muted:#a0a49c;--line:#353b34;--lime:#d4ed9c}
@@ -271,6 +273,7 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
   <button type="button" class="collection-tab" role="tab" id="tab-fnb" data-collection="fnb" aria-controls="panel-fnb" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">03 /</span><span class="tab-label">F&amp;B</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
   <button type="button" class="collection-tab" role="tab" id="tab-other-designs" data-collection="other-designs" aria-controls="panel-other-designs" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">04 /</span><span class="tab-label">Other Designs</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
   <button type="button" class="collection-tab" role="tab" id="tab-brand-guideline" data-collection="brand-guideline" aria-controls="panel-brand-guideline" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">05 /</span><span class="tab-label">Brand Guideline</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
+  <button type="button" class="collection-tab" role="tab" id="tab-games-online" data-collection="games-online" aria-controls="panel-games-online" aria-selected="false" tabindex="-1"><span class="tab-left"><span class="tab-num">06 /</span><span class="tab-label">Games Online</span></span><span class="tab-arrow" aria-hidden="true">↗</span></button>
  </div>
 </nav>
 <main>
@@ -320,6 +323,14 @@ a.work-tile:focus-visible{outline:3px solid #ac885c;outline-offset:3px}
  </div>
  <section id="fnb-grid" class="grid auto-poster-grid fnb-grid" aria-label="4 F&B coffee campaign posters"></section>
  <p class="fnb-note">04 independent F&amp;B advertising studies · Portrait 4:5 · Click để xem lớn và tải từng poster PNG.</p>
+</section>
+<section id="panel-games-online" class="collection-panel" role="tabpanel" aria-labelledby="tab-games-online" tabindex="0" hidden>
+ <div class="collection-intro">
+  <div><div class="eyebrow"><i></i>06 / Games Online / Poster Collection</div><h1 class="collection-title">Worlds of<br><em>imagination.</em></h1><p class="collection-lead">15 poster game với những thế giới, nhân vật và phong cách minh họa đầy cá tính. Chọn một poster để xem lớn hoặc tải ảnh gốc.</p></div>
+  <aside class="collection-aside"><strong>Every game, a new world.</strong>Character art · Fantasy · Adventure<br><br>15 posters / PNG / Square format</aside>
+ </div>
+ <div class="toolbar"><div class="toolbarLeft"><span class="sectionindex">01—15</span><span class="sectionname">Games Online Gallery</span></div><div class="toolbarRight">XEM LỚN ↗ &nbsp;·&nbsp; TẢI ẢNH GỐC PNG</div></div>
+ <div id="games-grid" class="grid games-grid" aria-label="15 online game posters"></div>
 </section>
 <section id="panel-other-designs" class="collection-panel" role="tabpanel" aria-labelledby="tab-other-designs" tabindex="0" hidden>
 <div class="collection-intro">
@@ -548,11 +559,11 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
 <script>
 (function(){
  'use strict';
- var keys=['jewelry','automotive','fnb','other-designs','brand-guideline'];
+ var keys=['jewelry','automotive','fnb','other-designs','brand-guideline','games-online'];
  var tabs=Array.prototype.slice.call(document.querySelectorAll('#collection-tabs [role="tab"]'));
  var panels=keys.map(function(k){return document.getElementById('panel-'+k)});
  var counter=document.querySelector('.countpill');
- var tabNames={jewelry:'Jewelry',automotive:'Automotive',fnb:'F&B','other-designs':'Other Designs','brand-guideline':'Brand Guideline'};
+ var tabNames={jewelry:'Jewelry',automotive:'Automotive',fnb:'F&B','other-designs':'Other Designs','brand-guideline':'Brand Guideline','games-online':'Games Online'};
  function selectTab(key,updateHash,scrollTop){
    var chosen=keys.indexOf(key)>=0?key:'jewelry';
    tabs.forEach(function(tab){
@@ -561,7 +572,7 @@ var svg=design(b),blob=new Blob([svg],{type:'image/svg+xml;charset=utf-8'}),u=UR
      tab.tabIndex=on?0:-1;
    });
    panels.forEach(function(panel,i){panel.hidden=keys[i]!==chosen});
-   if(counter)counter.textContent=chosen==='jewelry'?'10 JEWELRY POSTERS':chosen==='automotive'?'10 AUTOMOTIVE POSTERS':chosen==='fnb'?'4 F&B POSTERS':chosen==='other-designs'?'OTHER DESIGN MATERIALS':'SAAS BRAND KIT / FIGMA';
+   if(counter)counter.textContent=chosen==='jewelry'?'10 JEWELRY POSTERS':chosen==='automotive'?'10 AUTOMOTIVE POSTERS':chosen==='fnb'?'4 F&B POSTERS':chosen==='other-designs'?'OTHER DESIGN MATERIALS':chosen==='games-online'?'15 GAME POSTERS':'SAAS BRAND KIT / FIGMA';
    document.title=tabNames[chosen]+' — Design Studies';
    if(updateHash&&window.history&&window.history.replaceState)window.history.replaceState(null,'','#'+chosen);
    if(scrollTop)window.scrollTo({top:0,behavior:'auto'});

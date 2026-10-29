@@ -1,0 +1,10 @@
+/* Match the existing cream gallery; preserve the square poster artwork. */
+#collection-tabs .tabs-inner{grid-template-columns:repeat(6,minmax(0,1fr))}
+.games-grid .poster{aspect-ratio:1;background:#e9dfd2}
+.games-grid .poster img{object-fit:contain}
+.games-grid .cardmeta h3{font-size:20px;line-height:1.3}
+.games-download{display:inline-flex;align-items:center;min-height:44px;color:#68533d;text-decoration:underline;text-underline-offset:4px;font-size:12px}
+.games-lightbox .other-image-viewport img{max-height:100%;object-fit:contain}
+.games-lightbox .other-image-viewport.is-zoomed img{max-height:none}
+@media(max-width:1450px){#collection-tabs .tabs-inner{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){#collection-tabs .tabs-inner{grid-template-columns:repeat(2,minmax(0,1fr))}}
