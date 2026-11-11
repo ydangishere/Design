@@ -320,6 +320,60 @@
   #philosophy .principle-item:hover{
     background-color:rgba(255,255,255,.06);
   }
+  /* Call Me tooltip: shows the phone number on hover, focus, or click */
+  .call-tip-wrap{ position:relative; display:inline-flex; }
+  .call-tip{
+    position:absolute;
+    right:0;
+    bottom:calc(100% + 12px);
+    z-index:20;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:12px 14px 12px 18px;
+    background:#F2F2F2;
+    color:#0a0a0a;
+    white-space:nowrap;
+    box-shadow:0 12px 32px rgba(0,0,0,.45);
+    opacity:0;
+    visibility:hidden;
+    transform:translateY(6px);
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear .2s;
+  }
+  .call-tip::after{
+    content:'';
+    position:absolute;
+    right:28px;
+    top:100%;
+    border:7px solid transparent;
+    border-top-color:#F2F2F2;
+  }
+  .call-tip-wrap:hover .call-tip,
+  .call-tip-wrap:focus-within .call-tip,
+  .call-tip-wrap.is-open .call-tip{
+    opacity:1;
+    visibility:visible;
+    transform:none;
+    transition:opacity .2s ease, transform .2s ease, visibility 0s linear 0s;
+  }
+  .call-tip-number{
+    font-family:'JetBrains Mono',monospace;
+    font-size:16px;
+    font-weight:600;
+    letter-spacing:.04em;
+    color:#0a0a0a;
+    text-decoration:none;
+  }
+  .call-tip-copy{
+    font:600 12px/1 'Hanken Grotesk',system-ui,sans-serif;
+    padding:7px 10px;
+    border:1px solid #0a0a0a;
+    background:transparent;
+    color:#0a0a0a;
+    cursor:pointer;
+  }
+  .call-tip-copy:hover,
+  .call-tip-copy:focus-visible{ background:#0a0a0a; color:#fff; }
   @media (min-width:1000px){
     .hero-nav{
       gap:clamp(28px,3.06vw,52px) !important;
@@ -1088,7 +1142,13 @@
         </div>
         <div style="display:flex; gap:12px;">
           <a href="mailto:y.dangvan@gmail.com" class="circle-reveal-btn circle-reveal-btn--dark"><span>Email Me</span></a>
-          <a href="tel:+84908133919" class="circle-reveal-btn circle-reveal-btn--dark"><span>Call Me</span></a>
+          <span class="call-tip-wrap">
+            <a href="tel:+84908133919" class="circle-reveal-btn circle-reveal-btn--dark call-tip-trigger" aria-describedby="call-tip"><span>Call Me</span></a>
+            <span class="call-tip" id="call-tip" role="tooltip">
+              <a class="call-tip-number" href="tel:+84908133919">0908 133 919</a>
+              <button type="button" class="call-tip-copy">Copy</button>
+            </span>
+          </span>
         </div>
       </div>
 
@@ -2658,6 +2718,47 @@ setTimeout(initResilientHeroGlbTitle, 300);
 setTimeout(initResilientHeroGlbTitle, 1200);
 new MutationObserver(() => setTimeout(initResilientHeroGlbTitle, 60))
   .observe(document.body, { childList: true, subtree: true });
+</script>
+<script>
+/* Call Me tooltip. Delegated on document so it survives runtime re-renders.
+   Mouse/trackpad: click shows the number instead of opening the dialer.
+   Touch: the tel: link still dials directly. */
+(function () {
+  var PHONE = '0908133919';
+  var canHover = window.matchMedia && window.matchMedia('(hover: hover)').matches;
+  function closeAll(except) {
+    document.querySelectorAll('.call-tip-wrap.is-open').forEach(function (w) {
+      if (w !== except) w.classList.remove('is-open');
+    });
+  }
+  document.addEventListener('click', function (e) {
+    var trigger = e.target.closest && e.target.closest('.call-tip-trigger');
+    if (trigger) {
+      var wrap = trigger.closest('.call-tip-wrap');
+      if (canHover) e.preventDefault();
+      closeAll(wrap);
+      wrap.classList.add('is-open');
+      return;
+    }
+    var copy = e.target.closest && e.target.closest('.call-tip-copy');
+    if (copy) {
+      var done = function () {
+        copy.textContent = 'Copied';
+        setTimeout(function () { copy.textContent = 'Copy'; }, 1500);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(PHONE).then(done, done);
+      } else {
+        done();
+      }
+      return;
+    }
+    if (!(e.target.closest && e.target.closest('.call-tip-wrap'))) closeAll(null);
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') closeAll(null);
+  });
+})();
 </script>
 </body>
 </html>
