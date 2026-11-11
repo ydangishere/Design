@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Services - Y Dang</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../shared/site-nav.css">
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; min-height: 100%; background: #f2f2f2; color: #101010; }
+  body { font-family: "Hanken Grotesk", system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: inherit; text-decoration: none; }
+  .page { min-height: 100vh; display: flex; flex-direction: column; }
+  .brand { display: flex; flex-direction: column; gap: 3px; }
+  .brand strong { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; }
+  .brand span, .mono { font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: #666; }
+  .site-nav a:hover, .site-nav a.active { color: #0a0a0a; border-bottom-color:#0a0a0a; }
+  main { width: 100%; max-width: 1480px; margin: 0 auto; padding: clamp(54px, 8vw, 126px) clamp(22px, 5vw, 72px) clamp(60px, 8vw, 130px); }
+  .hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(300px, .9fr); gap: clamp(36px, 7vw, 110px); align-items: end; }
+  h1 { margin: 0; font-size: clamp(54px, 10vw, 154px); line-height: .88; letter-spacing: 0; font-weight: 700; }
+  .intro { margin: 0; font-size: clamp(18px, 1.6vw, 24px); line-height: 1.45; color: #3f3f3f; max-width: 560px; }
+  .grid { display: grid; grid-template-columns: repeat(2, minmax(260px, 1fr)); margin-top: clamp(48px, 7vw, 96px); border-top: 1px solid rgba(10,10,10,.14); border-left: 1px solid rgba(10,10,10,.14); }
+  .service { min-height: 285px; padding: clamp(28px, 3vw, 48px); border-right: 1px solid rgba(10,10,10,.14); border-bottom: 1px solid rgba(10,10,10,.14); background: #f2f2f2; transition: background-color .2s ease; }
+  .service:hover { background: #e7e7e7; }
+  .service .index { font-family: "JetBrains Mono", monospace; font-size: 13px; color: var(--accent); margin-bottom: 18px; }
+  .service h2 { margin: 0 0 16px; font-size: clamp(28px, 3.3vw, 48px); line-height: 1; letter-spacing: 0; }
+  .service p { margin: 0 0 24px; color: #555; font-size: 16px; line-height: 1.55; max-width: 430px; }
+  .service ul { margin: 0; padding-left: 18px; color: #333; line-height: 1.8; font-size: 15px; }
+  .footer { margin-top: clamp(40px, 6vw, 86px); display: flex; justify-content: space-between; gap: 24px; align-items: center; border-top: 1px solid rgba(10,10,10,.14); padding-top: 28px; }
+  .cta { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 22px; background: #0a0a0a; color: #f2f2f2; font-weight: 600; border: 1px solid #0a0a0a; }
+  @media (max-width: 760px) {
+    .hero, .grid { grid-template-columns: 1fr; }
+    .footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="site-nav-shell">
+    <nav class="hero-nav site-nav" data-site-nav aria-label="Primary"></nav>
+  </header>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="mono">04 / Services</div>
+        <h1>Services</h1>
+      </div>
+      <p class="intro">From idea to execution, I help teams shape clear, useful, and polished digital experiences with strong interaction, visual direction, and front-end craft.</p>
+    </section>
+
+    <section class="grid" aria-label="Service list">
+      <article class="service" style="--accent:#2DD4BF">
+        <div class="index">01</div>
+        <h2>Product Design</h2>
+        <p>Clear user flows, interface systems, and product screens built around real customer needs.</p>
+        <ul>
+          <li>User flows and wireframes</li>
+          <li>High-fidelity UI design</li>
+          <li>Design systems</li>
+        </ul>
+      </article>
+      <article class="service" style="--accent:#6FB97F">
+        <div class="index">02</div>
+        <h2>Interactive Web</h2>
+        <p>Landing pages and web experiences with purposeful motion, responsive layout, and polished details.</p>
+        <ul>
+          <li>Animated landing pages</li>
+          <li>Responsive implementation</li>
+          <li>Motion direction</li>
+        </ul>
+      </article>
+      <article class="service" style="--accent:#E9A93C">
+        <div class="index">03</div>
+        <h2>Prototype</h2>
+        <p>Interactive prototypes that make product ideas easier to test, present, and refine.</p>
+        <ul>
+          <li>Clickable prototypes</li>
+          <li>Interaction models</li>
+          <li>Concept validation</li>
+        </ul>
+      </article>
+      <article class="service" style="--accent:#EA6B2E">
+        <div class="index">04</div>
+        <h2>Front-end Support</h2>
+        <p>Production-facing UI support for teams that need careful translation from design to browser.</p>
+        <ul>
+          <li>HTML, CSS, JavaScript</li>
+          <li>GSAP and WebGL support</li>
+          <li>Design QA</li>
+        </ul>
+      </article>
+    </section>
+
+    <div class="footer">
+      <span class="mono">Ask me about other needs.</span>
+      <a class="cta" href="../#contact">Start a project</a>
+    </div>
+  </main>
+</div>
+<script src="../shared/site-nav.js"></script>
+</body>
+</html>
