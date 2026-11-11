@@ -21,8 +21,27 @@
   .cy-nav a{ color:#eaeaea; text-decoration:none; opacity:.45; transition:opacity .25s; }
   .cy-nav a:hover, .cy-nav a.active{ opacity:1; }
 
-  .cy-seg{ width:30px; height:1px; background:#eaeaea; opacity:.2; transition:opacity .3s, width .3s; }
-  .cy-seg.active{ opacity:1; width:42px; }
+  .cy-seg{ width:18px; height:1px; background:#eaeaea; opacity:.2; transition:opacity .3s, width .3s; }
+  .cy-seg.active{ opacity:1; width:30px; }
+  @media (max-width:560px){ .cy-seg{ width:10px; } .cy-seg.active{ width:18px; } }
+
+  .project-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.6rem;
+    align-self:flex-start;
+    margin:2rem 0 0;
+    padding:.85rem 1.4rem;
+    border:1px solid rgba(255,255,255,.85);
+    background:#f2f2f2;
+    color:#0a0a0a;
+    font-size:.95rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:background-color .2s ease, color .2s ease;
+  }
+  .project-link:hover,
+  .project-link:focus-visible{ background:#0a0a0a; color:#fff; }
 
   .cy-name{ transition:opacity .45s cubic-bezier(.22,.61,.36,1), transform .45s cubic-bezier(.22,.61,.36,1); }
 
@@ -213,12 +232,12 @@
     </header>
 
     <!-- index top-left -->
-    <div ref="{{ setIndex }}" style="position:absolute; top:78px; left:32px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; opacity:.5;">01 / 06</div>
+    <div ref="{{ setIndex }}" style="position:absolute; top:78px; left:32px; font-family:'JetBrains Mono',monospace; font-size:12px; letter-spacing:0.16em; opacity:.5;">01 / 16</div>
 
     <!-- active project name (floating) -->
     <div ref="{{ setNameBlock }}" class="cy-name" style="position:absolute; left:0; right:0; bottom:clamp(130px,17vh,200px); text-align:center; mix-blend-mode:difference;">
-      <div ref="{{ setName }}" style="font-size:clamp(1.56rem,3.44vw,2.66rem); font-weight:700; letter-spacing:-0.03em; line-height:1;">Patina Concept</div>
-      <div ref="{{ setStack }}" style="font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:11px;">Figma · Prototype · Design System</div>
+      <div ref="{{ setName }}" style="font-size:clamp(1.56rem,3.44vw,2.66rem); font-weight:700; letter-spacing:-0.03em; line-height:1;">Brand Kit &amp; Core SaaS</div>
+      <div ref="{{ setStack }}" style="font-family:'JetBrains Mono',monospace; font-size:8.5px; letter-spacing:0.18em; text-transform:uppercase; opacity:.5; margin-top:11px;">Figma · Brand · UI System</div>
     </div>
 
     <!-- progress -->
@@ -238,7 +257,8 @@
       <h1 ref="{{ setProjectTitle }}" id="project-title" class="project-title"></h1>
       <div ref="{{ setProjectRole }}" class="project-role"></div>
       <p ref="{{ setProjectDescription }}" class="project-description"></p>
-      <div ref="{{ setProjectCounter }}" class="project-counter">01 / 06</div>
+      <a ref="{{ setProjectLink }}" class="project-link" href="#" target="_blank" rel="noopener noreferrer">View project <span aria-hidden="true">↗</span></a>
+      <div ref="{{ setProjectCounter }}" class="project-counter">01 / 16</div>
       <dl class="project-specs">
         <div>
           <dt>Type</dt>
@@ -267,12 +287,22 @@ class Component extends DCLogic {
   constructor(props){
     super(props);
     this.projects = [
-      { index:'01', type:'Product Design', year:'2026', name:'Patina Concept', display:'PATINA', role:'UX/UI · IA · Product Design', description:'A custom product site exploring patina as material memory — massive type, page transitions, and a slow, deliberate scroll.', stack:['Figma','Next.js','GSAP'], tags:['E-commerce','Editorial'], accent:'#2DD4BF' },
-      { index:'02', type:'Interactive', year:'2026', name:'Interactive Pet Demo', display:'MOTION', role:'Front-end · Motion · Canvas', description:'A playful interactive prototype built around direct manipulation, tactile motion, and lightweight canvas rendering.', stack:['React','GSAP','Canvas'], tags:['Prototype','Interaction'], accent:'#6FB97F' },
-      { index:'03', type:'UI System', year:'2025', name:'SaaS Dashboard', display:'SYSTEM', role:'UX/UI · Design System · Data Viz', description:'An operational dashboard system focused on dense scanning, predictable controls, and reusable chart patterns.', stack:['Next.js','Design System','Charts'], tags:['SaaS','Dashboard'], accent:'#A8B85E' },
-      { index:'04', type:'Visual System', year:'2026', name:'Portfolio System', display:'ROTONDE', role:'Creative Direction · Front-end', description:'A personal portfolio framework using cinematic WebGL composition, editorial typography, and precise interaction states.', stack:['Next.js','GSAP','WebGL'], tags:['Portfolio','Visual System'], accent:'#E9A93C' },
-      { index:'05', type:'Editorial', year:'2025', name:'Editorial Commerce', display:'MAISON', role:'UX/UI · Art Direction · Commerce', description:'A commerce experience with editorial pacing, product storytelling, and conversion paths kept close to the visual narrative.', stack:['Next.js','GSAP'], tags:['Commerce','Editorial'], accent:'#EA6B2E' },
-      { index:'06', type:'Microsite', year:'2024', name:'Brand Microsite', display:'LAUNCH', role:'Creative Front-end · WebGL', description:'A launch microsite designed around atmospheric motion, responsive art direction, and fast first-load rendering.', stack:['WebGL','GSAP','Three.js'], tags:['Brand','Microsite'], accent:'#C2502B' }
+      { index:'01', type:'Brand & SaaS', year:'Figma', name:'Brand Kit & Core SaaS', display:'BRAND', role:'Brand · UI System · SaaS', description:'Brand kit and core screens for a family of SaaS products.', stack:['Figma','Brand','UI System'], tags:['SaaS','Brand'], accent:'#2DD4BF', url:'https://www.figma.com/design/QWncoG9J1rGakt8mDJ1fu8/Draft-pool--F2-?node-id=693-387' },
+      { index:'02', type:'Merchant Platform', year:'Live', name:'VietPay MMS', display:'MMS', role:'UX Flow · Dashboard · Web App', description:'Merchant management system with payment link and admin flows.', stack:['Web App','Dashboard','UX Flow'], tags:['Fintech','Merchant'], accent:'#6FB97F', url:'https://ydangkuul.github.io/mms130926/index.html' },
+      { index:'03', type:'Personal Brand', year:'Live', name:'Design Portfolio', display:'FOLIO', role:'Visual System · Web · Motion', description:'Interactive portfolio site with motion and a dark editorial style.', stack:['Web','Motion','Visual System'], tags:['Portfolio','Interactive'], accent:'#A8B85E', url:'https://ydangishere.github.io/Design/portfolio/' },
+      { index:'04', type:'Website', year:'Live', name:'VietPay New Website', display:'WEBSITE', role:'Web Design · IA · Responsive', description:'Company website for a payment brand, from sitemap to final pages.', stack:['Web Design','IA','Responsive'], tags:['Fintech','Website'], accent:'#E9A93C', url:'https://ydangkuul.github.io/web4/vietpay-github-pages-separated-2026-09-10/index.html#doi-tac' },
+      { index:'05', type:'Mobile App', year:'Figma', name:'Finance Referral App', display:'REFERRAL', role:'Mobile · Gamification · UX', description:'Referral app with rewards, missions, and progress tracking.', stack:['Figma','Mobile','Gamification'], tags:['Fintech','Mobile'], accent:'#EA6B2E', url:'https://www.figma.com/design/m9cOkwXW3mhWY5joutsLe5/Referral-app--Copy-?node-id=613-847&t=P1BwgbKqpoUCzpxL-1' },
+      { index:'06', type:'Game UI', year:'Figma', name:'WWE Champions Game', display:'WWE', role:'Game UI · Mobile · Visual Design', description:'Game interface screens and flows for a mobile game.', stack:['Figma','Game UI','Mobile'], tags:['Game','Mobile'], accent:'#C2502B', url:'https://www.figma.com/design/bCfOpe9erYbwJHPFtZQ4zP/WWE-V2-(edit---y-console)-(rep)?node-id=25710-133&t=DpCqEQzj6OED19jK-4' },
+      { index:'07', type:'Digital Banking', year:'Figma', name:'Sacombank Web & App', display:'BANKING', role:'Banking · Web · Mobile', description:'Design direction for banking web and mobile app.', stack:['Figma','Web','Mobile'], tags:['Banking','Design Direction'], accent:'#2DD4BF', url:'https://www.figma.com/design/LM7016zFRepV2CagKHSkvA/Sacombank-Design-Direction-?node-id=0-1&p=f&t=lI6Q1oUDjMPibV4N-0' },
+      { index:'08', type:'Digital Banking', year:'Proto', name:'HDBank Mobile App', display:'HDBANK', role:'Mobile · Prototype · Banking', description:'Clickable prototype for a mobile banking app.', stack:['Figma','Prototype','Mobile'], tags:['Banking','Mobile'], accent:'#6FB97F', url:'https://www.figma.com/proto/6c79HQU7BMNJiDNB7KqVNA?node-id=0-1&t=ibNOW04ku8qBZo3N-6' },
+      { index:'09', type:'Marketplace', year:'Figma', name:'Outdoors Marketplace', display:'OUTDOOR', role:'Marketplace · UX/UI · Web', description:'Marketplace experience for outdoor products and activities.', stack:['Figma','Web','Marketplace'], tags:['Marketplace','E-commerce'], accent:'#A8B85E', url:'https://www.figma.com/design/ygqXnjuTuqxlmgAALMh1qX/UOUTDOORS?node-id=0-1&t=hkCubm0BnrOrJQFE-1' },
+      { index:'10', type:'Marketplace', year:'Figma', name:'Third Place Marketplace', display:'PLACE', role:'Marketplace · IA · Product Design', description:'Community marketplace concept for local places and makers.', stack:['Figma','IA','Product Design'], tags:['Marketplace','Community'], accent:'#E9A93C', url:'https://www.figma.com/design/DH3wYYvun3dm4fXI1Wh73Q/Third-Place---(Backup30nov)?node-id=37-8778&t=tsZj3I5P4vBfh7R6-4' },
+      { index:'11', type:'Utility App', year:'Figma', name:'EVN App', display:'EVN', role:'Mobile · UX Flow · UI', description:'Mobile app screens for utility services.', stack:['Figma','Mobile','UX Flow'], tags:['Utility','Mobile'], accent:'#EA6B2E', url:'https://www.figma.com/design/lWJflNkyUKWSvsEkEyH0Mg/PTI-2-VNPOST-(Copy)?node-id=0-1&t=6czU6mrEBZr9GktR-1' },
+      { index:'12', type:'Fintech', year:'Figma', name:'Propzy Mortgage', display:'PROPZY', role:'Fintech · UX Flow · Web', description:'Mortgage flow improvements for a property platform.', stack:['Figma','UX Flow','Web'], tags:['Fintech','Property'], accent:'#C2502B', url:'https://www.figma.com/design/tFr8f3NxSw4UbuW4C7tPnd/Mortgage-Improvement--Y-?node-id=416-20016&t=THUh8yxVXjEWYXjB-4' },
+      { index:'13', type:'Interactive Website', year:'Live', name:'Interactive Web', display:'MOTION', role:'Motion · Web Design · Interaction', description:'Motion-led interactive website.', stack:['Web','Motion','Interaction'], tags:['Interactive','Website'], accent:'#2DD4BF', url:'https://indigo-laboratory.it/' },
+      { index:'14', type:'Social Gallery', year:'Live', name:'Jewellery Social Gallery', display:'JEWEL', role:'Visual Design · Web · Gallery', description:'Social gallery for showcasing jewellery designs.', stack:['Web','Visual Design','Gallery'], tags:['Jewellery','Social'], accent:'#6FB97F', url:'https://ydangishere.github.io/Design/jewellery-social-gallery/' },
+      { index:'15', type:'App Collection', year:'Figma', name:'Other Apps', display:'APPS', role:'Mobile · UI · Product Design', description:'A collection of other app designs.', stack:['Figma','Mobile','UI'], tags:['Apps','Collection'], accent:'#A8B85E', url:'https://www.figma.com/design/XUQ8bKHFJVAJpGmLvjG9mO/Untitled--Copy-?node-id=0-1&p=f' },
+      { index:'16', type:'EdTech', year:'Figma', name:'EdTech Feature Flow', display:'EDTECH', role:'UX Flow · EdTech · Product Design', description:'Feature flows for a learning product (feature flow only).', stack:['Figma','UX Flow','EdTech'], tags:['EdTech','Feature Flow'], accent:'#E9A93C', url:'https://www.figma.com/design/oQPIZbIXvB94SeEjdv45h7/Ed-Tech?node-id=1215-11218&t=SB56xqu3VG6gKBpn-1' }
     ];
     this._projectOpen = false;
   }
@@ -361,7 +391,7 @@ class Component extends DCLogic {
     // bottom-left stack
     ctx.fillStyle = 'rgba(255,255,255,0.5)';
     ctx.font = "400 16px 'JetBrains Mono', monospace";
-    ctx.fillText(p.index + ' / 06   ·   ' + p.stack.join(' · '), 44, ch - 44);
+    ctx.fillText(p.index + ' / ' + String(this.projects.length).padStart(2, '0') + '   ·   ' + p.stack.join(' · '), 44, ch - 44);
 
     // bottom-right year
     ctx.textAlign = 'right';
@@ -415,23 +445,26 @@ class Component extends DCLogic {
     this.renderer = renderer;
 
     const scene = new THREE.Scene();
-    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.06);
-    const camera = new THREE.PerspectiveCamera(65, 1, 0.1, 100);  // zoomed in 30% vs 82° baseline
+    // ring grows with project count so cards never overlap; FOV narrows to keep them a similar size on screen
+    const perTier = this.projects.length;
+    const RADIUS = Math.max(5.5, perTier * 3.4 / (Math.PI * 2));
+    const fov = Math.max(42, 65 * 5.5 / RADIUS);
+    scene.fog = new THREE.FogExp2(0x0a0a0a, 0.06 * 5.5 / RADIUS);
+    this._baseFov = Math.min(65, fov);
+    const camera = new THREE.PerspectiveCamera(this._baseFov, 1, 0.1, 100);
     camera.position.set(0, 0, 0);
     camera.lookAt(0, 0, -1);
     this.camera = camera; this.scene = scene;
 
-    const RADIUS = 5.5;  // +10%
-    const geo = this._barrelGeo(3.2, 1.9, 0.14);
+    const geo = this._barrelGeo(3.2, 1.9, 0.14 * 5.5 / RADIUS);
     const group = new THREE.Group();
     scene.add(group);
     this.group = group;
 
-    // 6 projects per tier, spaced 60° apart.
-    // Middle (tier 1) = active ring with all 6 real projects.
-    // Top/bottom (tier 0,2) = decorative repeat, offset 30° (half-step) for stagger effect.
-    const perTier = 6;
-    const stepA = (Math.PI * 2) / perTier;   // 60°
+    // One card per project on each tier, evenly spaced.
+    // Middle (tier 1) = active ring with all real projects.
+    // Top/bottom (tier 0,2) = decorative repeat, offset half a step for stagger effect.
+    const stepA = (Math.PI * 2) / perTier;
     const tiers = [
       { y: 2.5,  off: stepA / 2 },   // top — offset 30° so le
       { y: 0,    off: 0 },            // middle — active ring
@@ -542,7 +575,10 @@ class Component extends DCLogic {
       if (w < 1 || h < 1 || (w === this._lw && h === this._lh)) return;
       this._lw = w; this._lh = h;
       renderer.setSize(w, h, false);
-      camera.aspect = w / h; camera.updateProjectionMatrix();
+      camera.aspect = w / h;
+      // portrait screens: widen the view so the active card fits the width
+      camera.fov = w < h ? Math.min(65, this._baseFov * 1.55) : this._baseFov;
+      camera.updateProjectionMatrix();
     };
     window.addEventListener('resize', this._resize);
     if (typeof ResizeObserver !== 'undefined'){ this._ro = new ResizeObserver(() => this._resize()); this._ro.observe(canvas); }
@@ -608,7 +644,7 @@ class Component extends DCLogic {
 
   _updateOverlay(idx){
     const p = this.projects[idx];
-    if (this.indexEl) this.indexEl.textContent = p.index + ' / 06';
+    if (this.indexEl) this.indexEl.textContent = p.index + ' / ' + String(this.projects.length).padStart(2, '0');
     if (this.nameEl) this.nameEl.textContent = p.name;
     if (this.stackEl) this.stackEl.textContent = p.stack.join(' · ');
     if (this.segs) this.segs.forEach((s, i) => { s.className = 'cy-seg' + (i === idx ? ' active' : ''); });
@@ -636,6 +672,10 @@ class Component extends DCLogic {
     }
     if (this.projectRoleEl) this.projectRoleEl.textContent = p.role || p.type;
     if (this.projectDescriptionEl) this.projectDescriptionEl.textContent = p.description || '';
+    if (this.projectLinkEl){
+      if (p.url){ this.projectLinkEl.href = p.url; this.projectLinkEl.style.display = ''; }
+      else { this.projectLinkEl.removeAttribute('href'); this.projectLinkEl.style.display = 'none'; }
+    }
     if (this.projectCounterEl) this.projectCounterEl.textContent = p.index + ' / ' + String(this.projects.length).padStart(2, '0');
     if (this.projectTypeEl) this.projectTypeEl.textContent = p.type;
     if (this.projectStackEl) this.projectStackEl.textContent = p.stack.join(', ');
@@ -700,6 +740,7 @@ class Component extends DCLogic {
       setProjectTitle: (el) => { if (el) this.projectTitleEl = el; },
       setProjectRole: (el) => { if (el) this.projectRoleEl = el; },
       setProjectDescription: (el) => { if (el) this.projectDescriptionEl = el; },
+      setProjectLink: (el) => { if (el) this.projectLinkEl = el; },
       setProjectCounter: (el) => { if (el) this.projectCounterEl = el; },
       setProjectType: (el) => { if (el) this.projectTypeEl = el; },
       setProjectStack: (el) => { if (el) this.projectStackEl = el; },
